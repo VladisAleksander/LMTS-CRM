@@ -6,6 +6,6 @@
         <title>Document</title>
     </head>
     <body>
-        
+        <h1>Iniciando nuevo proyecto</h1>
     </body>
 </html>
