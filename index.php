@@ -1,3 +1,15 @@
+<?php
+    # Llamar a la conexión
+    require_once "config/conexion.php";
+
+    # Verificar si el formulario fue enviado
+    if (isset($_POST["enviar"]) && $_POST["enviar"] == "si") {
+        require_once "models/empleados.php";
+        $empleados = new Empleados();
+        $empleados->login();
+    }
+?>
+ 
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -21,31 +33,24 @@
         <div class="page-center">
             <div class="page-center-in">
                 <div class="container-fluid">
-                    <form class="sign-box">
+                    <form class="sign-box" action="" method="post" id="login_form">
                         <div class="sign-avatar">
                             <img src="public/img/avatar-sign.png" alt="">
                         </div>
                         <header class="sign-title">Acceso</header>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Correo o Teléfono"/>
+                            <input type="text" id="e_mail" name="e_mail" class="form-control" placeholder="Correo"/>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Contraseña"/>
+                            <input type="password" id="e_pass" name="e_pass" class="form-control" placeholder="Contraseña"/>
                         </div>
                         <div class="form-group">
-                            <div class="checkbox float-left">
-                                <input type="checkbox" id="signed-in"/>
-                                <label for="signed-in">Mantener mi sesión iniciada</label>
-                            </div>
                             <div class="float-left reset">
                                 <a href="reset-password.html">Restablecer contraseña</a>
                             </div>
                         </div>
+                        <input type="hidden" name="enviar" class="form-control" value="si">
                         <button type="submit" class="btn btn-rounded">Iniciar sesión</button>
-                        <p class="sign-note">¿Nuevo en el sitio? <a href="sign-up.html">Registrate</a></p>
-                        <!--<button type="button" class="close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>-->
                     </form>
                 </div>
             </div>
