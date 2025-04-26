@@ -9,4 +9,7 @@ $(document).ready(function() {
     $('#us-phone-mask-input').mask('(000) 000-0000', {placeholder: "(___) ___-____"});
     $('#ip-address-mask-input').mask('099.099.099.099');
     $('#mixed-mask-input').mask('AAA 000-S0S');
+    $('#user-id-input').mask('AA000000');
+    $('#t_phone').mask('(000) 000-0000', {placeholder: "(___) ___-____"});
+    $('#e_phone').mask('(000) 000-0000', {placeholder: "(___) ___-____"});
 });

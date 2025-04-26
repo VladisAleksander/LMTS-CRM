@@ -1,0 +1,1 @@
+console.log('TEST: Soporte/view/Home/home.js');
