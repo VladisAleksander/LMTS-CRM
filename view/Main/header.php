@@ -2,8 +2,8 @@
     <div class="container-fluid">
 
         <a href="#" class="site-logo">
-            <img class="hidden-md-down" src="/-Empresa-El-Punto/Soporte/public/img/logo-black.png" alt="">
-            <img class="hidden-lg-up" src="/-Empresa-El-Punto/Soporte/public/img/logo-black-mob.png" alt="">
+            <img class="hidden-md-down" src="/LMTS-CRM/public/img/logo-black.png" alt="">
+            <img class="hidden-lg-up" src="/LMTS-CRM/public/img/logo-black-mob.png" alt="">
         </a>
 
         <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
@@ -20,14 +20,14 @@
                     <!-- User menu -->
                     <div class="dropdown user-menu">
                         <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="/-Empresa-El-Punto/Soporte/public/img/avatar-2-64.png" alt="">
+                            <img src="/LMTS-CRM/public/img/avatar-2-64.png" alt="">
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
                             <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
                             <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-cog"></span>Ajustes</a>
                             <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-question-sign"></span>Ayuda</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/-Empresa-El-Punto/Soporte/view/Main/logout.php"><span class="font-icon glyphicon glyphicon-log-out"></span>Cerrar sesión</a>
+                            <a class="dropdown-item" href="/LMTS-CRM/view/Main/logout.php"><span class="font-icon glyphicon glyphicon-log-out"></span>Cerrar sesión</a>
                         </div>
                     </div>
 

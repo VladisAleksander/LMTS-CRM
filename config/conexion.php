@@ -22,7 +22,7 @@
 
         #Validar la ruta del proyecto
         public static function ruta() {
-            return "http://localhost/-Empresa-El-Punto/Soporte/";
+            return "http://localhost/LMTS-CRM/";
         }
 
     }

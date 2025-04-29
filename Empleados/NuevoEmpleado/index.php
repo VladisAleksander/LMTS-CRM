@@ -74,8 +74,8 @@
                                     <label class="form-label semibold" for="e_stat">Estatus</label>
                                     <select id="e_stat" name="e_stat" class="form-control" required>
                                         <option value="" disabled selected>- Seleccione un puesto -</option>
-                                        <option value="1" disabled selected>Activo</option>
-                                        <option value="0" disabled selected>Inactivo</option>
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
                                     </select>
                                 </fieldset>
                             </div>

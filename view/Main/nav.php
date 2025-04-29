@@ -3,7 +3,7 @@
 
         <!-- Principal -->
         <li class="grey with-sub">
-            <a href="/-Empresa-El-Punto/Soporte/Home">
+            <a href="/LMTS-CRM/Home">
                 <i class="font-icon glyphicon glyphicon-send"></i>
                 <span class="lbl">Principal</span>
             </a>
@@ -38,9 +38,9 @@
                 <span class="lbl">Empleados</span>
             </span>
             <ul>
-                <li><a href="/-Empresa-El-Punto/Soporte/Empleados/NuevoEmpleado"><span class="lbl">Nuevo Empleado</span></a></li>
-                <li><a href="/-Empresa-El-Punto/Soporte/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
-                <li><a href="/-Empresa-El-Punto/Soporte/Empleados/GestionarEmpleado"><span class="lbl">Gestionar Empleados</span></a></li>
+                <li><a href="/LMTS-CRM/Empleados/NuevoEmpleado"><span class="lbl">Nuevo Empleado</span></a></li>
+                <li><a href="/LMTS-CRM/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
+                <li><a href="/LMTS-CRM/Empleados/GestionarEmpleado"><span class="lbl">Gestionar Empleados</span></a></li>
             </ul>
         </li>
 
@@ -51,10 +51,10 @@
                 <span class="lbl">Soporte</span>
             </span>
             <ul>
-                <li><a href="/-Empresa-El-Punto/Soporte/Soporte/NuevoTicket"><span class="lbl">Nuevo Ticket</span></a></li>
-                <li><a href="/-Empresa-El-Punto/Soporte/Soporte/ConsultarTicket"><span class="lbl">Consultar Ticket</span></a></li>
-                <li><a href="/-Empresa-El-Punto/Soporte/Soporte/Documentacion"><span class="lbl">Documentación</span></a></li>
-                <li><a href="/-Empresa-El-Punto/Soporte/Soporte/FAQ"><span class="lbl">FAQ</span></a></li>
+                <li><a href="/LMTS-CRM/Soporte/NuevoTicket"><span class="lbl">Nuevo Ticket</span></a></li>
+                <li><a href="/LMTS-CRM/Soporte/ConsultarTicket"><span class="lbl">Consultar Ticket</span></a></li>
+                <li><a href="/LMTS-CRM/Soporte/Documentacion"><span class="lbl">Documentación</span></a></li>
+                <li><a href="/LMTS-CRM/Soporte/FAQ"><span class="lbl">FAQ</span></a></li>
             </ul>
         </li>
 
