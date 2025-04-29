@@ -1,1 +1,1 @@
-Proyecto de modulo de Soporte técnico para un CRM.
+Proyecto de CRM para práctica de desarrollo web.
