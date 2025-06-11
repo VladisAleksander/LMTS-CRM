@@ -51,21 +51,21 @@
                 <span class="lbl">Soporte</span>
             </span>
             <ul>
+                <li><a href="/LMTS-CRM/Soporte/FAQ"><span class="lbl">FAQ</span></a></li>
                 <li><a href="/LMTS-CRM/Soporte/NuevoTicket"><span class="lbl">Nuevo Ticket</span></a></li>
                 <li><a href="/LMTS-CRM/Soporte/ConsultarTicket"><span class="lbl">Consultar Ticket</span></a></li>
                 <li><a href="/LMTS-CRM/Soporte/Documentacion"><span class="lbl">Documentación</span></a></li>
-                <li><a href="/LMTS-CRM/Soporte/FAQ"><span class="lbl">FAQ</span></a></li>
             </ul>
         </li>
 
         <!-- Contactos -->
-        <!-- <li class="red">
+        <li class="red">
             <a href="contacts.html" class="label-right">
                 <i class="font-icon font-icon-contacts"></i>
                 <span class="lbl">Contactos</span>
                 <span class="label label-custom label-pill label-danger">69</span>
             </a>
-        </li> -->
+        </li>
     </ul>
 
     <section>

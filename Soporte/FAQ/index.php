@@ -46,29 +46,29 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><img src="/-Empresa-El-Punto/Soporte/public/img/faq-1.png" alt=""></div>
+                                    <div class="faq-page-cat-icon"><img src="/LMTS-CRM/public/img/faq-1.png" alt=""></div>
                                     <div class="faq-page-cat-title">
-                                        <a href="#">Comenzando</a>
+                                        <a href="#">FAQ</a>
                                     </div>
-                                    <div class="faq-page-cat-txt">¿Nuevo en el sitio? Aprende lo básico para sacarle el mejor provecho</div>
+                                    <div class="faq-page-cat-txt">¿Tienes problemas con algo? Ahorra tiempo buscando tu pregunta más abajo</div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><img src="/-Empresa-El-Punto/Soporte/public/img/faq-2.png" alt=""></div>
+                                    <div class="faq-page-cat-icon"><img src="/LMTS-CRM/public/img/faq-2.png" alt=""></div>
                                     <div class="faq-page-cat-title">
-                                        <a href="#">Tengo un problema</a>
+                                        <a href="/LMTS-CRM/Soporte/NuevoTicket">Help Desk</a>
                                     </div>
-                                    <div class="faq-page-cat-txt">¿Hay algo que no funciona? Revisa si alguna de estas sugerencias te ayuda a solucionarlo</div>
+                                    <div class="faq-page-cat-txt">¿Hay algo más que no funciona? Crea un nuevo ticket para que Soporte te ayude</div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><img src="/-Empresa-El-Punto/Soporte/public/img/faq-3.png" alt=""></div>
+                                    <div class="faq-page-cat-icon"><img src="/LMTS-CRM/public/img/faq-3.png" alt=""></div>
                                     <div class="faq-page-cat-title">
-                                        <a href="#">Sugerir una característica</a>
+                                        <a href="#">Sugerencias</a>
                                     </div>
-                                    <div class="faq-page-cat-txt">¿Tienes una sugerencia? ¡Permitenos conocer tus sugerencias!</div>
+                                    <div class="faq-page-cat-txt">¿Tienes una sugerencia? ¡Permitenos conocer tus sugerencias y comentarios!</div>
                                 </div>
                             </div>
                         </div><!--.row-->

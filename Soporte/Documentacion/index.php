@@ -35,18 +35,18 @@
                 <div class="box-typical box-typical-padding documentation">
                     <footer class="documentation-meta">
                         <p class="inline">
-                            <span class="color-blue-grey-lighter">Created:</span>
-                            August 27, 2015 (12 days ago)
+                            <span class="color-blue-grey-lighter">Creado:</span>
+                            Abril 15, 2025
                         </p>
                         <p class="inline">
-                            <span class="color-blue-grey-lighter">Last updated:</span>
-                            November 27, 2015 (12 days ago)
+                            <span class="color-blue-grey-lighter">Última actualización:</span>
+                            Junio 10, 2025
                         </p>
                         <p>
-                            <span class="color-blue-grey-lighter">Tags:</span>
-                            <a href="#">Basic,</a>
-                            <a href="#">Getting Started,</a>
-                            <a href="#">v2</a>
+                            <span class="color-blue-grey-lighter">Etiquetas:</span>
+                            <a href="#">Básico,</a>
+                            <a href="#">Comenzando,</a>
+                            <a href="#">v1</a>
                         </p>
                     </footer>
 
