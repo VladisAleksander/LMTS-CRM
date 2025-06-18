@@ -1,1 +1,1 @@
-Proyecto de CRM para práctica de desarrollo web.
+Proyecto de CRM con enfoque en soporte técnico.
