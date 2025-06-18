@@ -10,7 +10,7 @@
                 $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=helpdesk", "root", "Password123");
                 return $conectar;
             } catch (Exception $e) {
-                print "¡Error Fatal!: La cagaste y esta madre no jala, culpa al primer pendejo que se atraviese " . $e->getMessage() . "<br/>";
+                print "¡Error de conexión!: La conexión a la base de datos no pudo ser establecida." . $e->getMessage() . "<br/>";
                 die();
             }
         }
