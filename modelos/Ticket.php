@@ -55,9 +55,6 @@
         public function listarTicketUsuario($emp_id) {
             $conectar = parent::conexion();
             parent::set_names();
-
-            // Obtener número de ticket único
-            $t_num = $this -> generarTicketID($conectar);
             
             $sql = "SELECT
                 tickets.t_id,
@@ -85,7 +82,8 @@
                 INNER JOIN subcategorias ON tickets.scat_id = subcategorias.sc_id
                 INNER JOIN estatus ON tickets.est_id = estatus.st_id
                 INNER JOIN subestatus ON tickets.sest_id = se_id
-                WHERE empleados.e_id = ?";
+                WHERE tickets.t_est = 1
+                AND empleados.e_id = ?";
             
             $sql = $conectar->prepare($sql);
             

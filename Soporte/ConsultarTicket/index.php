@@ -31,6 +31,23 @@
                         </div>
                     </div>
                 </header>
+
+                <div class="box-typical box-typical-padding">
+                    <table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 10%;">Ticket ID</th>
+                                <th class="text-center" style="width: 15%;">Categoría</th>
+                                <th class="text-center" style="width: 15%;">Subcategoría</th>
+                                <th class="text-center d-none d-sm-table-cell" style="width: 50%;">Título</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div><!--.table-responsive-->
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->
         <?php   require_once '../../view/Main/js.php'; ?>
