@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>El Punto :: Documentación</title>
+        <title>TechCareMX :: Documentación</title>
     </head>
     <body class="with-side-menu">
 
