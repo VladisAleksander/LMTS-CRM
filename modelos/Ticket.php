@@ -65,25 +65,31 @@
                 tickets.t_phone,
                 tickets.cat_id,
                 tickets.scat_id,
+                tickets.niv_id,
                 tickets.est_id,
                 tickets.sest_id,
                 tickets.t_desc,
+                tickets.t_crea,
                 empleados.e_name,
                 empleados.e_last1,
-                area.a_name,
+                areas.a_name,
                 categorias.c_name,
                 subcategorias.sc_name,
                 estatus.st_name,
-                subestatus.se_name
-                FROM ticket
+                subestatus.se_name,
+                prioridad.n_name
+                FROM tickets
                 INNER JOIN empleados ON tickets.emp_id  = empleados.e_id
-                INNER JOIN area ON tickets.area_id = area.a_id
+                INNER JOIN areas ON tickets.area_id = areas.a_id
                 INNER JOIN categorias ON tickets.cat_id = categorias.c_id
                 INNER JOIN subcategorias ON tickets.scat_id = subcategorias.sc_id
                 INNER JOIN estatus ON tickets.est_id = estatus.st_id
                 INNER JOIN subestatus ON tickets.sest_id = se_id
-                WHERE tickets.t_est = 1
-                AND empleados.e_id = ?";
+                INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id
+                WHERE empleados.e_id = ?";
+
+                /* WHERE tickets.est_id = 1
+                AND empleados.e_id = ?"; */
             
             $sql = $conectar->prepare($sql);
             

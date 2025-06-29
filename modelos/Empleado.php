@@ -57,5 +57,33 @@
             return $resultado = $sql->fetchAll();
         }
 
+        public function listarEmpleados($e_id) {
+            $conectar = parent::conexion();
+            parent::set_names();
+            
+            $sql = "SELECT
+                empleados.e_uid,
+                empleados.e_name,
+                empleados.e_last1,
+                empleados.e_last2,
+                empleados.e_mail,
+                empleados.e_phone,
+                puestos.pue_id,
+                areas.area_id,
+                empleados.e_stat,
+                empleados.e_crea,
+                empleados.e_mod
+                FROM empleados
+                INNER JOIN puestos ON empleados.pue_id  = empleados.e_id
+                INNER JOIN areas ON empleados.area_id = area.a_id
+                WHERE empleados.e_est = 1";
+            
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $e_id);
+
+            $sql -> execute();
+            return $resultado = $sql->fetchAll();
+        }
+
     }
 ?>

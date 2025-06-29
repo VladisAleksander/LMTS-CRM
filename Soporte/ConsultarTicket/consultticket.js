@@ -5,7 +5,7 @@ function init() {
 }
 
 $(document).ready(function(){
-    tabla = $('#ticket_data').DataTable({
+    tabla = $('#ticket_data').dataTable({
         "aProcessing": true, // Activamos el procesamiento del datatables
         "aServerSide": true, // Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip', // Definimos los elementos del control de la tabla
