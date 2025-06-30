@@ -5,7 +5,7 @@ function init() {
 }
 
 $(document).ready(function(){
-    tabla = $('#ticket_data').dataTable({
+    tabla = $('#usuario_data').dataTable({
         "aProcessing": true, // Activamos el procesamiento del datatables
         "aServerSide": true, // Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip', // Definimos los elementos del control de la tabla
@@ -21,10 +21,10 @@ $(document).ready(function(){
 
         
         "ajax": {
-            url : "../../controller/ticket.php?op=listar_por_usuario",
+            url : "../../controller/empleado.php?op=listar_usuarios",
             type : "post",
             dataType : "json",
-            data: {emp_id : 1 }, // Enviamos el ID del empleado al servidor
+            data: {"e_stat" : 1 }, // Enviamos el ID del estatus al servidor
             error: function(e) {
                 console.log(e.responseText);
             }
@@ -66,9 +66,5 @@ $(document).ready(function(){
         }
     }).DataTable();
 });
-
-function verTicket(ticket_id) {
-    console.log(ticket_id);
-}
 
 init();

@@ -85,15 +85,12 @@
                 INNER JOIN subcategorias ON tickets.scat_id = subcategorias.sc_id
                 INNER JOIN estatus ON tickets.est_id = estatus.st_id
                 INNER JOIN subestatus ON tickets.sest_id = se_id
-                INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id
-                WHERE empleados.e_id = ?";
-
-                /* WHERE tickets.est_id = 1
-                AND empleados.e_id = ?"; */
+                INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id";
+                /* WHERE empleados.e_id = ?"; */
             
             $sql = $conectar->prepare($sql);
             
-            $sql -> bindValue(1, $emp_id);
+            /* $sql -> bindValue( 1, $emp_id); */
 
             $sql -> execute();
             return $resultado = $sql->fetchAll();

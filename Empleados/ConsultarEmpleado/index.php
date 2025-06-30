@@ -31,6 +31,26 @@
                         </div>
                     </div>
                 </header>
+
+                <div class="box-typical box-typical-padding">
+                    <table id="usuario_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 15%;">ID de Usuario</th>
+                                <th class="text-center" style="width: 15%;">Nombre</th>
+                                <th class="text-center" style="width: 15%;">Apellido Paterno</th>
+                                <th class="text-center" style="width: 15%;">Apellido Materno</th>
+                                <th class="text-center" style="width: 10%;">Área</th>
+                                <th class="text-center" style="width: 15%;">Puesto</th>
+                                <th class="text-center" style="width: 10%;">Estatus</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div><!--.table-responsive-->
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->
         <?php   require_once '../../view/Main/js.php'; ?>
