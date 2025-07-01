@@ -54,7 +54,7 @@
                                                 </div>
                                             </div>
                                         <?php
-                                        break;
+                                    break;
                                     case '2': # Mensaje de error por campos vacíos
                                         ?>
                                             <div class="alert alert-danger" role="alert">
@@ -67,10 +67,10 @@
                                                 </div>
                                             </div>
                                         <?php
-                                        break;
+                                    break;
                                     default:
                                         # Código por defecto
-                                        break;
+                                    break;
                                 }
                             }
                         ?>

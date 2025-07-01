@@ -16,7 +16,7 @@
                 }
 
                 # Verificar datos de acceso
-                $sql = "SELECT * FROM empleados WHERE e_mail = ? and e_pass = ? and e_stat = 1";
+                $sql = "SELECT * FROM empleados WHERE e_mail = ? AND e_pass = ? AND e_stat = 1";
                 $stmt = $conectar->prepare($sql);
                 $stmt->bindValue(1, $correo);
                 $stmt->bindValue(2, $password);

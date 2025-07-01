@@ -30,7 +30,7 @@ $(document).ready(function(){
             }
         },
 
-        "bDestroy": true, // Elimina los datos anteriores para evitar duplicados
+        "bDestroy": false, // Elimina los datos anteriores para evitar duplicados
         "responsive": true, // Habilita la responsividad
         "bInfo": true, // Muestra información sobre el número de registros
         "iDisplayLength": 10, // Número de registros a mostrar por página
@@ -39,6 +39,7 @@ $(document).ready(function(){
         "bLengthChange": true, // Permite cambiar el número de registros por página
         "bPaginate": true, // Habilita la paginación
         "bFilter": true, // Habilita el filtro
+
 
         "language": {
             "url": "../assets/js/Spanish.json",

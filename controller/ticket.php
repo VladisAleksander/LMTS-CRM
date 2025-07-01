@@ -22,14 +22,14 @@
                 foreach($datos as $row){
                     $sub_array = array();
                     $sub_array[] = $row["t_num"];
+                    $sub_array[] = $row["t_crea"];
+                    $sub_array[] = $row["t_tit"];
                     $sub_array[] = $row["a_name"];
+                    $sub_array[] = $row["e_name"]." ".$row["e_last1"];
                     $sub_array[] = $row["c_name"];
                     $sub_array[] = $row["sc_name"];
-                    $sub_array[] = $row["t_tit"];
-                    $sub_array[] = $row["st_name"];
                     $sub_array[] = $row["n_name"];
-                    $sub_array[] = $row["e_name"]." ".$row["e_last1"];
-                    $sub_array[] = $row["t_crea"];
+                    $sub_array[] = $row["st_name"];
                     $sub_array[] = '<button type="button" onClick="verTicket('.$row["t_id"].');" id="'.$row["t_id"].'" class="btn btn-inline btn-primay btn-sm ladda-button"><div><i class="fa fa-eye"></i></div></button>';
                     $data[] = $sub_array;
                 }

@@ -37,14 +37,14 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 15%;">Ticket ID</th>
-                                <th class="text-center" style="width: 10%;">Área</th>
-                                <th class="text-center" style="width: 10%;">Categoría</th>
-                                <th class="text-center" style="width: 15%;">Subcategoría</th>
+                                <th class="text-center">Creación</th>
                                 <th class="text-center d-none d-sm-table-cell" style="width: 50%;">Título</th>
-                                <th class="text-center" style="width: 10%;">Estatus</th>
-                                <th class="text-center" style="width: 15%;">Prioridad</th>
+                                <th class="text-center">Área</th>
                                 <th class="text-center" style="width: 15%;">Usuario</th>
-                                <th class="text-center">Fecha de Creación</th>
+                                <th class="text-center">Categoría</th>
+                                <th class="text-center" style="width: 15%;">Subcategoría</th>
+                                <th class="text-center">Prioridad</th>
+                                <th class="text-center">Estatus</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
