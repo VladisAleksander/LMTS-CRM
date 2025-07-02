@@ -84,6 +84,7 @@
                         </div>
 
                         <input type="hidden" id="e_idx" value="<?php echo $_SESSION["e_id"] ?>"> <!-- ID del empleado -->
+                        <input type="hidden" id="area_idx" value="<?php echo $_SESSION["area_id"] ?>"> <!-- Rol (área) del empleado -->
 
                         <!-- User options -->
                         <div class="dropdown dropdown-typical">

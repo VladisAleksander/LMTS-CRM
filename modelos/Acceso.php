@@ -31,6 +31,7 @@
                     $_SESSION["e_last1"] = $resultado["e_last1"];
                     $_SESSION["e_last2"] = $resultado["e_last2"];
                     $_SESSION["e_mail"] = $resultado["e_mail"];
+                    $_SESSION["area_id"] = $resultado["area_id"];
 
                     # Redireccionar a la página de inicio
                     header("Location:" . Conectar::ruta() . "Home/");

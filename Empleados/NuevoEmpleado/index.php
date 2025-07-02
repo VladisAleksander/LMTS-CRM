@@ -73,7 +73,7 @@
                                 <fieldset class="form-group">
                                     <label class="form-label semibold" for="e_stat">Estatus</label>
                                     <select id="e_stat" name="e_stat" class="form-control" required>
-                                        <option value="" disabled selected>- Seleccione un puesto -</option>
+                                        <option value="" disabled selected>- Seleccione estatus de inicio -</option>
                                         <option value="1">Activo</option>
                                         <option value="0">Inactivo</option>
                                     </select>

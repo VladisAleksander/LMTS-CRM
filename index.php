@@ -33,11 +33,13 @@
         <div class="page-center">
             <div class="page-center-in">
                 <div class="container-fluid">
+
+                    <!-- <input type="hidden" id="area_id" name="area_id" value="1"> -->
                     <form class="sign-box" action="" method="post" id="login_form">
                         <div class="sign-avatar">
                             <img src="public/img/avatar-sign.png" alt="">
                         </div>
-                        <header class="sign-title" lbl="lbltitulo">Acceso Usuario</header>
+                        <header class="sign-title" id="lbltitulo">Acceso Usuario</header>
 
                         <?php
                             if (isset($_GET["m"])) {
@@ -63,7 +65,7 @@
                                                 </button>
                                                 <div class="d-flex align-items-center justify-content-start">
                                                     <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
-                                                    <span>Los campos están vacíos.</span>
+                                                    <span>Uno o más campos están vacíos.</span>
                                                 </div>
                                             </div>
                                         <?php
@@ -83,9 +85,9 @@
                         </div>
                         
                         <div class="form-group">
-                            <div class="float-left reset">
+                            <!-- <div class="float-left reset">
                                 <a href="#" id="btnsoporte">Acceso Soporte</a>
-                            </div>
+                            </div> -->
 
                             <div class="float-right reset">
                                 <a href="password-reset.php">Restablecer contraseña</a>

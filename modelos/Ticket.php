@@ -86,7 +86,7 @@
                 INNER JOIN estatus ON tickets.est_id = estatus.st_id
                 INNER JOIN subestatus ON tickets.sest_id = se_id
                 INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id
-                /* WHERE empleados.e_id = $_SESSION[e_id] */";
+                WHERE empleados.e_id = $_SESSION[e_id]";
             
             $sql = $conectar->prepare($sql);
             
