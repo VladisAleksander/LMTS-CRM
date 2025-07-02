@@ -34,20 +34,41 @@
 
                 <div class="box-typical box-typical-padding">
                     <table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="width: 15%;">Ticket ID</th>
-                                <th class="text-center">Creación</th>
-                                <th class="text-center d-none d-sm-table-cell" style="width: 70%;">Título</th>
-                                <th class="text-center">Área</th>
-                                <th class="text-center" style="width: 15%;">Usuario</th>
-                                <th class="text-center">Categoría</th>
-                                <th class="text-center" style="width: 25%;">Subcategoría</th>
-                                <th class="text-center">Prioridad</th>
-                                <th class="text-center">Estatus</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                        </thead>
+                    <?php
+                        if ($_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) {
+                            ?>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 15%;">Ticket ID</th>
+                                        <th class="text-center">Creación</th>
+                                        <th class="text-center d-none d-sm-table-cell" style="width: 70%;">Título</th>
+                                        <th class="text-center">Área</th>
+                                        <th class="text-center" style="width: 15%;">Usuario</th>
+                                        <th class="text-center">Categoría</th>
+                                        <th class="text-center" style="width: 25%;">Subcategoría</th>
+                                        <th class="text-center" style="width: 5%;">Prioridad</th>
+                                        <th class="text-center">Estatus</th>
+                                        <th class="text-center" style="width: 5%;"></th>
+                                    </tr>
+                                </thead>
+                            <?php
+                        } else {
+                            ?>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 15%;">Ticket ID</th>
+                                        <th class="text-center">Creación</th>
+                                        <th class="text-center d-none d-sm-table-cell" style="width: 70%;">Título</th>
+                                        <th class="text-center" style="width: 15%;">Área</th>
+                                        <th class="text-center">Categoría</th>
+                                        <th class="text-center" style="width: 25%;">Subcategoría</th>
+                                        <th class="text-center">Estatus</th>
+                                        <th class="text-center" style="width: 5%;"></th>
+                                    </tr>
+                                </thead>
+                            <?php
+                        }
+                    ?>
                         <tbody>
                             
                         </tbody>

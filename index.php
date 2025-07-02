@@ -34,7 +34,6 @@
             <div class="page-center-in">
                 <div class="container-fluid">
 
-                    <!-- <input type="hidden" id="area_id" name="area_id" value="1"> -->
                     <form class="sign-box" action="" method="post" id="login_form">
                         <div class="sign-avatar">
                             <img src="public/img/avatar-sign.png" alt="">
