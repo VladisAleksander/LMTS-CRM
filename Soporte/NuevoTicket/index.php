@@ -107,7 +107,7 @@
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->
         <?php   require_once '../../view/Main/js.php'; ?>
-        <script type="text/javascript" src="newticket.js"></script>
+        <script type="text/javascript" src="../../public/js/tickets/new.js"></script>
     </body>
 </html>
 <?php

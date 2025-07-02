@@ -122,6 +122,7 @@
             });
         </script>
         <script src="public/js/app.js"></script>
+        <script src="public/js/index.js"></script>
     </body>
 
     <!-- Footer -->

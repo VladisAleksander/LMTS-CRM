@@ -34,7 +34,7 @@
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->
         <?php   require_once '../../view/Main/js.php'; ?>
-        <script type="text/javascript" src="manageemployee.js"></script>
+        <script type="text/javascript" src="../../public/js/employees/manage.js"></script>
     </body>
 </html>
 <?php

@@ -134,7 +134,7 @@
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->
         <?php   require_once '../view/Main/js.php'; ?>
-        <script type="text/javascript" src="faq.js"></script>
+        <script type="text/javascript" src="../public/js/tickets/support.js"></script>
     </body>
 </html>
 <?php
