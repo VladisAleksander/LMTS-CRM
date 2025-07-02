@@ -322,6 +322,41 @@ INSERT INTO `subestatus` VALUES (1,1,'Pendiente de asignación','Aún no asignad
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ticket_detalles`
+--
+
+DROP TABLE IF EXISTS `ticket_detalles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ticket_detalles` (
+  `td_id` int NOT NULL AUTO_INCREMENT,
+  `tick_id` int NOT NULL,
+  `emp_id` int NOT NULL,
+  `td_det` mediumtext COLLATE utf8mb4_spanish_ci,
+  `td_data` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `td_crea` datetime NOT NULL,
+  `td_stat` int NOT NULL,
+  `td_upd` datetime NOT NULL,
+  PRIMARY KEY (`td_id`),
+  KEY `tick_id` (`tick_id`),
+  KEY `emp_id` (`emp_id`),
+  CONSTRAINT `ticket_detalles_ibfk_1` FOREIGN KEY (`tick_id`) REFERENCES `tickets` (`t_id`),
+  CONSTRAINT `ticket_detalles_ibfk_2` FOREIGN KEY (`emp_id`) REFERENCES `empleados` (`e_id`),
+  CONSTRAINT `ticket_detalles_chk_1` CHECK ((`td_stat` in (0,1)))
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ticket_detalles`
+--
+
+LOCK TABLES `ticket_detalles` WRITE;
+/*!40000 ALTER TABLE `ticket_detalles` DISABLE KEYS */;
+INSERT INTO `ticket_detalles` VALUES (1,1,1,'Esta es una respuesta de seguimiento al ticket de parte del Usuario ',NULL,'2025-07-02 08:17:41',1,'2025-07-02 09:03:34'),(2,1,8,'Esta es una respuesta de seguimiento al ticket de parte de Soporte',NULL,'2025-07-02 08:17:41',1,'2025-07-02 09:03:34');
+/*!40000 ALTER TABLE `ticket_detalles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tickets`
 --
 
@@ -340,7 +375,7 @@ CREATE TABLE `tickets` (
   `niv_id` int NOT NULL,
   `est_id` int NOT NULL,
   `sest_id` int DEFAULT NULL,
-  `t_desc` varchar(9000) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `t_desc` text COLLATE utf8mb4_spanish_ci,
   `t_crea` datetime NOT NULL,
   `t_upd` datetime NOT NULL,
   `t_close` datetime DEFAULT NULL,
@@ -369,7 +404,7 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-INSERT INTO `tickets` VALUES (1,'TCK-20250423-000001','Primer ticket de prueba',12,1,'(234) 234-2342',2,7,1,1,1,'Descripción','2025-04-23 00:03:20','2025-04-23 00:03:20',NULL),(2,'TCK-20250423-000002','Segundo ticket de prueba',12,1,'(234) 234-2342',2,7,2,2,1,'<span style=\"font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>','2025-04-23 00:04:20','2025-04-23 00:04:20',NULL),(3,'TCK-20250423-000003','Tercer ticket de prueba',1,1,'(345) 345-3453',7,33,3,3,1,'<span style=\"font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>','2025-04-23 00:27:43','2025-04-23 00:27:43',NULL),(4,'TCK-20250423-000004','Cuarto Ticket de Prueba',11,1,'(123) 123-1231',2,7,4,4,1,'<span style=\"font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>','2025-04-23 00:30:20','2025-04-23 00:30:20',NULL),(5,'TCK-20250630-000001','Quinto ticket de prueba',4,2,'(123) 412-3413',3,14,5,5,1,'Este es un ticket de prueba','2025-06-29 23:29:18','2025-06-29 23:29:18',NULL);
+INSERT INTO `tickets` VALUES (1,'TCK_20250423001','Primer ticket de prueba',12,1,'(234) 234-2342',2,7,1,1,1,'Descripción','2025-04-23 00:03:20','2025-04-23 00:03:20',NULL),(2,'TCK_20250423002','Segundo ticket de prueba',12,1,'(234) 234-2342',2,7,2,2,1,'<span style=\"font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>','2025-04-23 00:04:20','2025-04-23 00:04:20',NULL),(3,'TCK_20250423003','Tercer ticket de prueba',1,1,'(345) 345-3453',7,33,3,3,1,'<span style=\"font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>','2025-04-23 00:27:43','2025-04-23 00:27:43',NULL),(4,'TCK_20250423004','Cuarto Ticket de Prueba',11,1,'(123) 123-1231',2,7,4,4,1,'<span style=\"font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>','2025-04-23 00:30:20','2025-04-23 00:30:20',NULL),(5,'TCK_20250630001','Quinto ticket de prueba',4,2,'(123) 412-3413',3,14,5,5,1,'Este es un ticket de prueba','2025-06-29 23:29:18','2025-06-29 23:29:18',NULL);
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -382,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-02  4:24:31
+-- Dump completed on 2025-07-02 11:01:50
