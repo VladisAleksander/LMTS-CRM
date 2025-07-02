@@ -76,7 +76,7 @@
                         ?>
                         
                         <div class="form-group">
-                            <input type="text" id="e_mail" name="e_mail" class="form-control" placeholder="Correo"/>
+                            <input type="text" id="e_uid" name="e_uid" class="form-control" placeholder="Id de Usuario"/>
                         </div>
                         <div class="form-group">
                             <input type="password" id="e_pass" name="e_pass" class="form-control" placeholder="Contraseña"/>
