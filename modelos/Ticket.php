@@ -13,8 +13,8 @@
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 $conteo = $row['total'] + 1 + $i; // se suma $i para evitar duplicado en intentos
     
-                $codigo = str_pad($conteo, 6, "0", STR_PAD_LEFT);
-                $t_num = "TCK-$fecha-$codigo";
+                $codigo = str_pad($conteo, 3, "0", STR_PAD_LEFT);
+                $t_num = "TCK_$fecha$codigo";
     
                 // Verificamos si ya existe ese número
                 $check = $conectar->prepare("SELECT COUNT(*) FROM tickets WHERE t_num = ?");
@@ -131,6 +131,31 @@
                 INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id";
             
             $sql = $conectar->prepare($sql);
+
+            $sql -> execute();
+            return $resultado = $sql->fetchAll();
+        }
+
+        public function listarTicketDetalle($tick_id) {
+            $conectar = parent::conexion();
+            parent::set_names();
+            
+            $sql = "SELECT
+                ticket_detalles.td_id,
+                ticket_detalles.tick_id,
+                ticket_detalles.td_det,
+                ticket_detalles.td_crea,
+                ticket_detalles.td_upd,
+                tickets.t_num,
+                empleados.e_name,
+                empleados.e_last1
+                FROM ticket_detalles
+                INNER JOIN tickets ON ticket_detalles.tick_id  = tickets.t_id
+                INNER JOIN empleados ON ticket_detalles.emp_id  = empleados.e_id
+                WHERE tick_id = ?";
+            
+            $sql = $conectar->prepare($sql);
+            $sql -> bindValue(1, $tick_id);
 
             $sql -> execute();
             return $resultado = $sql->fetchAll();

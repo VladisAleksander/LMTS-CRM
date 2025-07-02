@@ -104,6 +104,10 @@
                     "aaData" => $data);
                 echo json_encode($result);
             break;
+
+            case "listar_detalle":
+                $datos = $ticket->listarTicketDetalle($_POST["tick_id"]);
+            break;
         }
     }
 ?>

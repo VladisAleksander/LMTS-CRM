@@ -138,8 +138,10 @@ $(document).ready(function(){
 
 });
 
-function verTicket(ticket_id) {
-    console.log(ticket_id);
+function verTicket(tick_id) {
+    // Redirigimos a la página de consulta del ticket con el ID del ticket
+    //window.location.href = "../../soporte/DetalleTicket/?id=" + t_num; Redirigimos a la página de consulta del ticket
+    window.open("http://localhost/LMTS-CRM/soporte/DetalleTicket/?id=" + tick_id, "_blank"); // Abrimos en una nueva pestaña
 }
 
 init();
