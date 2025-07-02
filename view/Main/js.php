@@ -9,4 +9,4 @@
 <script src="/LMTS-CRM/public/js/lib/summernote/summernote.min.js"></script>
 <script src="/LMTS-CRM/public/js/lib/bootstrap-sweetalert/sweetalert.min.js"></script>
 <script src="/LMTS-CRM/public/js/lib/html5-form-validation/jquery.validation.min.js"></script>
-
+<script src="/LMTS-CRM/public/js/lib/fancybox/jquery.fancybox.pack.js"></script>
