@@ -21,10 +21,11 @@
                     <div class="tbl">
                         <div class="tbl-row">
                             <div class="tbl-cell">
-                                <h3>Detalles del Ticket</h3>
+                                <h3>Detalle del Ticket</h3>
                                 <ol class="breadcrumb breadcrumb-simple">
                                     <li><a href="../../Home">Inicio</a></li>
-                                    <li><a href="../">Soporte</a></li>
+                                    <li><a href="../Soporte">Soporte</a></li>
+                                    <li><a href="../ConsultarTicket">Tickets</a></li>
                                     <li class="active">Detalle del Ticket</li>
                                 </ol>
                             </div>
@@ -33,173 +34,109 @@
                 </header>
                 
                 <div class="box-typical box-typical-padding">
-                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="text">Nombre del usuario</label>
+                                <input type="hidden" id="emp_id" name="emp_id" value="<?php echo $_SESSION["e_id"] ?>"> <!-- ID del empleado -->
+                                <input type="text" disabled class="form-control" id="usuario-select" value="<?php echo $_SESSION["e_name"].' '.$_SESSION["e_last1"].' '.$_SESSION["e_last2"]?>"><!-- Muestra el nombre compledo del empleado -->
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="area_id">Canal de Contacto</label>
+                                <select id="area_id" name="area_id" class="form-control" required>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="t_phone">Teléfono de contacto</label>
+                                <input type="phone" class="form-control" name="t_phone" id="t_phone" value="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="cat_id">Categoría</label>
+                                <select id="cat_id" name="cat_id" class="form-control" required>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="Email">Correo Electrónico</label>
+                                <input id="Email" type="email" disabled class="form-control" value="<?php echo $_SESSION["e_mail"] ?>">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="scat_id">Subcategoría</label>
+                                <select id="scat_id" name="scat_id" class="form-control" required>
+                                    <option value="" disabled selected>- Seleccione una subcategoría -</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="area_id">Área</label>
+                                <select id="area_id" name="area_id" class="form-control" required>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="area_id">Estatus</label>
+                                <select id="area_id" name="area_id" class="form-control" required>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="text">Contacto Alternativo</label>
+                                <input type="text" class="form-control" id="usuario-select" value=""><!-- Muestra el nombre compledo del empleado -->
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="area_id">Subestatus</label>
+                                <select id="area_id" name="area_id" class="form-control" required>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="t_phone">Teléfono alternativo de contacto</label>
+                                <input type="phone" class="form-control" name="t_phone" id="t_phone" value="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="area_id">Prioridad</label>
+                                <select id="area_id" name="area_id" class="form-control" required>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="t_tit">Descripción corta</label>
+                                <input type="text" class="form-control" id="t_tit" name="t_tit" required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="t_desc">Descripción detallada</label>
+                                <div class="summernote-theme-1">
+                                    <textarea id="t_desc" class="summernote" name="t_desc" required></textarea>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div><!--.row-->
                 </div>
 
-                <section class="activity-line">
-                    <article class="activity-line-item box-typical">
-                        <div class="activity-line-date">
-                            Tuesday<br/>
-                            sep 9
-                        </div>
-                        <header class="activity-line-item-header">
-                            <div class="activity-line-item-user">
-                                <div class="activity-line-item-user-photo">
-                                    <a href="#">
-                                        <img src="../../public/img/photo-64-2.jpg" alt="">
-                                    </a>
-                                </div>
-                                <div class="activity-line-item-user-name">Tim Colins</div>
-                                <div class="activity-line-item-user-status">Developer, Palo Alto</div>
-                            </div>
-                        </header>
-                        <div class="activity-line-action-list">
-                            <section class="activity-line-action">
-                                <div class="time">10:40 AM</div>
-                                <div class="cont">
-                                    <div class="cont-in">
-                                        <p>Uploaded 3 Images to Daily UI Album</p>
-                                        <ul class="previews">
-                                            <li>
-                                                <a class="fancybox" rel="gall-1" href="img/pic.jpg">																	<img src="http://placehold.it/120x80" alt=""/>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" rel="gall-1" href="img/pic.jpg">																	<img src="http://placehold.it/120x80" alt=""/>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" rel="gall-1" href="img/pic.jpg">																	<img src="http://placehold.it/120x80" alt=""/>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" rel="gall-1" href="img/pic.jpg">																	<img src="http://placehold.it/120x80" alt=""/>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" rel="gall-1" href="img/pic.jpg">																	<img src="http://placehold.it/120x80" alt=""/>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="meta">
-                                            <li><a href="#">5 Comments</a></li>
-                                            <li><a href="#">5 Likes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </section><!--.activity-line-action-->
-                            <section class="activity-line-action">
-                                <div class="time">10:40 AM</div>
-                                <div class="cont">
-                                    <div class="cont-in">
-                                        <p>Left a comment to <a href="#">Olga Gozha’s</a> Image</p>
-                                        <div class="tbl img-comment">
-                                            <div class="tbl-row">
-                                                <div class="tbl-cell tbl-cell-img">
-                                                    <img src="http://placehold.it/120x80" alt=""/>
-                                                </div>
-                                                <div class="tbl-cell tbl-cell-txt">
-                                                    «Had a meeting about shopping cart experience, with Isobel Patterson, Josh Weller»
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <ul class="meta">
-                                            <li><a href="#">5 Comments</a></li>
-                                            <li><a href="#">5 Likes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </section><!--.activity-line-action-->
-                            <section class="activity-line-action">
-                                <div class="time">10:40 AM</div>
-                                <div class="cont">
-                                    <div class="cont-in">
-                                        <p>Uploaded 3 files</p>
-                                        <ul class="attach-list">
-                                            <li>
-                                                <i class="font-icon font-icon-page"></i>
-                                                <a href="#">example.avi</a>
-                                            </li>
-                                            <li>
-                                                <i class="font-icon font-icon-page"></i>
-                                                <a href="#">activity.psd</a>
-                                            </li>
-                                            <li>
-                                                <i class="font-icon font-icon-page"></i>
-                                                <a href="#">example.psd</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="meta">
-                                            <li><a href="#">5 Comments</a></li>
-                                            <li><a href="#">5 Likes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </section><!--.activity-line-action-->
-                        </div><!--.activity-line-action-list-->
-                    </article><!--.activity-line-item-->
-
-                    <article class="activity-line-item box-typical">
-                        <div class="activity-line-date">
-                            Monday<br/>
-                            sep 8
-                        </div>
-                        <header class="activity-line-item-header">
-                            <div class="activity-line-item-user">
-                                <div class="activity-line-item-user-photo">
-                                    <a href="#">
-                                        <img src="../../public/img/photo-64-2.jpg" alt="">
-                                    </a>
-                                </div>
-                                <div class="activity-line-item-user-name">Tim Colins</div>
-                                <div class="activity-line-item-user-status">Developer, Palo Alto</div>
-                            </div>
-                        </header>
-                        <div class="activity-line-action-list">
-                            <section class="activity-line-action">
-                                <div class="time">10:40 AM</div>
-                                <div class="cont">
-                                    <div class="cont-in">
-                                        <p>Started nes UI migration</p>
-                                        <ul class="meta">
-                                            <li><a href="#">5 Comments</a></li>
-                                            <li><a href="#">5 Likes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </section><!--.activity-line-action-->
-                            <section class="activity-line-action">
-                                <div class="dot"></div>
-                                <div class="time">10:40 AM</div>
-                                <div class="cont">
-                                    <div class="cont-in">
-                                        <p>Had a meeting about shopping cart experience, with Isobel Patterson, Josh Weller, Mark Taylor</p>
-                                        <ul class="meta">
-                                            <li><a href="#">5 Comments</a></li>
-                                            <li><a href="#">5 Likes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </section><!--.activity-line-action-->
-                            <section class="activity-line-action">
-                                <div class="time">10:40 AM</div>
-                                <div class="cont">
-                                    <div class="cont-in">
-                                        <p>Had a meeting about shopping cart experience, with Isobel Patterson, Josh Weller, Mark Taylor</p>
-                                        <ul class="meta">
-                                            <li><a href="#">5 Comments</a></li>
-                                            <li><a href="#">1 Likes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </section><!--.activity-line-action-->
-
-                            <div class="activity-line-more">
-                                <a href="#">See more</a>
-                            </div>
-                        </div><!--.activity-line-action-list-->
-                    </article><!--.activity-line-item-->
+                <section class="activity-line" id="lbldetalle">
+                    
                 </section><!--.activity-line-->
+
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->
         <?php   require_once '../../view/Main/js.php'; ?>

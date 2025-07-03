@@ -143,15 +143,19 @@
             $sql = "SELECT
                 ticket_detalles.td_id,
                 ticket_detalles.tick_id,
-                ticket_detalles.td_det,
+                ticket_detalles.td_desc,
                 ticket_detalles.td_crea,
-                ticket_detalles.td_upd,
                 tickets.t_num,
                 empleados.e_name,
-                empleados.e_last1
+                empleados.e_last1,
+                empleados.e_last2,
+                areas.a_name,
+                puestos.p_tit
                 FROM ticket_detalles
                 INNER JOIN tickets ON ticket_detalles.tick_id  = tickets.t_id
                 INNER JOIN empleados ON ticket_detalles.emp_id  = empleados.e_id
+                INNER JOIN areas ON empleados.area_id = areas.a_id
+                INNER JOIN puestos ON empleados.pue_id = puestos.p_id
                 WHERE tick_id = ?";
             
             $sql = $conectar->prepare($sql);

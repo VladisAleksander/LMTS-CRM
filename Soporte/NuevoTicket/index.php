@@ -42,12 +42,12 @@
                                 <fieldset class="form-group">
                                     <label class="form-label semibold" for="text">Nombre del usuario</label>
                                     <input type="hidden" id="emp_id" name="emp_id" value="<?php echo $_SESSION["e_id"] ?>"> <!-- ID del empleado -->
-                                    <input type="text" disabled class="form-control" id="usuario-select" value="<?php echo $_SESSION["e_name"] ?> <?php echo $_SESSION["e_last1"] ?> <?php echo $_SESSION["e_last2"] ?>"><!-- Muestra el nombre compledo del empleado -->
+                                    <input type="text" disabled class="form-control" id="usuario-select" value="<?php echo $_SESSION["e_name"].' '.$_SESSION["e_last1"].' '.$_SESSION["e_last2"]?>"><!-- Muestra el nombre compledo del empleado -->
                                 </fieldset>
                             </div>
                             <div class="col-lg-6">
                                 <fieldset class="form-group">
-                                    <label class="form-label semibold" for="t_phone">Teléfono alternativo de contacto</label>
+                                    <label class="form-label semibold" for="t_phone">Teléfono de contacto</label>
                                     <input type="phone" class="form-control" name="t_phone" id="t_phone" required>
                                 </fieldset>
                             </div>

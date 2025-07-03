@@ -4,8 +4,11 @@ function init() {
 
 $(document).ready(function(){
 
-    var id = getUrlParameter('id');
-    console.log("Ticket ID: " + id);
+    var tick_id = getUrlParameter('id');
+
+    $.post("../../controller/ticket.php?op=listar_detalle", {tick_id: tick_id}, function(data) {
+        $('#lbldetalle').html(data);
+    });
 
 });
 

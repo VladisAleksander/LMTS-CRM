@@ -22,7 +22,7 @@
                 foreach($datos as $row){
                     $sub_array = array();
                     $sub_array[] = $row["t_num"];
-                    $sub_array[] = $row["t_crea"];
+                    $sub_array[] = date('Y-m-d H:i', strtotime($row["t_crea"]));
                     $sub_array[] = $row["t_tit"];
                     $sub_array[] = $row["a_name"];
                     $sub_array[] = $row["c_name"];
@@ -60,7 +60,7 @@
                 foreach($datos as $row){
                     $sub_array = array();
                     $sub_array[] = $row["t_num"];
-                    $sub_array[] = $row["t_crea"];
+                    $sub_array[] = date('Y-m-d H:i', strtotime($row["t_crea"]));
                     $sub_array[] = $row["t_tit"];
                     $sub_array[] = $row["a_name"];
                     $sub_array[] = $row["e_name"]." ".$row["e_last1"];
@@ -107,6 +107,53 @@
 
             case "listar_detalle":
                 $datos = $ticket->listarTicketDetalle($_POST["tick_id"]);
+                ?>
+                    <?php
+                        foreach($datos as $row){
+                            ?>
+                                <article class="activity-line-item box-typical">
+                                    <div class="activity-line-date">
+                                        <?php
+                                            $fecha = new DateTime($row["td_crea"]);
+                                            echo $fecha->format('d M Y');
+                                        ?>
+                                    </div>
+                                    <header class="activity-line-item-header">
+                                        <div class="activity-line-item-user">
+                                            <div class="activity-line-item-user-photo">
+                                                <a href="#">
+                                                    <img src="../../public/img/photo-64-2.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="activity-line-item-user-name">
+                                                <?php echo $row["e_name"]." ".$row["e_last1"]." ".$row["e_last2"]; ?>
+                                            </div>
+                                            <div class="activity-line-item-user-status">
+                                                <?php echo $row["p_tit"]." - ".$row["a_name"]; ?>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <div class="activity-line-action-list">
+                                        <section class="activity-line-action">
+                                            <div class="time">
+                                                <?php
+                                                    $hora = new DateTime($row["td_crea"]);
+                                                    echo $hora->format('h:i A');
+                                                ?>
+                                            </div>
+                                            <div class="cont">
+                                                <div class="cont-in">
+                                                    <p><?php echo $row["td_desc"]; ?></p>
+                                                </div>
+                                            </div>
+                                        </section><!--.activity-line-action-->
+
+                                    </div><!--.activity-line-action-list-->
+                                </article><!--.activity-line-item-->
+                            <?php
+                        }
+                    ?>
+                <?php
             break;
         }
     }

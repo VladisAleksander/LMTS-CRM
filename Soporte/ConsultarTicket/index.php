@@ -25,7 +25,7 @@
                                 <ol class="breadcrumb breadcrumb-simple">
                                     <li><a href="../../Home">Inicio</a></li>
                                     <li><a href="../">Soporte</a></li>
-                                    <li class="active">Consultar Ticket</li>
+                                    <li class="active">Tickets</li>
                                 </ol>
                             </div>
                         </div>

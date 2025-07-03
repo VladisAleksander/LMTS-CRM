@@ -139,9 +139,9 @@ $(document).ready(function(){
 });
 
 function verTicket(tick_id) {
-    // Redirigimos a la página de consulta del ticket con el ID del ticket
-    //window.location.href = "../../soporte/DetalleTicket/?id=" + t_num; Redirigimos a la página de consulta del ticket
-    window.open("http://localhost/LMTS-CRM/soporte/DetalleTicket/?id=" + tick_id, "_blank"); // Abrimos en una nueva pestaña
+    // Redirigimos a la página de detalles del ticket con el ID del ticket
+    window.location.href = "../../soporte/DetalleTicket/?id=" + tick_id; // Redirigimos a la página de detalles del ticket
+    //window.open("http://localhost/LMTS-CRM/soporte/DetalleTicket/?id=" + tick_id, "_blank"); // Abrimos la página de detalles del ticket en una nueva pestaña
 }
 
 init();
