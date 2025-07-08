@@ -21,7 +21,9 @@
                     <div class="tbl">
                         <div class="tbl-row">
                             <div class="tbl-cell">
-                                <h3>Detalle del Ticket</h3>
+                                <h3>Detalle del Ticket - Ticket ID</h3>
+                                <span class="label label-pill label-primary">Estado del Ticket</span>
+                                <span class="label label-pill label-default">10/10/2020</span>
                                 <ol class="breadcrumb breadcrumb-simple">
                                     <li><a href="../../Home">Inicio</a></li>
                                     <li><a href="../Soporte">Soporte</a></li>
@@ -44,8 +46,8 @@
                         </div>
                         <div class="col-lg-6">
                             <fieldset class="form-group">
-                                <label class="form-label semibold" for="area_id">Canal de Contacto</label>
-                                <select id="area_id" name="area_id" class="form-control" required>
+                                <label class="form-label semibold" for="cont_id">Canal de Contacto</label>
+                                <select id="cont_id" name="cont_id" class="form-control" required>
                                 </select>
                             </fieldset>
                         </div>
@@ -79,14 +81,14 @@
                         <div class="col-lg-6">
                             <fieldset class="form-group">
                                 <label class="form-label semibold" for="area_id">Área</label>
-                                <select id="area_id" name="area_id" class="form-control" required>
+                                <select id="area_id" name="area_id" class="form-control">
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-lg-6">
                             <fieldset class="form-group">
-                                <label class="form-label semibold" for="area_id">Estatus</label>
-                                <select id="area_id" name="area_id" class="form-control" required>
+                                <label class="form-label semibold" for="st_id">Estatus</label>
+                                <select id="st_id" name="st_id" class="form-control" required>
                                 </select>
                             </fieldset>
                         </div>
@@ -98,8 +100,8 @@
                         </div>
                         <div class="col-lg-6">
                             <fieldset class="form-group">
-                                <label class="form-label semibold" for="area_id">Subestatus</label>
-                                <select id="area_id" name="area_id" class="form-control" required>
+                                <label class="form-label semibold" for="se_id">Subestatus</label>
+                                <select id="se_id" name="se_id" class="form-control" required>
                                 </select>
                             </fieldset>
                         </div>
@@ -111,8 +113,8 @@
                         </div>
                         <div class="col-lg-6">
                             <fieldset class="form-group">
-                                <label class="form-label semibold" for="area_id">Prioridad</label>
-                                <select id="area_id" name="area_id" class="form-control" required>
+                                <label class="form-label semibold" for="n_id">Prioridad</label>
+                                <select id="n_id" name="n_id" class="form-control" required>
                                 </select>
                             </fieldset>
                         </div>
@@ -124,9 +126,9 @@
                         </div>
                         <div class="col-lg-12">
                             <fieldset class="form-group">
-                                <label class="form-label semibold" for="t_desc">Descripción detallada</label>
+                                <label class="form-label semibold" for="td_det">Descripción detallada</label>
                                 <div class="summernote-theme-1">
-                                    <textarea id="t_desc" class="summernote" name="t_desc" required></textarea>
+                                    <textarea id="td_det" class="summernote" name="td_det"></textarea>
                                 </div>
                             </fieldset>
                         </div>
@@ -136,6 +138,19 @@
                 <section class="activity-line" id="lbldetalle">
                     
                 </section><!--.activity-line-->
+
+                <div class="box-typical box-typical-padding">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <fieldset class="form-group">
+                                <label class="form-label semibold" for="td_det2">Notas adicionales</label>
+                                <div class="summernote-theme-1">
+                                    <textarea id="td_det2" class="summernote" name="td_det2"></textarea>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div><!--.row-->
+                </div><!-- Notas adicionales -->
 
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->

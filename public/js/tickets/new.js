@@ -9,6 +9,25 @@ function init() {
 $(document).ready(function() { // Llama a la función cuando el DOM está listo
     $('#t_desc').summernote({
         height: 200, // Establece el tamaño del editor
+        callbacks: {
+            onImageUpload: function(files) {
+                // Maneja la carga de imágenes
+                for (var i = 0; i < files.length; i++) {
+                    uploadImage(files[i]);
+                }
+            },
+            onMediaDelete: function(target) {
+                // Maneja la eliminación de medios
+                deleteMedia(target[0].src);
+            },
+            onPaste: function(e) {
+                // Maneja el pegado de contenido
+                var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                if (bufferText) {
+                    document.execCommand('insertText', false, bufferText);
+                }
+            }
+        }
     });
 
     $('#t_desc').summernote('code', ''); // Limpia el contenido del editor
@@ -29,11 +48,11 @@ $(document).ready(function() { // Llama a la función cuando el DOM está listo
         // Obtener el valor seleccionado
         cat_id = $(this).val();
 
-        // Llamar a la función para cargar los subcategorías con base en la categoría seleccionada
+        // Llamar a la función para cargar las subcategorías con base en la categoría seleccionada
         $.post('../../controller/subcategoria.php?op=combo', {cat_id : cat_id}, function(data, status) {
             // console.log(data);
             
-            // Cargar los subcategorías en el selector
+            // Cargar las subcategorías en el selector
             $('#scat_id').html(data);
         });
     });
