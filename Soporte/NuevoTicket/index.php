@@ -86,15 +86,15 @@
                             
                             <div class="col-lg-12">
                                 <fieldset class="form-group">
-                                    <label class="form-label semibold" for="t_tit">Descripción corta</label>
-                                    <input type="text" class="form-control" id="t_tit" name="t_tit" required>
+                                    <label class="form-label semibold" for="t_tit">Título</label>
+                                    <input type="text" class="form-control" id="t_tit" name="t_tit">
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
                                 <fieldset class="form-group">
                                     <label class="form-label semibold" for="t_desc">Descripción detallada</label>
                                     <div class="summernote-theme-1">
-                                        <textarea id="t_desc" class="summernote" name="t_desc" required></textarea>
+                                        <textarea id="t_desc" class="summernote" name="t_desc"></textarea>
                                     </div>
                                 </fieldset>
                             </div>

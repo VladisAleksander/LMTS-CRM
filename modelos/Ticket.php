@@ -14,7 +14,7 @@
                 $conteo = $row['total'] + 1 + $i; // se suma $i para evitar duplicado en intentos
     
                 $codigo = str_pad($conteo, 3, "0", STR_PAD_LEFT);
-                $t_num = "TCK_$fecha$codigo";
+                $t_num = "INC$fecha$codigo";
     
                 // Verificamos si ya existe ese número
                 $check = $conectar->prepare("SELECT COUNT(*) FROM tickets WHERE t_num = ?");
@@ -161,6 +161,67 @@
             $sql = $conectar->prepare($sql);
             $sql -> bindValue(1, $tick_id);
 
+            $sql -> execute();
+            return $resultado = $sql->fetchAll();
+        }
+
+        public function listarTicketID($tick_id) {
+            $conectar = parent::conexion();
+            parent::set_names();
+            
+            $sql = "SELECT
+                tickets.t_id,
+                tickets.t_num,
+                tickets.t_tit,
+                tickets.area_id,
+                tickets.emp_id,
+                tickets.t_phone,
+                tickets.cat_id,
+                tickets.scat_id,
+                tickets.niv_id,
+                tickets.est_id,
+                tickets.sest_id,
+                tickets.t_desc,
+                tickets.t_crea,
+                empleados.e_name,
+                empleados.e_last1,
+                empleados.e_last2,
+                empleados.e_mail,
+                empleados.e_phone,
+                areas.a_name,
+                categorias.c_name,
+                subcategorias.sc_name,
+                estatus.st_name,
+                subestatus.se_name,
+                prioridad.n_name
+                FROM tickets
+                INNER JOIN empleados ON tickets.emp_id  = empleados.e_id
+                INNER JOIN areas ON tickets.area_id = areas.a_id
+                INNER JOIN categorias ON tickets.cat_id = categorias.c_id
+                INNER JOIN subcategorias ON tickets.scat_id = subcategorias.sc_id
+                INNER JOIN estatus ON tickets.est_id = estatus.st_id
+                INNER JOIN subestatus ON tickets.sest_id = subestatus.se_id
+                INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id
+                WHERE tickets.t_id = ?";
+            
+            $sql = $conectar->prepare($sql);
+            $sql -> bindValue(1, $tick_id);
+
+            $sql -> execute();
+            return $resultado = $sql->fetchAll();
+        }
+
+        public function insert_ticket_detalle($tick_id, $emp_id, $td_desc) {
+            $conectar = parent::conexion();
+            parent::set_names();
+            
+            $sql = "INSERT INTO ticket_detalles (tick_id, emp_id, td_desc, td_crea, td_stat) VALUES (?, ?, ?, NOW(), 1);";
+            
+            $sql = $conectar->prepare($sql);
+            
+            $sql -> bindValue(1, $tick_id);
+            $sql -> bindValue(2, $emp_id);
+            $sql -> bindValue(3, $td_desc);
             $sql -> execute();
             return $resultado = $sql->fetchAll();
         }

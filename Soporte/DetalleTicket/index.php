@@ -21,9 +21,9 @@
                     <div class="tbl">
                         <div class="tbl-row">
                             <div class="tbl-cell">
-                                <h3>Detalle del Ticket - Ticket ID</h3>
-                                <span class="label label-pill label-primary">Estado del Ticket</span>
-                                <span class="label label-pill label-default">10/10/2020</span>
+                                <h3 id="lblnumtick">Detalle del Ticket - </h3>
+                                <span id="lblestado"></span>
+                                <span class="label label-pill label-default" id="iblfechacrea"></span>
                                 <ol class="breadcrumb breadcrumb-simple">
                                     <li><a href="../../Home">Inicio</a></li>
                                     <li><a href="../Soporte">Soporte</a></li>
@@ -41,20 +41,19 @@
                             <div class="col-lg-6">
                                 <fieldset class="form-group">
                                     <label class="form-label semibold" for="text">Nombre del usuario</label>
-                                    <input type="hidden" id="emp_id" name="emp_id" value="<?php echo $_SESSION["e_id"] ?>"> <!-- ID del empleado -->
-                                    <input type="text" disabled class="form-control" id="usuario-select" value=""><!-- Muestra el nombre compledo del empleado -->
+                                    <input type="text" disabled class="form-control" id="lblusuario"><!-- Muestra el nombre compledo del empleado -->
                                 </fieldset>
                             </div>
                             <div class="col-lg-6">
                                 <fieldset class="form-group">
                                     <label class="form-label semibold" for="Email">Correo Electrónico</label>
-                                    <input id="Email" type="email" disabled class="form-control" value="">
+                                    <input type="email" disabled class="form-control" id="lblemail" >
                                 </fieldset>
                             </div>
                             <div class="col-lg-6">
                                 <fieldset class="form-group">
                                     <label class="form-label semibold" for="t_phone">Teléfono de contacto</label>
-                                    <input type="phone" class="form-control" name="t_phone" id="t_phone" value="">
+                                    <input type="phone" class="form-control" name="t_phone" id="t_phone">
                                 </fieldset>
                             </div>
                             <div class="col-lg-6">
@@ -103,8 +102,8 @@
                             </div>
                             <div class="col-lg-12">
                                 <fieldset class="form-group">
-                                    <label class="form-label semibold" for="t_tit">Descripción corta</label>
-                                    <input type="text" class="form-control" id="t_tit" name="t_tit" required>
+                                    <label class="form-label semibold" for="t_tit">Título</label>
+                                    <input type="text" class="form-control" id="t_tit" name="t_tit">
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
@@ -137,8 +136,8 @@
                             </fieldset>
                         </div>
                         <div class="col-lg-12">
-                            <button type="submit" name="action" value="add" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
-                            <button type="submit" name="action" value="add" class="btn btn-rounded btn-inline btn-danger">Cerrar Ticket</button>
+                            <button type="button" id="btnEnviar" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
+                            <button type="button" id="btnCerrarTicket" class="btn btn-rounded btn-inline btn-danger">Cerrar Ticket</button>
                         </div>
                     </div><!--.row-->
                 </div><!-- Notas adicionales -->

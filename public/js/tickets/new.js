@@ -61,27 +61,38 @@ function guardaryeditar(e) {
 
     var formData = new FormData($("#ticket-form")[0]);
 
-    $.ajax({
-        url: "../../controller/ticket.php?op=insert",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            // console.log(response); // Verifica la respuesta del servidor
-            $("#ticket-form")[0].reset(); // Reinicia el formulario
-            $('#t_desc').summernote('reset'); // Limpia el contenido del editor
-            $('#t_desc').summernote('code', ''); // Limpia el contenido del editor
-            // Mensaje de éxito
-            swal({
-                title: "Ticket Enviado",
-                text: "El ticket ha sido enviado correctamente.",
-                type: "success",
-                confirmButtonClass: "btn-success",
-                confirmButtonText: "Aceptar",
-            });
-        }
-    });
+    if ($('#t_desc').summernote('isEmpty') || $('#t_tit').val() == '') {
+        // Mensaje de error
+        swal({
+            title: "¡Advertencia!",
+            text: "Uno o más campos están vacíos",
+            type: "warning",
+            confirmButtonClass: "btn-success",
+            confirmButtonText: "Aceptar",
+        });
+    }else{
+        $.ajax({
+            url: "../../controller/ticket.php?op=insert",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                // console.log(response); // Verifica la respuesta del servidor
+                $("#ticket-form")[0].reset(); // Reinicia el formulario
+                $('#t_desc').summernote('reset'); // Limpia el contenido del editor
+                $('#t_desc').summernote('code', ''); // Limpia el contenido del editor
+                // Mensaje de éxito
+                swal({
+                    title: "Ticket Enviado",
+                    text: "El ticket ha sido enviado correctamente.",
+                    type: "success",
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "Aceptar",
+                });
+            }
+        });            
+    }
 }
 
 init();

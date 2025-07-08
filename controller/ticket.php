@@ -155,6 +155,50 @@
                     ?>
                 <?php
             break;
+
+            case "mostrar";
+                $datos = $ticket->listarTicketID($_POST["tick_id"]);
+                if (is_array($datos)==true and count($datos) > 0) {
+                    foreach($datos as $row){
+                        $output ["t_id"] = $row["t_id"];
+                        $output ["t_num"] = $row["t_num"];
+                        $output ["t_crea"] = date ("d/m/Y H:i:s", strtotime ($row["t_crea"]));
+                        
+                        if ($row["st_name"]=="Nuevo"){
+                            $output ["st_name"] = '<span class="label label-pill label-default">'.$row["st_name"].'</span>';
+                        }else if ($row["st_name"]=="En Proceso"){
+                            $output ["st_name"] = '<span class="label label-pill label-success">'.$row["st_name"].'</span>';
+                        }else if ($row["st_name"]=="En Espera"){
+                            $output ["st_name"] = '<span class="label label-pill label-primary">'.$row["st_name"].'</span>';
+                        } else if ($row["st_name"]=="Escalado"){
+                            $output ["st_name"] = '<span class="label label-pill label-warning">'.$row["st_name"].'</span>';
+                        } else if ($row["st_name"]=="Resuelto"){
+                            $output ["st_name"] = '<span class="label label-pill label-info">'.$row["st_name"].'</span>';
+                        }else if ($row["st_name"]=="Cerrado"){
+                            $output ["st_name"] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
+                        }else if ($row["st_name"]=="Cancelado"){
+                            $output ["st_name"] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
+                        }
+
+                        $output ["e_name"] = $row["e_name"];
+                        $output ["e_last1"] = $row["e_last1"];
+                        $output ["e_last2"] = $row["e_last2"];
+                        $output ["e_mail"] = $row["e_mail"];
+                        $output ["t_phone"] = $row["t_phone"];
+                        $output ["a_name"] = $row["a_name"];
+                        $output ["t_tit"] = $row["t_tit"];
+                        $output ["t_desc"] = $row["t_desc"];
+                    }
+                    echo json_encode($output);
+                }
+            break;
+
+            case "insertar_detalle": // Guardar tickets en la Base de Datos
+                $ticket->insert_ticket_detalle(
+                    $_POST["tick_id"],
+                    $_POST["emp_id"],
+                    $_POST["td_desc"]);
+            break;
         }
     }
 ?>
