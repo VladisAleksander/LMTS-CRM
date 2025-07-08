@@ -3,7 +3,7 @@
     require_once "../modelos/Subestatus.php";
     $subestatus = new Subestatus();
     $datos = $subestatus->get_subestatus($_POST["est_id"]);
-    $html = "<option  value='' disabled selected>- Seleccione una subestatus -</option>";
+    $html = "<option  value='' disabled selected>- Seleccione un subestatus -</option>";
     if (isset($_GET["op"])) {
         switch ($_GET["op"]) {
             case "combo":
@@ -15,6 +15,6 @@
             break;
         }
     } else {
-        $html = "<option value=''>No hay subestatus</option>";
+        $html = "<option value=''>- No hay subestatus -</option>";
     }
 ?>

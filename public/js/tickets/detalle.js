@@ -12,6 +12,7 @@ $(document).ready(function(){
 
     $('#td_det').summernote({
         height: 200, // Establece el tamaño del editor
+        lang: 'es-ES', // Establece el idioma del editor
         callbacks: {
             onImageUpload: function(files) {
                 // Maneja la carga de imágenes
@@ -36,6 +37,7 @@ $(document).ready(function(){
 
     $('#td_det2').summernote({
         height: 200, // Establece el tamaño del editor
+        lang: 'es-ES', // Establece el idioma del editor
         callbacks: {
             onImageUpload: function(files) {
                 // Maneja la carga de imágenes
@@ -92,13 +94,14 @@ $(document).ready(function(){
 
     $('#st_id').change(function() {
         // Obtener el valor seleccionado
-        st_id = $(this).val();
+        est_id = $(this).val();
 
         // Llamar a la función para cargar los subestatus con base en el estado seleccionado
-        $.post('../../controller/subestatus.php?op=combo', {st_id : st_id}, function(data, status) {
+        $.post('../../controller/subestatus.php?op=combo', {est_id : est_id}, function(data, status) {
             
             // Cargar los subcategorías en el selector
             $('#se_id').html(data);
+            console.log(data);
         });
     });
 
