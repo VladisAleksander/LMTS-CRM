@@ -120,7 +120,7 @@ $(document).on('click', '#btnEnviar', function() {
     var emp_id = $('#e_idx').val();
     var td_desc = $('#td_det2').val();
 
-    if ($('#t_desc').summernote('isEmpty') || $('#t_tit').val() == '') {
+    if ($('#td_det2').summernote('isEmpty')) {
         // Mensaje de error
         swal({
             title: "¡Advertencia!",
