@@ -22,11 +22,8 @@
                 foreach($datos as $row){
                     $sub_array = array();
                     $sub_array[] = $row["t_num"];
-                    $sub_array[] = date('Y-m-d H:i', strtotime($row["t_crea"]));
                     $sub_array[] = $row["t_tit"];
-                    $sub_array[] = $row["a_name"];
-                    $sub_array[] = $row["c_name"];
-                    $sub_array[] = $row["sc_name"];
+                    $sub_array[] = date('Y-m-d H:i', strtotime($row["t_crea"]));
 
                     if ($row["est_id"] == "1") {
                         $sub_array[] = '<span class="label label-pill label-default">'.$row["st_name"].'</span>';

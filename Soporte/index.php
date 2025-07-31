@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><img src="/LMTS-CRM/public/img/faq-1.png" alt=""></div>
+                                    <div class="faq-page-cat-icon"><a href="/LMTS-CRM/Soporte/FAQ"><img src="/LMTS-CRM/public/img/faq-1.png" alt=""></a></div>
                                     <div class="faq-page-cat-title">
                                         <a href="/LMTS-CRM/Soporte/FAQ">Preguntas Frecuentes</a>
                                     </div>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><img src="/LMTS-CRM/public/img/faq-2.png" alt=""></div>
+                                    <div class="faq-page-cat-icon"><a href="/LMTS-CRM/Soporte/NuevoTicket"><img src="/LMTS-CRM/public/img/faq-2.png" alt=""></a></div>
                                     <div class="faq-page-cat-title">
                                         <a href="/LMTS-CRM/Soporte/NuevoTicket">Help Desk</a>
                                     </div>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><img src="/LMTS-CRM/public/img/faq-3.png" alt=""></div>
+                                    <div class="faq-page-cat-icon"><a href="#"><img src="/LMTS-CRM/public/img/faq-3.png" alt=""></a></div>
                                     <div class="faq-page-cat-title">
                                         <a href="#">Sugerencias</a>
                                     </div>
