@@ -131,19 +131,11 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <fieldset class="form-group">
-                                                <label class="form-label semibold" for="text">Nombre del usuario</label>
-                                                <input type="text" disabled class="form-control" id="lblusuario"><!-- Muestra el nombre compledo del empleado -->
-                                            </fieldset>
-                                        </div>
-                                        
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
                                                 <label class="form-label semibold" for="st_id">Estatus</label>
                                                 <select id="st_id" disabled name="st_id" class="form-control">
                                                 </select>
                                             </fieldset>
                                         </div>
-
                                         <div class="col-lg-6">
                                             <fieldset class="form-group">
                                                 <label class="form-label semibold" for="n_id">Prioridad</label>

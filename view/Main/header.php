@@ -1,9 +1,9 @@
 <header class="site-header">
     <div class="container-fluid">
 
-        <a href="#" class="site-logo">
-            <img class="hidden-md-down" src="/LMTS-CRM/public/img/logo-black.png" alt="">
-            <img class="hidden-lg-up" src="/LMTS-CRM/public/img/logo-black-mob.png" alt="">
+        <a href="/LMTS-CRM/Home" class="site-logo">
+            <img class="hidden-md-down" src="/LMTS-CRM/public/img/logo.png" alt="">
+            <img class="hidden-lg-up" src="/LMTS-CRM/public/img/logo-mob.png" alt="">
         </a>
 
         <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
@@ -41,7 +41,7 @@
                     <div class="site-header-collapsed-in">
 
                         <!-- Utility Menu -->
-                        <div class="dropdown dropdown-typical">
+                        <!-- <div class="dropdown dropdown-typical">
                             <a class="dropdown-toggle" id="dd-header-marketing" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="font-icon font-icon-cogwheel"></span>
                                 <span class="lbl">Marketing automation</span>
@@ -81,7 +81,7 @@
                                 <div class="dropdown-header">Timesheet</div>
                                 <a class="dropdown-item" href="#">Subscribtions</a>
                             </div>
-                        </div>
+                        </div> --> <!-- .Utility Menu -->
 
                         <input type="hidden" id="e_idx" value="<?php echo $_SESSION["e_id"] ?>"> <!-- ID del empleado -->
                         <input type="hidden" id="area_idx" value="<?php echo $_SESSION["area_id"] ?>"> <!-- Rol (área) del empleado -->
