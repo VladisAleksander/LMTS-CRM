@@ -9,7 +9,7 @@ function init() {
 
 $(document).ready(function(){
 
-    if (area_id == 12 || area_id == 14) {
+    if (area_id == 11 || area_id == 12 || area_id == 14) {
         // Inicializamos el DataTable con los datos del servidor
         tabla = $('#ticket_data').dataTable({
             "aProcessing": true, // Activamos el procesamiento del datatables

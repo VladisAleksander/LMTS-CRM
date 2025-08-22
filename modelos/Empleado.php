@@ -16,14 +16,14 @@
         // Función para generar correo electrónico único con formato nombre.apellido1@elpunto.com
         private function generarCorreo($nombre, $apellido1, $conectar) {
             $baseCorreo = strtolower(preg_replace('/[^a-zA-Z]/', '', $nombre)) . "." . strtolower(preg_replace('/[^a-zA-Z]/', '', $apellido1));
-            $correo = $baseCorreo . "@elpunto.com";
+            $correo = $baseCorreo . "@js1.techcaremx.com";
             $contador = 1;
 
             $stmt = $conectar->prepare("SELECT COUNT(*) FROM empleados WHERE e_mail = ?");
             $stmt->execute([$correo]);
 
             while ($stmt->fetchColumn() > 0) {
-                $correo = $baseCorreo . $contador . "@elpunto.com";
+                $correo = $baseCorreo . $contador . "@js1.techcaremx.com";
                 $stmt->execute([$correo]);
                 $contador++;
             }

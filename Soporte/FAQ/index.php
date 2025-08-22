@@ -48,17 +48,17 @@
                             <div class="col-md-6">
                                 <article class="faq-page-quest">
                                     <header class="faq-page-quest-title">
-                                        <a href="#">Problemas Físicos</a>
+                                        <a href="#">Computadoras e Impresoras</a>
                                     </header>
-                                    <p>Equipos que no encienden o presentan daño físico, ruidos extraños, periféricos como ratón o teclado que no funcionan, problemas relacionados a impresoras. </p>
+                                    <p>Problemas relacionados con hardware físico, como fallos en encendido, lentitud en equipos o errores en impresión (ej. atascos de papel o conexión de impresoras).</p>
                                 </article>
                             </div>
                             <div class="col-md-6">
                                 <article class="faq-page-quest">
                                     <header class="faq-page-quest-title">
-                                        <a href="#">Problemas de Software</a>
+                                        <a href="#">Sistema y Programas</a>
                                     </header>
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                    <p>Incidencias en el software del sistema operativo o aplicaciones específicas, como errores al abrir programas, actualizaciones fallidas o bloqueos inesperados.</p>
                                 </article>
                             </div>
                         </div>
@@ -68,15 +68,15 @@
                                     <header class="faq-page-quest-title">
                                         <a href="#">Redes e Internet</a>
                                     </header>
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                    <p>Dificultades con la conectividad, como falta de acceso a internet, problemas con Wi-Fi, redes internas o conexiones remotas lentas o inestables.</p>
                                 </article>
                             </div>
                             <div class="col-md-6">
                                 <article class="faq-page-quest">
                                     <header class="faq-page-quest-title">
-                                        <a href="#">Problemas del Sistema</a>
+                                        <a href="#">Cuentas y Contraseñas</a>
                                     </header>
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                    <p>Cuestiones de acceso a cuentas, como olvido de contraseñas, bloqueos de usuario, creación de nuevas cuentas o problemas de autenticación.</p>
                                 </article>
                             </div>
                         </div>
@@ -84,9 +84,9 @@
                             <div class="col-md-6">
                                 <article class="faq-page-quest">
                                     <header class="faq-page-quest-title">
-                                        <a href="#">Cuentas de Usuario</a>
+                                        <a href="#">Reloj Checador</a>
                                     </header>
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                    <p>Errores en el sistema de registro de asistencia, como fallos en el reloj biométrico, problemas de sincronización o discrepancias en los registros de entrada/salida.</p>
                                 </article>
                             </div>
                             <div class="col-md-6">
@@ -94,11 +94,11 @@
                                     <header class="faq-page-quest-title">
                                         <a href="#">Seguridad y Prevención</a>
                                     </header>
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                    <p>Amenazas o alertas de seguridad, como virus, accesos no autorizados, configuraciones de firewall o medidas preventivas para proteger datos y equipos.</p>
                                 </article>
                             </div>
                         </div>
-                    </section><!--.faq-page-questions-->
+                    </section><!--.soporte-page-questions-->
 			    </section><!--.faq-page-->
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->
