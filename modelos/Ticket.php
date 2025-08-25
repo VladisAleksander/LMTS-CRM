@@ -52,6 +52,73 @@
             return $t_num;
         }
 
+        public function update_ticket($t_id, $t_tit, $area_id, $t_phone, $cat_id, $scat_id, $niv_id, $est_id, $sest_id, $t_desc, $t_close_user = null) {
+            $conectar = parent::conexion();
+            parent::set_names();
+            
+            // Si el ticket está en estado "Cerrado", actualiza también el usuario que lo cerró
+            if ($est_id == 6 && $t_close_user !== null) {
+                $sql = "UPDATE tickets 
+                        SET t_tit        = ?, 
+                            area_id      = ?, 
+                            t_phone      = ?, 
+                            cat_id       = ?, 
+                            scat_id      = ?, 
+                            niv_id       = ?, 
+                            est_id       = ?, 
+                            sest_id      = ?, 
+                            t_desc       = ?, 
+                            t_close_user = ?, 
+                            t_upd        = NOW()
+                        WHERE t_id = ?;";
+                
+                $sql = $conectar->prepare($sql);
+        
+                $sql->bindValue(1,  $t_tit);
+                $sql->bindValue(2,  $area_id);
+                $sql->bindValue(3,  $t_phone);
+                $sql->bindValue(4,  $cat_id);
+                $sql->bindValue(5,  $scat_id);
+                $sql->bindValue(6,  $niv_id);
+                $sql->bindValue(7,  $est_id);
+                $sql->bindValue(8,  $sest_id);
+                $sql->bindValue(9,  $t_desc);
+                $sql->bindValue(10, $t_close_user); 
+                $sql->bindValue(11, $t_id);
+            } else {
+                // Si no está cerrado, no se actualiza el campo t_close_user y forzamos t_close_user a NULL
+                $sql = "UPDATE tickets 
+                        SET t_tit        = ?, 
+                            area_id      = ?, 
+                            t_phone      = ?, 
+                            cat_id       = ?, 
+                            scat_id      = ?, 
+                            niv_id       = ?, 
+                            est_id       = ?, 
+                            sest_id      = ?, 
+                            t_desc       = ?, 
+                            t_close_user = NULL, 
+                            t_upd        = NOW()
+                        WHERE t_id = ?;";
+                
+                $sql = $conectar->prepare($sql);
+        
+                $sql->bindValue(1,  $t_tit);
+                $sql->bindValue(2,  $area_id);
+                $sql->bindValue(3,  $t_phone);
+                $sql->bindValue(4,  $cat_id);
+                $sql->bindValue(5,  $scat_id);
+                $sql->bindValue(6,  $niv_id);
+                $sql->bindValue(7,  $est_id);
+                $sql->bindValue(8,  $sest_id);
+                $sql->bindValue(9,  $t_desc);
+                $sql->bindValue(10, $t_id);
+            }
+
+            $sql -> execute();
+            return $sql->rowCount(); // Devuelve cuántas filas se actualizaron
+        }        
+
         public function listarTicketUsuario($emp_id) {
             $conectar = parent::conexion();
             parent::set_names();

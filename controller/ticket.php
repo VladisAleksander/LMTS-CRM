@@ -16,6 +16,47 @@
                     $_POST["t_desc"]);
             break;
 
+            case "update": // Actualizar la información de un ticket
+                // Validar que venga el ID del ticket
+                if (isset($_POST["t_id"]) && !empty($_POST["t_id"])) {
+            
+                    // Si el estado es 6 (cerrado), permitir actualizar el campo t_close_user
+                    if ($_POST["est_id"] == 6) {
+                        $ticket->update_ticket(
+                            $_POST["t_id"],
+                            $_POST["t_tit"],
+                            $_POST["area_id"],
+                            $_POST["t_phone"],
+                            $_POST["cat_id"],
+                            $_POST["scat_id"],
+                            $_POST["niv_id"],
+                            $_POST["est_id"],
+                            $_POST["sest_id"],
+                            $_POST["t_desc"],
+                            $_POST["t_close_user"]
+                        );
+                    } else {
+                        // Si no está cerrado, se pasa NULL para t_close_user
+                        $ticket->update_ticket(
+                            $_POST["t_id"],
+                            $_POST["t_tit"],
+                            $_POST["area_id"],
+                            $_POST["t_phone"],
+                            $_POST["cat_id"],
+                            $_POST["scat_id"],
+                            $_POST["niv_id"],
+                            $_POST["est_id"],
+                            $_POST["sest_id"],
+                            $_POST["t_desc"],
+                            null
+                        );
+                    }
+            
+                } else {
+                    echo json_encode(["error" => "Falta el ID del ticket para actualizar."]);
+                }
+            break;
+
             case "listar_por_usuario": // Listar tickets por usuario
                 $datos = $ticket->listarTicketUsuario($_POST["emp_id"]);
                 $data = Array();

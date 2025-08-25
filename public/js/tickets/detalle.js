@@ -22,11 +22,11 @@ $(document).ready(function(){
     });
 
     $('#td_det').summernote({
-        height: 350, // Establece el tamaño del editor
+        height: 300, // Establece el tamaño del editor
         lang: 'es-ES' // Establece el idioma del editor
     });
     $('#td_det').summernote('code', ''); // Limpia el contenido del editor
-    $('#td_det').summernote('disable'); // Limpia el contenido del editor
+    $('#td_det').summernote('disable'); // Deshabilita el editor
 
     $('#td_det2').summernote({
         height: 200, // Establece el tamaño del editor
@@ -100,6 +100,7 @@ $(document).ready(function(){
 
 });
 
+// Obtiene el valor de la variable del ticket de la URL
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
@@ -135,8 +136,8 @@ $(document).on('click', '#btnEnviar', function() {
             $('#td_det2').summernote('reset'); // Limpia el contenido del editor
             // Mensaje de éxito
             swal({
-                title: "Ticket Enviado",
-                text: "El ticket ha sido enviado correctamente.",
+                title: "Mensaje Enviado",
+                text: "El el mensaje ha sido enviado correctamente.",
                 type: "success",
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
@@ -168,6 +169,7 @@ $(document).on('click', '#btnCerrarTicket', function() {
     });
 });
 
+// Función para listar los detalles del ticket
 function listar_detalle (tick_id) {
     $.post("../../controller/ticket.php?op=listar_detalle", {tick_id: tick_id}, function(data) {
         $('#lbldetalle').html(data);

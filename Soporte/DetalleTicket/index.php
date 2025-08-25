@@ -1,9 +1,25 @@
 <?php
     require_once '../../config/conexion.php';
-    if (isset($_SESSION['e_id'])) {
+    require_once '../../modelos/Ticket.php';
+    $ticket_obj = new Ticket(); // Crea una instancia del objeto Ticket
+    if (isset($_GET['id'])) { // Verifica si se ha proporcionado un ID de ticket
+        $ticket_data = $ticket_obj->listarTicketID($_GET['id']); // Obtiene los datos del ticket por ID
+        if (is_array($ticket_data) && count($ticket_data) > 0) { // Verifica si se encontraron datos
+            $ticket = $ticket_data[0]; // Asigna el primer elemento del array a la variable $ticket
+        } else {
+            // Manejar error si no se encuentra el ticket
+            header('Location: ../ConsultarTicket');
+            exit;
+        }
+    } else {
+        // Manejar error si no hay ID
+        header('Location: ../ConsultarTicket');
+        exit;
+    }
+    if (isset($_SESSION['e_id'])) { // Verifica si el usuario ha iniciado sesión
 ?>
 
-<?php   require_once '../../view/Main/head.php'; ?>
+<?php   require_once '../../view/Main/head.php'; ?> <!-- Incluye el archivo de encabezado HTML -->
         <title>TechCareMX :: Detalle del Ticket</title>
     </head>
     <body class="with-side-menu">
@@ -166,22 +182,23 @@
 
                 </section><!--.activity-line-->
 
-                <div class="box-typical box-typical-padding"> <!-- Sección para agregar notas adicionales al ticket -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <fieldset class="form-group">
-                                <label class="form-label semibold" for="td_det2">Notas adicionales</label>
-                                <div class="summernote-theme-1">
-                                    <textarea id="td_det2" class="summernote" name="td_det2"></textarea>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div class="col-lg-12">
-                            <button type="button" id="btnEnviar" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
-                            <button type="button" id="btnCerrarTicket" class="btn btn-rounded btn-inline btn-danger">Cerrar Ticket</button>
-                        </div>
-                    </div><!--.row-->
-                </div><!-- Notas adicionales -->
+                <?php if ($ticket["est_id"] != 6) { ?> <!-- Si el estado del ticket no es 6 (Cerrado), muestra la sección para agregar notas adicionales -->
+                    <div class="box-typical box-typical-padding"> <!-- Sección para agregar notas adicionales al ticket -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <fieldset class="form-group">
+                                    <label class="form-label semibold" for="td_det2">Notas adicionales</label>
+                                    <div class="summernote-theme-1">
+                                        <textarea id="td_det2" class="summernote" name="td_det2"></textarea>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="button" id="btnEnviar" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
+                            </div>
+                        </div><!--.row-->
+                    </div><!-- Notas adicionales -->
+                <?php } ?>
 
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->
