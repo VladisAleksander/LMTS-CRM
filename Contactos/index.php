@@ -44,7 +44,7 @@
                                     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-option-vertical"></span>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Perfil</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>Contacto</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Mensaje</a>
@@ -91,7 +91,7 @@
                                     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-option-vertical"></span>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Perfil</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>Contacto</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Mensaje</a>
@@ -138,7 +138,7 @@
                                     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-option-vertical"></span>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Perfil</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>Contacto</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Mensaje</a>
@@ -185,7 +185,7 @@
                                     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-option-vertical"></span>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Perfil</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>Contacto</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Mensaje</a>
@@ -232,7 +232,7 @@
                                     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-option-vertical"></span>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Perfil</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>Contacto</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Mensaje</a>
@@ -279,7 +279,7 @@
                                     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-option-vertical"></span>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Perfil</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>Contacto</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Mensaje</a>
@@ -326,7 +326,7 @@
                                     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-option-vertical"></span>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Perfil</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>Contacto</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Mensaje</a>
@@ -373,7 +373,7 @@
                                     <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-option-vertical"></span>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Perfil</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>Contacto</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Mensaje</a>

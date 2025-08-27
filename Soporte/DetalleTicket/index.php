@@ -145,20 +145,6 @@
                             <section class="" id="lblticket"> <!-- Muestra los detalles de creación del ticket -->
                                 <div class="box-typical box-typical-padding">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="st_id">Estatus</label>
-                                                <select id="st_id" disabled name="st_id" class="form-control">
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="n_id">Prioridad</label>
-                                                <select id="n_id" disabled name="n_id" class="form-control">
-                                                </select>
-                                            </fieldset>
-                                        </div>
                                         <div class="col-lg-12">
                                             <fieldset class="form-group">
                                                 <label class="form-label semibold" for="t_tit">Título</label>

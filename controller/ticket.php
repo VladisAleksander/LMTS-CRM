@@ -69,13 +69,13 @@
                     if ($row["est_id"] == "1") {
                         $sub_array[] = '<span class="label label-pill label-default">'.$row["st_name"].'</span>';
                     } elseif ($row["est_id"] == "2") {
-                        $sub_array[] = '<span class="label label-pill label-success">'.$row["st_name"].'</span>';
-                    } elseif ($row["est_id"] == "3") {
                         $sub_array[] = '<span class="label label-pill label-primary">'.$row["st_name"].'</span>';
-                    } elseif ($row["est_id"] == "4") {
+                    } elseif ($row["est_id"] == "3") {
                         $sub_array[] = '<span class="label label-pill label-warning">'.$row["st_name"].'</span>';
-                    } elseif ($row["est_id"] == "5") {
+                    } elseif ($row["est_id"] == "4") {
                         $sub_array[] = '<span class="label label-pill label-info">'.$row["st_name"].'</span>';
+                    } elseif ($row["est_id"] == "5") {
+                        $sub_array[] = '<span class="label label-pill label-success">'.$row["st_name"].'</span>';
                     } elseif ($row["est_id"] == "6" || $row["est_id"] == "7") {
                         $sub_array[] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
                     }
@@ -143,14 +143,14 @@
                 echo json_encode($result);
             break;
 
-            case "listar_detalle":
-                $datos = $ticket->listarTicketDetalle($_POST["tick_id"]);
+            case "listar_detalle": // Listar detalles de un ticket
+                $datos = $ticket->listarTicketDetalle($_POST["tick_id"]); // Recibir el ID del ticket por POST
                 ?>
                     <?php
                         foreach($datos as $row){
                             ?>
                                 <article class="activity-line-item box-typical">
-                                    <div class="activity-line-date">
+                                    <div class="activity-line-date"> <!-- Fecha de publicación -->
                                         <?php
                                             $fecha = new DateTime($row["td_crea"]);
                                             echo $fecha->format('d M Y');
@@ -159,27 +159,27 @@
                                     <header class="activity-line-item-header">
                                         <div class="activity-line-item-user">
                                             <div class="activity-line-item-user-photo">
-                                                <a href="#">
-                                                    <img src="../../public/img/photo-64-2.jpg" alt="">
+                                                <a href="#"> <!-- Enlace al perfil del usuario -->
+                                                    <img src="../../public/img/photo-64-2.jpg" alt=""> <!-- Foto o imágen del usuario -->
                                                 </a>
                                             </div>
                                             <div class="activity-line-item-user-name">
-                                                <?php echo $row["e_name"]." ".$row["e_last1"]." ".$row["e_last2"]; ?>
+                                                <?php echo $row["e_name"]." ".$row["e_last1"]." ".$row["e_last2"]; ?> <!-- Nombre del usuario -->
                                             </div>
                                             <div class="activity-line-item-user-status">
-                                                <?php echo $row["p_tit"]." - ".$row["a_name"]; ?>
+                                                <?php echo $row["p_tit"]." - ".$row["a_name"]; ?> <!-- Cargo y área del usuario -->
                                             </div>
                                         </div>
                                     </header>
-                                    <div class="activity-line-action-list">
+                                    <div class="activity-line-action-list"> <!-- Contenedor de las acciones o comentarios del usuario -->
                                         <section class="activity-line-action">
-                                            <div class="time">
+                                            <div class="time"> <!-- Hora de publicación -->
                                                 <?php
                                                     $hora = new DateTime($row["td_crea"]);
                                                     echo $hora->format('h:i A');
                                                 ?>
                                             </div>
-                                            <div class="cont">
+                                            <div class="cont"> <!-- Contenedor del comentario o acción realizada -->
                                                 <div class="cont-in">
                                                     <p><?php echo $row["td_desc"]; ?></p>
                                                 </div>
@@ -205,16 +205,14 @@
                         if ($row["st_name"]=="Nuevo"){
                             $output ["st_name"] = '<span class="label label-pill label-default">'.$row["st_name"].'</span>';
                         }else if ($row["st_name"]=="En Proceso"){
-                            $output ["st_name"] = '<span class="label label-pill label-success">'.$row["st_name"].'</span>';
-                        }else if ($row["st_name"]=="En Espera"){
                             $output ["st_name"] = '<span class="label label-pill label-primary">'.$row["st_name"].'</span>';
-                        } else if ($row["st_name"]=="Escalado"){
+                        }else if ($row["st_name"]=="En Espera"){
                             $output ["st_name"] = '<span class="label label-pill label-warning">'.$row["st_name"].'</span>';
-                        } else if ($row["st_name"]=="Resuelto"){
+                        } else if ($row["st_name"]=="Escalado"){
                             $output ["st_name"] = '<span class="label label-pill label-info">'.$row["st_name"].'</span>';
+                        } else if ($row["st_name"]=="Resuelto"){
+                            $output ["st_name"] = '<span class="label label-pill label-success">'.$row["st_name"].'</span>';
                         }else if ($row["st_name"]=="Cerrado"){
-                            $output ["st_name"] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
-                        }else if ($row["st_name"]=="Cancelado"){
                             $output ["st_name"] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
                         }
 
