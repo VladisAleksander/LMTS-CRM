@@ -23,4 +23,4 @@
         <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/vendor/datatables-net.min.css">
         <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/vendor/fancybox.min.css">
         <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/pages/activity.min.css">
-       
+        <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/pages/user.min.css">

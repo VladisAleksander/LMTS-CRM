@@ -120,13 +120,13 @@
                     if ($row["est_id"] == "1") {
                         $sub_array[] = '<span class="label label-default">'.$row["st_name"].'</span>';
                     } elseif ($row["est_id"] == "2") {
-                        $sub_array[] = '<span class="label label-success">'.$row["st_name"].'</span>';
-                    } elseif ($row["est_id"] == "3") {
                         $sub_array[] = '<span class="label label-primary">'.$row["st_name"].'</span>';
-                    } elseif ($row["est_id"] == "4") {
+                    } elseif ($row["est_id"] == "3") {
                         $sub_array[] = '<span class="label label-warning">'.$row["st_name"].'</span>';
-                    } elseif ($row["est_id"] == "5") {
+                    } elseif ($row["est_id"] == "4") {
                         $sub_array[] = '<span class="label label-info">'.$row["st_name"].'</span>';
+                    } elseif ($row["est_id"] == "5") {
+                        $sub_array[] = '<span class="label label-success">'.$row["st_name"].'</span>';
                     } elseif ($row["est_id"] == "6" || $row["est_id"] == "7") {
                         $sub_array[] = '<span class="label label-danger">'.$row["st_name"].'</span>';
                     }
