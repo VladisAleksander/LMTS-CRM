@@ -24,3 +24,8 @@
         <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/vendor/fancybox.min.css">
         <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/pages/activity.min.css">
         <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/pages/user.min.css">
+        <link rel="stylesheet" href="/LMTS-CRM/public/css/lib/ion-range-slider/ion.rangeSlider.css">
+        <link rel="stylesheet" href="/LMTS-CRM/public/css/lib/ion-range-slider/ion.rangeSlider.skinHTML5.css">
+        <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/elements/player.min.css">
+        <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/vendor/fancybox.min.css">
+        <link rel="stylesheet" href="/LMTS-CRM/public/css/separate/pages/profile-2.min.css">

@@ -11,3 +11,6 @@
 <script src="/LMTS-CRM/public/js/lib/bootstrap-sweetalert/sweetalert.min.js"></script>
 <script src="/LMTS-CRM/public/js/lib/html5-form-validation/jquery.validation.min.js"></script>
 <script src="/LMTS-CRM/public/js/lib/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/LMTS-CRM/public/js/lib/salvattore/salvattore.min.js"></script>
+<script src="/LMTS-CRM/public/js/lib/ion-range-slider/ion.rangeSlider.js"></script>
+<script src="/LMTS-CRM/public/js/lib/fancybox/jquery.fancybox.pack.js"></script>
