@@ -27,8 +27,8 @@
                                         <div class="tbl info-tbl">
                                             <div class="tbl-row">
                                                 <div class="tbl-cell">
-                                                    <p class="title">Dan Counsell</p>
-                                                    <p>Company Founder</p>
+                                                    <p class="title"><?php echo $_SESSION["e_name"] ?> <?php echo $_SESSION["e_last1"] ?> <?php echo $_SESSION["e_last2"] ?></p>
+                                                    <p>Puesto de Trabajo</p>
                                                 </div>
                                                 <div class="tbl-cell tbl-cell-stat">
                                                     <div class="inline-block">
@@ -77,9 +77,9 @@
                                     <input type="file"/>
                                 </button>
                                 <br>
-                                <h5 class="profile-side-user-name"><?php echo $_SESSION["e_name"] ?> <?php echo $_SESSION["e_last1"] ?></h5>
+                                <h5 class="profile-side-user-name"><?php echo $_SESSION["e_name"] ?> <?php echo $_SESSION["e_last1"] ?> <?php echo $_SESSION["e_last2"] ?></h5>
                                 <div class="profile-side-user-prof">Puesto de Trabajo</div>
-                                <br>
+                                <!-- <br>
                                 <button type="button" class="btn btn-rounded">Mensaje</button>
                                 <div class="btn-group">
                                     <button type="button"
@@ -96,8 +96,7 @@
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>CATprer Test</a>
                                         <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a>
                                     </div>
-                                </div>
-                                <div class="bottom-txt">Standing: 154</div>
+                                </div> -->
                             </section>
 
                             <section class="box-typical profile-side-stat"> <!-- Sección de estadísticas -->
@@ -206,21 +205,21 @@
                         <section class="tabs-section">
                             <div class="tabs-section-nav tabs-section-nav-left"> <!-- Navegación de pestañas -->
                                 <ul class="nav" role="tablist">
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a class="nav-link active" href="#tabs-2-tab-1" role="tab" data-toggle="tab">
                                             <span class="nav-link-in">Publicaciones</span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#tabs-2-tab-2" role="tab" data-toggle="tab">
+                                        <a class="nav-link active" href="#tabs-2-tab-2" role="tab" data-toggle="tab">
                                             <span class="nav-link-in">Actividad</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a class="nav-link" href="#tabs-2-tab-3" role="tab" data-toggle="tab">
                                             <span class="nav-link-in">Proyectos</span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a class="nav-link" href="#tabs-2-tab-4" role="tab" data-toggle="tab">
                                             <span class="nav-link-in">Ajustes</span>
@@ -230,7 +229,7 @@
                             </div><!--.tabs-section-nav-->
 
                             <div class="tab-content no-styled profile-tabs">
-                                <div role="tabpanel" class="tab-pane active" id="tabs-2-tab-1"> <!-- Contenido de la pestaña Publicaciones -->
+                                <div role="tabpanel" class="tab-pane" id="tabs-2-tab-1"> <!-- Contenido de la pestaña Publicaciones -->
                                     <form class="box-typical"> <!-- Formulario para escribir una nueva publicación -->
                                         <input type="text" class="write-something" placeholder="¿Qué pasa por tu mente?"/>
                                         <div class="box-typical-footer">
@@ -932,7 +931,7 @@
                                         </div>
                                     </article>
                                 </div><!--.tab-pane-->
-                                <div role="tabpanel" class="tab-pane" id="tabs-2-tab-2"> <!-- Contenido de la pestaña Actividad -->
+                                <div role="tabpanel" class="tab-pane active" id="tabs-2-tab-2"> <!-- Contenido de la pestaña Actividad -->
                                     <section class="box-typical box-typical-padding">
                                         Actividad
                                     </section>
@@ -947,17 +946,32 @@
                                         <section class="box-typical-section"> <!-- Información básica -->
                                             <div class="form-group row">
                                                 <div class="col-xl-2">
-                                                    <label class="form-label">Nombre</label>
+                                                    <label class="form-label">Nivel Académico</label>
                                                 </div>
-                                                <div class="col-xl-4">
-                                                    <input class="form-control" type="text" value="<?php echo $_SESSION["e_name"] ?> <?php echo $_SESSION["e_last1"] ?> <?php echo $_SESSION["e_last2"] ?>"/>
+                                                <div class="col-xl-8">
+                                                <select id="pue_id" name="pue_id" class="form-control" required>
+                                                    <option value="" disabled selected>- Seleccione una opción -</option>
+                                                    <option value="">Bachillerato</option>
+                                                    <option value="">Técnico Superior Universitario</option>
+                                                    <option value="">Licenciatura</option>
+                                                    <option value="">Maestría</option>
+                                                    <option value="">Doctorado</option>
+                                                </select>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-xl-2">
-                                                    <label class="form-label">Posición</label>
+                                                    <label class="form-label">Nombre</label>
                                                 </div>
-                                                <div class="col-xl-4">
+                                                <div class="col-xl-8">
+                                                    <input class="form-control" type="text" disabled value="<?php echo $_SESSION["e_name"] ?> <?php echo $_SESSION["e_last1"] ?> <?php echo $_SESSION["e_last2"] ?>"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-2">
+                                                    <label class="form-label">Puesto</label>
+                                                </div>
+                                                <div class="col-xl-8">
                                                     <input class="form-control" type="text" disabled value="Puesto en la empresa"/>
                                                 </div>
                                             </div>
@@ -965,16 +979,15 @@
                                                 <div class="col-xl-2">
                                                     <label class="form-label">Acerca de</label>
                                                 </div>
-                                                <div class="col-xl-6">
-                                                    <textarea rows="2" class="form-control">Maecenas sed diam eget risus varius blandit sit amet non magna.
-Vestibulum id ligula porta felis euismod semper.</textarea>
+                                                <div class="col-xl-8">
+                                                    <textarea rows="2" class="form-control">Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper.</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-xl-2">
                                                     <label class="form-label">Recomendaciones</label>
                                                 </div>
-                                                <div class="col-xl-6">
+                                                <div class="col-xl-8">
                                                     <input class="form-control" type="text" value="All stream, Connected Apps, Photos, Most recent"/>
                                                 </div>
                                             </div>
