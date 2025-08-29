@@ -22,7 +22,7 @@
             
                     // Si el estado es 6 (cerrado), permitir actualizar el campo t_close_user
                     if ($_POST["est_id"] == 6) {
-                        $ticket->update_ticket(
+                        $result = $ticket->update_ticket(
                             $_POST["t_id"],
                             $_POST["t_tit"],
                             $_POST["area_id"],
@@ -37,7 +37,7 @@
                         );
                     } else {
                         // Si no está cerrado, se pasa NULL para t_close_user
-                        $ticket->update_ticket(
+                        $result = $ticket->update_ticket(
                             $_POST["t_id"],
                             $_POST["t_tit"],
                             $_POST["area_id"],
@@ -50,6 +50,12 @@
                             $_POST["t_desc"],
                             null
                         );
+                    }
+
+                    if ($result > 0) {
+                        echo json_encode(["success" => "Ticket actualizado correctamente."]);
+                    } else {
+                        echo json_encode(["error" => "No se pudo actualizar el ticket."]);
                     }
             
                 } else {
@@ -204,15 +210,15 @@
                         
                         if ($row["st_name"]=="Nuevo"){
                             $output ["st_name"] = '<span class="label label-pill label-default">'.$row["st_name"].'</span>';
-                        }else if ($row["st_name"]=="En Proceso"){
+                        } elseif ($row["st_name"]=="En Proceso"){
                             $output ["st_name"] = '<span class="label label-pill label-primary">'.$row["st_name"].'</span>';
-                        }else if ($row["st_name"]=="En Espera"){
+                        } elseif ($row["st_name"]=="En Espera"){
                             $output ["st_name"] = '<span class="label label-pill label-warning">'.$row["st_name"].'</span>';
-                        } else if ($row["st_name"]=="Escalado"){
+                        } elseif ($row["st_name"]=="Escalado"){
                             $output ["st_name"] = '<span class="label label-pill label-info">'.$row["st_name"].'</span>';
-                        } else if ($row["st_name"]=="Resuelto"){
+                        } elseif ($row["st_name"]=="Resuelto"){
                             $output ["st_name"] = '<span class="label label-pill label-success">'.$row["st_name"].'</span>';
-                        }else if ($row["st_name"]=="Cerrado"){
+                        } elseif ($row["st_name"]=="Cerrado"){
                             $output ["st_name"] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
                         }
 
@@ -224,6 +230,12 @@
                         $output ["a_name"] = $row["a_name"];
                         $output ["t_tit"] = $row["t_tit"];
                         $output ["t_desc"] = $row["t_desc"];
+                        $output ["area_id"] = $row["area_id"];
+                        $output ["cat_id"] = $row["cat_id"];
+                        $output ["scat_id"] = $row["scat_id"];
+                        $output ["niv_id"] = $row["niv_id"];
+                        $output ["est_id"] = $row["est_id"];
+                        $output ["sest_id"] = $row["sest_id"];
                     }
                     echo json_encode($output);
                 }

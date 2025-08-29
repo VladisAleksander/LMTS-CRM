@@ -172,7 +172,7 @@
                 </section><!--.activity-line-->
 
                 <?php if ($ticket["est_id"] != 6) { ?> <!-- Si el estado del ticket no es 6 (Cerrado), muestra la sección para agregar notas adicionales -->
-                    <div class="box-typical box-typical-padding"> <!-- Sección para agregar notas adicionales al ticket -->
+                    <div id="notes_section" class="box-typical box-typical-padding"> <!-- Sección para agregar notas adicionales al ticket -->
                         <div class="row">
                             <div class="col-lg-12">
                                 <fieldset class="form-group">
