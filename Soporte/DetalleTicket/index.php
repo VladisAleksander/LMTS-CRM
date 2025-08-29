@@ -42,7 +42,7 @@
                                 <span class="label label-pill label-default" id="iblfechacrea"></span> <!-- Muestra la fecha de creación del ticket -->
                                 <ol class="breadcrumb breadcrumb-simple">
                                     <li><a href="../../Home">Inicio</a></li>
-                                    <li><a href="../Soporte">Soporte</a></li>
+                                    <li><a href="../../Soporte">Soporte</a></li>
                                     <li><a href="../ConsultarTicket">Tickets</a></li>
                                     <li class="active">Detalle del Ticket</li>
                                 </ol>
