@@ -194,7 +194,7 @@
                 INNER JOIN categorias ON tickets.cat_id = categorias.c_id
                 INNER JOIN subcategorias ON tickets.scat_id = subcategorias.sc_id
                 INNER JOIN estatus ON tickets.est_id = estatus.st_id
-                INNER JOIN subestatus ON tickets.sest_id = se_id
+                INNER JOIN subestatus ON tickets.sest_id = subestatus.se_id
                 INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id";
             
             $sql = $conectar->prepare($sql);

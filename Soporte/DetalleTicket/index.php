@@ -56,87 +56,90 @@
                         ?>
                             <section class="" id="lblticket"> <!-- Muestra los detalles de creación del ticket -->
                                 <div class="box-typical box-typical-padding">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="text">Nombre del usuario</label>
-                                                <input type="text" disabled class="form-control" id="lblusuario"><!-- Muestra el nombre compledo del empleado -->
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="Email">Correo Electrónico</label>
-                                                <input type="email" disabled class="form-control" id="lblemail" >
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="t_phone">Teléfono de contacto</label>
-                                                <input type="phone" class="form-control" name="t_phone" id="t_phone">
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="area_id">Área</label>
-                                                <select id="area_id" name="area_id" class="form-control">
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="cat_id">Categoría</label>
-                                                <select id="cat_id" name="cat_id" class="form-control" required>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="scat_id">Subcategoría</label>
-                                                <select id="scat_id" name="scat_id" class="form-control" required>
-                                                    <option value="" disabled selected>- Seleccione una subcategoría -</option>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="st_id">Estatus</label>
-                                                <select id="st_id" name="st_id" class="form-control" required>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="se_id">Subestatus</label>
-                                                <select id="se_id" name="se_id" class="form-control" required>
-                                                    <option value="" disabled selected>- Seleccione un subestatus -</option>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="n_id">Prioridad</label>
-                                                <select id="n_id" name="n_id" class="form-control" required>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="t_tit">Título</label>
-                                                <input type="text" class="form-control" id="t_tit" name="t_tit">
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <fieldset class="form-group">
-                                                <label class="form-label semibold" for="td_det">Descripción detallada</label>
-                                                <div class="summernote-theme-1">
-                                                    <textarea id="td_det" class="summernote" name="td_det"></textarea>
-                                                </div>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <button type="submit" name="action" value="add" class="btn btn-rounded btn-inline btn-primary">Guardar</button>
-                                        </div>
-                                    </div><!--.row-->
+                                    <form id="form_ticket">
+                                        <input type="hidden" id="e_idx" value="<?php echo $_SESSION['e_id']; ?>">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="text">Nombre del usuario</label>
+                                                    <input type="text" disabled class="form-control" id="lblusuario"><!-- Muestra el nombre compledo del empleado -->
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="Email">Correo Electrónico</label>
+                                                    <input type="email" disabled class="form-control" id="lblemail" >
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="t_phone">Teléfono de contacto</label>
+                                                    <input type="phone" class="form-control" name="t_phone" id="t_phone">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="area_id">Área</label>
+                                                    <select id="area_id" name="area_id" class="form-control">
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="cat_id">Categoría</label>
+                                                    <select id="cat_id" name="cat_id" class="form-control" required>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="scat_id">Subcategoría</label>
+                                                    <select id="scat_id" name="scat_id" class="form-control" required>
+                                                        <option value="" disabled selected>- Seleccione una subcategoría -</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="st_id">Estatus</label>
+                                                    <select id="st_id" name="st_id" class="form-control" required>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="se_id">Subestatus</label>
+                                                    <select id="se_id" name="se_id" class="form-control" required>
+                                                        <option value="" disabled selected>- Seleccione un subestatus -</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="n_id">Prioridad</label>
+                                                    <select id="n_id" name="n_id" class="form-control" required>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="t_tit">Título</label>
+                                                    <input type="text" class="form-control" id="t_tit" name="t_tit">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <fieldset class="form-group">
+                                                    <label class="form-label semibold" for="td_det">Descripción detallada</label>
+                                                    <div class="summernote-theme-1">
+                                                        <textarea id="td_det" class="summernote" name="td_det"></textarea>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <button type="button" id="btnGuardar" name="action" value="update" class="btn btn-rounded btn-inline btn-primary">Guardar</button>
+                                            </div>
+                                        </div><!--.row-->
+                                    </form>
                                 </div>
                             </section><!-- Ticket form -->
                         <?php
