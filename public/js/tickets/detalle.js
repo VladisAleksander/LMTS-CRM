@@ -80,7 +80,9 @@ $(document).ready(function(){
             });
 
             $('#td_det').summernote('code' , data.t_desc);
-            if (!isEditable) {
+
+            var isEditable = $('#is_editable').val() === 'true';
+            if (!isEditable || data.est_id == '6') {
                 $('#td_det').summernote('disable');
             }
         });
@@ -166,16 +168,39 @@ $(document).on('click', '#btnEnviar', function() {
 
 $(document).on('click', '#btnGuardar', function() {
     var tick_id = getUrlParameter('id');
-    var t_tit = $('#t_tit').val();
+    var t_tit = $('#t_tit').val().trim();
     var area_id = $('#area_id').val();
-    var t_phone = $('#t_phone').val();
+    var t_phone = $('#t_phone').val().trim();
     var cat_id = $('#cat_id').val();
     var scat_id = $('#scat_id').val();
     var niv_id = $('#n_id').val();
     var est_id = $('#st_id').val();
     var sest_id = $('#se_id').val();
-    var t_desc = $('#td_det').summernote('code');
+    var t_desc = $('#td_det').summernote('code').trim();
     var t_close_user = (est_id == '6') ? $('#e_idx').val() : '';
+
+    // Validar campos requeridos
+    var errores = [];
+    if (t_phone === '') errores.push('Teléfono de contacto');
+    if (!area_id) errores.push('Área');
+    if (!cat_id) errores.push('Categoría');
+    if (!scat_id) errores.push('Subcategoría');
+    if (!niv_id) errores.push('Prioridad');
+    if (!est_id) errores.push('Estatus');
+    if (!sest_id) errores.push('Subestatus');
+    if (t_tit === '') errores.push('Título');
+    if ($('#td_det').summernote('isEmpty')) errores.push('Descripción detallada');
+
+    if (errores.length > 0) {
+        swal({
+            title: "¡Advertencia!",
+            text: "Los siguientes campos están vacíos o no seleccionados: " + errores.join(', '),
+            type: "warning",
+            confirmButtonClass: "btn-success",
+            confirmButtonText: "Aceptar",
+        });
+        return;
+    }
 
     $.post('../../controller/ticket.php?op=update', {
         t_id: tick_id,
@@ -215,6 +240,14 @@ $(document).on('click', '#btnGuardar', function() {
             var status_html = '<span class="label label-pill label-' + class_name + '">' + st_name + '</span>';
             $('#lblestado').html(status_html);
 
+            // Actualizar el estado de edición del campo de descripción
+            var isEditable = $('#is_editable').val() === 'true';
+            if (est_id !== '6' && isEditable) {
+                $('#td_det').summernote('enable');
+            } else {
+                $('#td_det').summernote('disable');
+            }
+
             // Opcional: Ocultar sección de notas si el ticket se cierra
             if (est_id === '6') {
                 $('#notes_section').hide();
@@ -226,29 +259,6 @@ $(document).on('click', '#btnGuardar', function() {
                 type: "error",
                 confirmButtonClass: "btn-danger",
                 confirmButtonText: "Aceptar",
-            });
-        }
-    });
-});
-
-$(document).on('click', '#btnCerrarTicket', function() {
-    swal({
-        title: "Cerrar Ticket",
-        text: "Esta acción cerrará el ticket y no se podrá revertir. ¿Estás seguro de que deseas continuar?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonClass: "btn-danger",
-        confirmButtonText: "Si, cerrar ticket",
-        cancelButtonText: "No, no cerrar",
-        closeOnConfirm: false
-    },
-    function(isConfirm) {
-        if (isConfirm) {
-            swal({
-                title: "Cerrado",
-                text: "El ticket ha sido cerrado correctamente.",
-                type: "success",
-                confirmButtonClass: "btn-success"
             });
         }
     });

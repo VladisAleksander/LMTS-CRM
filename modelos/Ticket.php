@@ -56,7 +56,7 @@
             $conectar = parent::conexion();
             parent::set_names();
             
-            // Si el ticket está en estado "Cerrado", actualiza también el usuario que lo cerró
+            // Si el ticket está en estado "Cerrado", actualiza también el usuario que lo cerró y la fecha de cierre
             if ($est_id == 6 && $t_close_user !== null) {
                 $sql = "UPDATE tickets 
                         SET t_tit        = ?, 
@@ -68,7 +68,8 @@
                             est_id       = ?, 
                             sest_id      = ?, 
                             t_desc       = ?, 
-                            t_close_user = ?, 
+                            t_close_user = ?,
+                            t_close      = NOW(), 
                             t_upd        = NOW()
                         WHERE t_id = ?;";
                 
@@ -86,7 +87,7 @@
                 $sql->bindValue(10, $t_close_user); 
                 $sql->bindValue(11, $t_id);
             } else {
-                // Si no está cerrado, no se actualiza el campo t_close_user y forzamos t_close_user a NULL
+                // Si no está cerrado, no se actualiza el campo t_close_user ni t_close y forzamos t_close_user a NULL
                 $sql = "UPDATE tickets 
                         SET t_tit        = ?, 
                             area_id      = ?, 
@@ -97,7 +98,8 @@
                             est_id       = ?, 
                             sest_id      = ?, 
                             t_desc       = ?, 
-                            t_close_user = NULL, 
+                            t_close_user = NULL,
+                            t_close      = NULL,
                             t_upd        = NOW()
                         WHERE t_id = ?;";
                 

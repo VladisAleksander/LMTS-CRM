@@ -57,6 +57,7 @@
                             <section class="" id="lblticket"> <!-- Muestra los detalles de creación del ticket -->
                                 <div class="box-typical box-typical-padding">
                                     <form id="form_ticket">
+                                        <input type="hidden" id="is_editable" value="<?php echo ($_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) ? 'true' : 'false'; ?>">
                                         <input type="hidden" id="e_idx" value="<?php echo $_SESSION['e_id']; ?>">
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -131,7 +132,7 @@
                                                 <fieldset class="form-group">
                                                     <label class="form-label semibold" for="td_det">Descripción detallada</label>
                                                     <div class="summernote-theme-1">
-                                                        <textarea id="td_det" class="summernote" name="td_det"></textarea>
+                                                        <textarea id="td_det" class="summernote" name="td_det" <?php if ($ticket["est_id"] == 6) echo 'disabled'; ?>></textarea>
                                                     </div>
                                                 </fieldset>
                                             </div>
