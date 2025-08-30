@@ -6,6 +6,14 @@
         $ticket_data = $ticket_obj->listarTicketID($_GET['id']); // Obtiene los datos del ticket por ID
         if (is_array($ticket_data) && count($ticket_data) > 0) { // Verifica si se encontraron datos
             $ticket = $ticket_data[0]; // Asigna el primer elemento del array a la variable $ticket
+            // Verificación de acceso al ticket
+            if ($_SESSION['area_id'] != 12 && $_SESSION['area_id'] != 14) { // No es Soporte ni Desarrollador
+                if ($ticket['emp_id'] != $_SESSION['e_id']) { // No es el creador del ticket
+                    // Redirigir a página de tickets o mostrar error
+                    header('Location: ../ConsultarTicket?error=ACCESO_DENEGADO');
+                    exit;
+                }
+            }
         } else {
             // Manejar error si no se encuentra el ticket
             header('Location: ../ConsultarTicket');

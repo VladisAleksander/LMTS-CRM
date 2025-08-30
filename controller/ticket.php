@@ -2,6 +2,20 @@
     require_once "../config/conexion.php";
     require_once "../modelos/Ticket.php";
     $ticket = new Ticket();
+
+    // Función helper para verificar acceso a un ticket
+    function verificarAccesoTicket($ticket_id, $user_id, $user_area_id) {
+        $ticket_obj = new Ticket();
+        $ticket_data = $ticket_obj->listarTicketID($ticket_id);
+        if (empty($ticket_data)) {
+            return false; // Ticket no existe
+        }
+        $ticket = $ticket_data[0];
+        if ($user_area_id == 12 || $user_area_id == 14) {
+            return true; // Soporte/Desarrollador: Acceso total
+        }
+        return ($ticket['emp_id'] == $user_id); // Solo el creador del ticket
+    }
     
     if (isset($_GET["op"])) {
         switch ($_GET["op"]) {
@@ -19,6 +33,13 @@
             case "update": // Actualizar la información de un ticket
                 // Validar que venga el ID del ticket
                 if (isset($_POST["t_id"]) && !empty($_POST["t_id"])) {
+
+                    // Verificar acceso al ticket
+                    $t_id = $_POST["t_id"];
+                    if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
+                        echo json_encode(["error" => "Acceso Denegado: No tienes permiso para modificar este ticket."]);
+                        break;
+                    }
             
                     // Si el estado es 6 (cerrado), permitir actualizar el campo t_close_user
                     if ($_POST["est_id"] == 6) {
@@ -150,6 +171,15 @@
             break;
 
             case "listar_detalle": // Listar detalles de un ticket
+
+                // Verificar acceso al ticket
+                $t_id = $_POST["tick_id"];
+                if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
+                    echo json_encode(["error" => "Acceso Denegado: No tienes permiso para ver este ticket."]);
+                    break;
+                }
+
+                // Si tiene acceso, proceder a listar los detalles
                 $datos = $ticket->listarTicketDetalle($_POST["tick_id"]); // Recibir el ID del ticket por POST
                 ?>
                     <?php
@@ -201,8 +231,17 @@
             break;
 
             case "mostrar";
+
+                // Verificar acceso al ticket
+                $t_id = $_POST["tick_id"];
+                if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
+                    echo json_encode(["error" => "Acceso Denegado: No tienes permiso para ver este ticket."]);
+                    break;
+                }
+
+                // Si tiene acceso, proceder a mostrar los datos
                 $datos = $ticket->listarTicketID($_POST["tick_id"]);
-                if (is_array($datos)==true and count($datos) > 0) {
+                if (is_array($datos) == true and count($datos) > 0) {
                     foreach($datos as $row){
                         $output ["t_id"] = $row["t_id"];
                         $output ["t_num"] = $row["t_num"];
@@ -242,6 +281,15 @@
             break;
 
             case "insertar_detalle": // Guardar tickets en la Base de Datos
+
+                // Verificar acceso al ticket
+                $t_id = $_POST["tick_id"];
+                if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
+                    echo json_encode(["error" => "Acceso Denegado: No tienes permiso para ver este ticket."]);
+                    break;
+                }
+
+                // Si tiene acceso, proceder a insertar el detalle
                 $ticket->insert_ticket_detalle(
                     $_POST["tick_id"],
                     $_POST["emp_id"],

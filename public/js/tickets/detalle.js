@@ -57,33 +57,47 @@ $(document).ready(function(){
 
     $.when(comboArea, comboPrioridad, comboCategoria, comboEstatus).done(function() {
         $.post("../../controller/ticket.php?op=mostrar", {tick_id: tick_id}, function(data) {
-            data = JSON.parse(data);
-            $('#lblestado').html(data.st_name);
-            $('#iblfechacrea').html(data.t_crea);
-            $('#lblnumtick').html("Detalle del Ticket - " + data.t_num);
-            $('#lblusuario').val(data.e_name + ' ' + data.e_last1 + ' ' + data.e_last2);
-            $('#lblemail').val(data.e_mail);
-            $('#t_phone').val(data.t_phone);
-            $('#t_tit').val(data.t_tit);
+            try {
+                data = JSON.parse(data);
+                if (data.error) {
+                    swal({
+                        title: "Error",
+                        text: data.error,
+                        type: "error",
+                        confirmButtonText: "Aceptar"
+                    }).then(() => { window.location.href = '../ConsultarTicket'; });
+                    return;
+                }
+                // data = JSON.parse(data);
+                $('#lblestado').html(data.st_name);
+                $('#iblfechacrea').html(data.t_crea);
+                $('#lblnumtick').html("Detalle del Ticket - " + data.t_num);
+                $('#lblusuario').val(data.e_name + ' ' + data.e_last1 + ' ' + data.e_last2);
+                $('#lblemail').val(data.e_mail);
+                $('#t_phone').val(data.t_phone);
+                $('#t_tit').val(data.t_tit);
 
-            $('#area_id').val(data.area_id);
-            $('#n_id').val(data.niv_id);
+                $('#area_id').val(data.area_id);
+                $('#n_id').val(data.niv_id);
 
-            $('#cat_id').val(data.cat_id);
-            loadSubcats(data.cat_id, function() {
-                $('#scat_id').val(data.scat_id);
-            });
+                $('#cat_id').val(data.cat_id);
+                loadSubcats(data.cat_id, function() {
+                    $('#scat_id').val(data.scat_id);
+                });
 
-            $('#st_id').val(data.est_id);
-            loadSubestatus(data.est_id, function() {
-                $('#se_id').val(data.sest_id);
-            });
+                $('#st_id').val(data.est_id);
+                loadSubestatus(data.est_id, function() {
+                    $('#se_id').val(data.sest_id);
+                });
 
-            $('#td_det').summernote('code' , data.t_desc);
+                $('#td_det').summernote('code' , data.t_desc);
 
-            var isEditable = $('#is_editable').val() === 'true';
-            if (!isEditable || data.est_id == '6') {
-                $('#td_det').summernote('disable');
+                var isEditable = $('#is_editable').val() === 'true';
+                if (!isEditable || data.est_id == '6') {
+                    $('#td_det').summernote('disable');
+                }
+            } catch (e) {
+                console.error(e);
             }
         });
     });
