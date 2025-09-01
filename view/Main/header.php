@@ -1,9 +1,9 @@
 <header class="site-header">
     <div class="container-fluid">
 
-        <a href="/LMTS-CRM/Home" class="site-logo">
-            <img class="hidden-md-down" src="/LMTS-CRM/public/img/logo.png" alt="">
-            <img class="hidden-lg-up" src="/LMTS-CRM/public/img/logo-mob.png" alt="">
+        <a href="/Home" class="site-logo">
+            <img class="hidden-md-down" src="/public/img/logo.png" alt="">
+            <img class="hidden-lg-up" src="/public/img/logo-mob.png" alt="">
         </a>
 
         <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
@@ -20,14 +20,14 @@
                     <!-- User menu -->
                     <div class="dropdown user-menu">
                         <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="/LMTS-CRM/public/img/avatar-2-64.png" alt="">
+                            <img src="/public/img/avatar-2-64.png" alt="">
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-                            <a class="dropdown-item" href="../Perfil"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
+                            <a class="dropdown-item" href="/Perfil"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
                             <!-- <a class="dropdown-item" href="../Perfil/#tabs-2-tab-2"><span class="font-icon glyphicon glyphicon-cog"></span>Ajustes</a> -->
-                            <a class="dropdown-item" href="../Soporte"><span class="font-icon glyphicon glyphicon-question-sign"></span>Ayuda</a>
+                            <a class="dropdown-item" href="/Soporte"><span class="font-icon glyphicon glyphicon-question-sign"></span>Ayuda</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/LMTS-CRM/view/Main/logout.php"><span class="font-icon glyphicon glyphicon-log-out"></span>Cerrar sesión</a>
+                            <a class="dropdown-item" href="/view/Main/logout.php"><span class="font-icon glyphicon glyphicon-log-out"></span>Cerrar sesión</a>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
 
                         <!-- User options -->
                         <div class="dropdown dropdown-typical">
-                            <a href="/LMTS-CRM/Perfil" class="dropdown-toggle no-arr">
+                            <a href="/Perfil" class="dropdown-toggle no-arr">
                                 <span class="font-icon font-icon-user"></span>
                                 <span class="lblcontactonomx"><?php echo $_SESSION["e_name"] ?> <?php echo $_SESSION["e_last1"] ?></span>
                             </a>

@@ -3,7 +3,7 @@
 
         <!-- Principal -->
         <li class="grey with-sub">
-            <a href="/LMTS-CRM/Home">
+            <a href="/Home">
                 <i class="font-icon glyphicon glyphicon-send"></i>
                 <span class="lbl">Inicio</span>
             </a>
@@ -61,9 +61,9 @@
                             <span class="lbl">Empleados</span>
                         </span>
                         <ul>
-                            <li><a href="/LMTS-CRM/Empleados/NuevoEmpleado"><span class="lbl">Nuevo Empleado</span></a></li>
-                            <li><a href="/LMTS-CRM/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
-                            <li><a href="/LMTS-CRM/Empleados/GestionarEmpleado"><span class="lbl">Gestionar Empleados</span></a></li>
+                            <li><a href="/Empleados/NuevoEmpleado"><span class="lbl">Nuevo Empleado</span></a></li>
+                            <li><a href="/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
+                            <li><a href="/Empleados/GestionarEmpleado"><span class="lbl">Gestionar Empleados</span></a></li>
                         </ul>
                     </li>
                 <?php
@@ -75,7 +75,7 @@
                             <span class="lbl">Empleados</span>
                         </span>
                         <ul>
-                            <li><a href="/LMTS-CRM/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
+                            <li><a href="/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
                         </ul>
                     </li>
                 <?php
@@ -88,7 +88,7 @@
 
         <!-- Menu de Soporte -->
         <?php
-            if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) {
+            if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { /* Menu Soporte solo5 IT */
                 ?>
                     <li class="orange-red with-sub">
                         <span>
@@ -96,14 +96,70 @@
                             <span class="lbl">Soporte</span>
                         </span>
                         <ul>
-                            <li><a href="/LMTS-CRM/Soporte/FAQ"><span class="lbl">FAQ</span></a></li>
-                            <li><a href="/LMTS-CRM/Soporte/NuevoTicket"><span class="lbl">Crear Nuevo Ticket</span></a></li>
-                            <li><a href="/LMTS-CRM/Soporte/ConsultarTicket"><span class="lbl">Consultar Tickets</span></a></li>
-                            <li><a href="/LMTS-CRM/Soporte/Documentacion"><span class="lbl">Documentación</span></a></li>
+                            <li class="with-sub"> <!-- Sección FAQ -->
+                                <span><span class="lbl">FAQ</span></span>
+                                <ul>
+                                    <li><a href="/Soporte"><span class="lbl">Principal</span></a></li>
+                                    <li><a href="/Soporte/FAQ"><span class="lbl">Estadísticas</span></a></li>
+                                    <li class="with-sub">
+                                        <span>
+                                            <span class="lbl">Artículos</span>
+                                        </span>
+                                        <ul>
+                                            <li><a href="/Soporte/FAQ/NuevoArticulo"><span class="lbl">Nuevo Artículo</span></a></li>
+                                            <li><a href="/Soporte/FAQ/GestionArticulos"><span class="lbl">Gestión de Artículos</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="with-sub">
+                                        <span>
+                                            <span class="lbl">Categorías</span>
+                                        </span>
+                                        <ul>
+                                            <li><a href="/Soporte/FAQ/NuevaCategoria"><span class="lbl">Nueva Categoría</span></a></li>
+                                            <li><a href="/Soporte/FAQ/GestionCategorias"><span class="lbl">Gestión de Categorías</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="with-sub"> <!-- Sección Gestión de Tickets -->
+                                <span><span class="lbl">Gestión de Tickets</span></span>
+                                <ul>
+                                    <li><a href="/Soporte/NuevoTicket"><span class="lbl">Crear Nuevo Ticket</span></a></li>
+                                    <li><a href="/Soporte/ConsultarTicket"><span class="lbl">Consultar Tickets</span></a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="/Soporte/Documentacion"><span class="lbl">Documentación</span></a></li> <!-- Sección Documentación -->
+
+                            <li class="with-sub"> <!-- Sección Base de Conocimientos -->
+                                <span><span class="lbl">Base de Conocimientos</span></span>
+                                <ul>
+                                    <li><a href="/Soporte/KB"><span class="lbl">Principal</span></a></li>
+                                    <li class="with-sub">
+                                        <span>
+                                            <span class="lbl">Artículos</span>
+                                        </span>
+                                        <ul>
+                                            <li><a href="/Soporte/KB/NuevoArticulo"><span class="lbl">Nuevo Artículo</span></a></li>
+                                            <li><a href="/Soporte/KB/GestionArticulos"><span class="lbl">Gestión de Artículos</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="with-sub">
+                                        <span>
+                                            <span class="lbl">Categorías</span>
+                                        </span>
+                                        <ul>
+                                            <li><a href="/Soporte/KB/NuevaCategoria"><span class="lbl">Nueva Categoría</span></a></li>
+                                            <li><a href="/Soporte/KB/GestionCategorias"><span class="lbl">Gestión de Categorías</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 <?php
-            } else {
+            } else { /* Menu Soporte para Clientes */
                 ?>
                    <li class="orange-red with-sub">
                         <span>
@@ -111,9 +167,9 @@
                             <span class="lbl">Soporte</span>
                         </span>
                         <ul>
-                            <li><a href="/LMTS-CRM/Soporte/FAQ"><span class="lbl">FAQ</span></a></li>
-                            <li><a href="/LMTS-CRM/Soporte/NuevoTicket"><span class="lbl">Crear Nuevo Ticket</span></a></li>
-                            <li><a href="/LMTS-CRM/Soporte/ConsultarTicket"><span class="lbl">Consultar Tickets</span></a></li>
+                            <li><a href="/Soporte"><span class="lbl">FAQ</span></a></li>
+                            <li><a href="/Soporte/NuevoTicket"><span class="lbl">Crear Nuevo Ticket</span></a></li>
+                            <li><a href="/Soporte/ConsultarTicket"><span class="lbl">Consultar Tickets</span></a></li>
                         </ul>
                     </li>
                 <?php
@@ -123,35 +179,11 @@
 
         <!-- Contactos -->
         <li class="red">
-            <a href="/LMTS-CRM/Contactos" class="label-right">
+            <a href="/Contactos" class="label-right">
                 <i class="font-icon font-icon-contacts"></i>
                 <span class="lbl">Contactos</span>
-                <span class="label label-custom label-pill label-danger">69</span>
+                <span class="label label-custom label-pill label-danger">8</span>
             </a>
         </li>
     </ul>
-
-    <!-- <section>
-        <header class="side-menu-title">Enlaces importantes</header>
-        <ul class="side-menu-list">
-            <li>
-                <a href="#">
-                    <i class="tag-color green"></i>
-                    <span class="lbl">Sitio Principal</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="tag-color grey-blue"></i>
-                    <span class="lbl">Empleados</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="tag-color red"></i>
-                    <span class="lbl">Preguntas</span>
-                </a>
-            </li>
-        </ul>
-    </section> -->
 </nav><!--.side-menu-->

@@ -4,7 +4,7 @@
         <ul class="side-menu-list">
             <!-- Principal -->
             <li class="grey with-sub">
-                <a href="/LMTS-CRM/Home">
+                <a href="/Home">
                     <i class="font-icon glyphicon glyphicon-send"></i>
                     <span class="lbl">Principal</span>
                 </a>

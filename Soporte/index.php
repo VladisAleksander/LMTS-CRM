@@ -23,7 +23,7 @@
                             <div class="tbl-cell">
                                 <h2>¿Cómo podemos ayudarte?</h2>
                                 <ol class="breadcrumb breadcrumb-simple">
-                                    <li><a href="../Home">Inicio</a></li>
+                                    <li><a href="/Home">Inicio</a></li>
                                     <li class="active">Soporte</li>
                                 </ol>
                             </div>
@@ -45,29 +45,29 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><a href="/LMTS-CRM/Soporte/FAQ"><img src="/LMTS-CRM/public/img/faq-1.png" alt=""></a></div>
+                                    <div class="faq-page-cat-icon"><a href="/Soporte/NuevoTicket"><img src="/public/img/faq-2.png" alt=""></a></div>
                                     <div class="faq-page-cat-title">
-                                        <a href="/LMTS-CRM/Soporte/FAQ">Preguntas Frecuentes</a>
+                                        <a href="/Soporte/NuevoTicket">Contacta con Soporte</a>
                                     </div>
-                                    <div class="faq-page-cat-txt">¿Tienes dudas con algo? Usa la sección de preguntas frecuentes o usa el buscador</div>
+                                    <div class="faq-page-cat-txt">¿Hay algo más que no funciona? <br> Crea un nuevo ticket para ayuda específica o especializada</div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><a href="/LMTS-CRM/Soporte/NuevoTicket"><img src="/LMTS-CRM/public/img/faq-2.png" alt=""></a></div>
+                                    <div class="faq-page-cat-icon"><a href="/Soporte/Feedback"><img src="/public/img/faq-3.png" alt=""></a></div>
                                     <div class="faq-page-cat-title">
-                                        <a href="/LMTS-CRM/Soporte/NuevoTicket">Help Desk</a>
+                                        <a href="/Soporte/Feedback">Sugerencias y Comentarios</a>
                                     </div>
-                                    <div class="faq-page-cat-txt">¿Hay algo más que no funciona? Crea un nuevo ticket para que Soporte te ayude</div>
+                                    <div class="faq-page-cat-txt">¿Tienes algo que te gustaría contarnos? <br> ¡Permitenos conocer tus sugerencias y comentarios!</div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><a href="#"><img src="/LMTS-CRM/public/img/faq-3.png" alt=""></a></div>
+                                    <div class="faq-page-cat-icon"><a href="/Soporte/BugReport"><img src="/public/img/bug-2.png" alt=""></a></div>
                                     <div class="faq-page-cat-title">
-                                        <a href="#">Sugerencias</a>
+                                        <a href="/Soporte/BugReport">Reporta Errores</a>
                                     </div>
-                                    <div class="faq-page-cat-txt">¿Tienes una sugerencia? ¡Permitenos conocer tus sugerencias y comentarios!</div>
+                                    <div class="faq-page-cat-txt">¿Encontraste un error en el sistema? <br> Ayudanos a mejorar reportando cualquier error encontrado</div>
                                 </div>
                             </div>
                         </div><!--.row-->

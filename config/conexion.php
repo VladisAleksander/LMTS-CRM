@@ -7,7 +7,8 @@
         # Conexión a la base de datos
         protected function Conexion() {
             try {
-                $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=helpdesk", "root", "Password123");
+                //$conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=helpdesk", "root", "Password123");
+                $conectar = $this->dbh = new PDO("mysql:host=srv630.hstgr.io;dbname=u798328717_pruebas1", "u798328717_Skull", "Maverick.24");
                 return $conectar;
             } catch (Exception $e) {
                 print "¡Error de conexión!: La conexión a la base de datos no pudo ser establecida." . $e->getMessage() . "<br/>";
@@ -22,7 +23,7 @@
 
         #Validar la ruta del proyecto
         public static function ruta() {
-            return "http://localhost/LMTS-CRM/";
+            return "/";
         }
 
     }
