@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>TechCareMX :: FAQ</title>
+        <title>Preguntas Frecuentes :: TechCareMX</title>
     </head>
     <body class="with-side-menu">
 

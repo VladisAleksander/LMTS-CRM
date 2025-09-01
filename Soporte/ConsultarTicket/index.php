@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>TechCareMX :: Consultar Ticket</title>
+        <title>Consultar Ticket :: TechCareMX</title>
         <link rel="icon" href="../../public/img/favicon.png" type="image/png">
     </head>
     <body class="with-side-menu">

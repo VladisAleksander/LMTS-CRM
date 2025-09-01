@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>TechCareMX :: Nuevo Empleado</title>
+        <title>Nuevo Empleado :: TechCareMX</title>
     </head>
     <body class="with-side-menu">
 

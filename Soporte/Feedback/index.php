@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>TechCareMX :: Feedback</title>
+        <title>Comentarios y Sugerencias :: TechCareMX</title>
     </head>
     <body class="with-side-menu">
 

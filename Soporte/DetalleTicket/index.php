@@ -28,7 +28,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?> <!-- Incluye el archivo de encabezado HTML -->
-        <title>TechCareMX :: Detalle del Ticket</title>
+        <title>Detalle del Ticket :: TechCareMX</title>
     </head>
     <body class="with-side-menu">
 

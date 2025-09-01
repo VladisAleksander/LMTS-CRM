@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>TechCareMX :: Reportar Error</title>
+        <title>Reportar Error :: TechCareMX</title>
     </head>
     <body class="with-side-menu">
 

@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>TechCareMX :: Base de Conocimientos</title>
+        <title>Base de Conocimientos :: TechCareMX</title>
     </head>
     <body class="with-side-menu">
 

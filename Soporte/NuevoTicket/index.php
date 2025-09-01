@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>TechCareMX :: Nuevo Ticket</title>
+        <title>Nuevo Ticket :: TechCareMX</title>
     </head>
     <body class="with-side-menu">
 
