@@ -54,18 +54,18 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><a href="/Soporte/Feedback"><img src="/public/img/faq-3.png" alt=""></a></div>
+                                    <div class="faq-page-cat-icon"><a href="https://forms.gle/kfQJSH3uMrYDQyNK7" target="_blank"><img src="/public/img/faq-3.png" alt=""></a></div>
                                     <div class="faq-page-cat-title">
-                                        <a href="/Soporte/Feedback">Sugerencias y Comentarios</a>
+                                        <a href="https://forms.gle/kfQJSH3uMrYDQyNK7" target="_blank">Sugerencias y Comentarios</a>
                                     </div>
                                     <div class="faq-page-cat-txt">¿Tienes algo que te gustaría contarnos? <br> ¡Permitenos conocer tus sugerencias y comentarios!</div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="faq-page-cat">
-                                    <div class="faq-page-cat-icon"><a href="/Soporte/BugReport"><img src="/public/img/bug-2.png" alt=""></a></div>
+                                    <div class="faq-page-cat-icon"><a href="https://forms.gle/aq49s2yR8s6L9pHc6" target="_blank"><img src="/public/img/bug-2.png" alt=""></a></div>
                                     <div class="faq-page-cat-title">
-                                        <a href="/Soporte/BugReport">Reporta Errores</a>
+                                        <a href="https://forms.gle/aq49s2yR8s6L9pHc6" target="_blank">Reporta Errores</a>
                                     </div>
                                     <div class="faq-page-cat-txt">¿Encontraste un error en el sistema? <br> Ayudanos a mejorar reportando cualquier error encontrado</div>
                                 </div>
