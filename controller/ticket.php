@@ -11,7 +11,7 @@
             return false; // Ticket no existe
         }
         $ticket = $ticket_data[0];
-        if ($user_area_id == 12 || $user_area_id == 14) {
+        if ($user_area_id == 11 || $user_area_id == 12 || $user_area_id == 14) {
             return true; // Soporte/Desarrollador: Acceso total
         }
         return ($ticket['emp_id'] == $user_id); // Solo el creador del ticket

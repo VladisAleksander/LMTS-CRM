@@ -7,7 +7,7 @@
         if (is_array($ticket_data) && count($ticket_data) > 0) { // Verifica si se encontraron datos
             $ticket = $ticket_data[0]; // Asigna el primer elemento del array a la variable $ticket
             // Verificación de acceso al ticket
-            if ($_SESSION['area_id'] != 12 && $_SESSION['area_id'] != 14) { // No es Soporte ni Desarrollador
+            if ($_SESSION['area_id'] != 11 && $_SESSION['area_id'] != 12 && $_SESSION['area_id'] != 14) { // No es Sistemas, Soporte, ni Desarrollador
                 if ($ticket['emp_id'] != $_SESSION['e_id']) { // No es el creador del ticket
                     // Redirigir a página de tickets o mostrar error
                     header('Location: ../ConsultarTicket?error=ACCESO_DENEGADO');
@@ -60,12 +60,12 @@
                 </header>
                 
                 <?php
-                    if ($_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) {
+                    if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { // Si el usuario pertenece a Sistemas, Soporte o Desarrollador, muestra el formulario editable del ticket
                         ?>
                             <section class="" id="lblticket"> <!-- Muestra los detalles de creación del ticket -->
                                 <div class="box-typical box-typical-padding">
                                     <form id="form_ticket">
-                                        <input type="hidden" id="is_editable" value="<?php echo ($_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) ? 'true' : 'false'; ?>">
+                                        <input type="hidden" id="is_editable" value="<?php echo ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) ? 'true' : 'false'; ?>">
                                         <input type="hidden" id="e_idx" value="<?php echo $_SESSION['e_id']; ?>">
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -152,7 +152,7 @@
                                 </div>
                             </section><!-- Ticket form -->
                         <?php
-                    } else {
+                    } else { // Si el usuario no pertenece a esas áreas, muestra el formulario no editable del ticket
                         ?>
                             <section class="" id="lblticket"> <!-- Muestra los detalles de creación del ticket -->
                                 <div class="box-typical box-typical-padding">
