@@ -14,3 +14,8 @@
 <script src="/public/js/lib/salvattore/salvattore.min.js"></script>
 <script src="/public/js/lib/ion-range-slider/ion.rangeSlider.js"></script>
 <script src="/public/js/lib/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="/public/js/lib/match-height/jquery.matchHeight.min.js"></script>
+<script type="text/javascript" src="/public/js/lib/moment/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="/public/js/lib/eonasdan-bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/public/js/lib/fullcalendar/fullcalendar.min.js"></script>
+<script src="/public/js/lib/fullcalendar/fullcalendar-init.js"></script>

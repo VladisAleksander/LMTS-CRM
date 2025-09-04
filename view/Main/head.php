@@ -29,3 +29,6 @@
         <link rel="stylesheet" href="/public/css/separate/elements/player.min.css">
         <link rel="stylesheet" href="/public/css/separate/vendor/fancybox.min.css">
         <link rel="stylesheet" href="/public/css/separate/pages/profile-2.min.css">
+        <link rel="stylesheet" href="/public/css/separate/vendor/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="/public/css/lib/fullcalendar/fullcalendar.min.css">
+        <link rel="stylesheet" href="/public/css/separate/pages/calendar.min.css">

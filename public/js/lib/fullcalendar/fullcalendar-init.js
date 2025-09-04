@@ -16,76 +16,76 @@ $(document).ready(function(){
             prevYear: 'font-icon font-icon-arrow-left',
             nextYear: 'font-icon font-icon-arrow-right'
         },
-        defaultDate: '2016-01-12',
+        defaultDate: '2025-09-12',
         editable: true,
         selectable: true,
         eventLimit: true, // allow "more" link when too many events
         events: [
             {
                 title: 'All Day Event',
-                start: '2016-01-01'
+                start: '2025-09-01'
             },
             {
                 title: 'Long Event',
-                start: '2016-01-07',
-                end: '2016-01-10',
+                start: '2025-09-07',
+                end: '2025-09-10',
                 className: 'event-green'
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: '2016-01-09T16:00:00',
+                start: '2025-09-09T16:00:00',
                 className: 'event-red'
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: '2016-01-16T16:00:00',
+                start: '2025-09-16T16:00:00',
                 className: 'event-orange'
             },
             {
                 title: 'Conference',
-                start: '2016-01-11',
-                end: '2016-01-13',
+                start: '2025-09-11',
+                end: '2025-09-13',
                 className: 'event-coral'
             },
             {
                 title: 'Meeting',
-                start: '2016-01-12T10:30:00',
-                end: '2016-01-12T12:30:00',
+                start: '2025-09-12T10:30:00',
+                end: '2025-09-12T12:30:00',
                 className: 'event-green'
             },
             {
                 title: 'Lunch',
-                start: '2016-01-12T12:00:00'
+                start: '2025-09-12T12:00:00'
             },
             {
                 title: 'Meeting',
-                start: '2016-01-12T14:30:00',
+                start: '2025-09-12T14:30:00',
                 className: 'event-red'
             },
             {
                 title: 'Happy Hour',
-                start: '2016-01-12T17:30:00'
+                start: '2025-09-12T17:30:00'
             },
             {
                 title: 'Dinner',
-                start: '2016-01-12T20:00:00',
+                start: '2025-09-12T20:00:00',
                 className: 'event-orange'
             },
             {
                 title: 'Birthday Party',
-                start: '2016-01-13T07:00:00'
+                start: '2025-09-13T07:00:00'
             },
             {
                 title: 'Click for Google',
                 url: 'http://google.com/',
-                start: '2016-01-28',
+                start: '2025-09-28',
                 className: 'event-coral'
             }
         ],
         viewRender: function(view, element) {
-            // При переключении вида инициализируем нестандартный скролл
+            // Al cambiar de vista, inicializamos un desplazamiento no estándar
             if (!("ontouchstart" in document.documentElement)) {
                 $('.fc-scroller').jScrollPane({
                     autoReinitialise: true,

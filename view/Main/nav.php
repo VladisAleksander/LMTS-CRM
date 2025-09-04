@@ -33,7 +33,7 @@
             }
         ?>
 
-        <!-- Menu de Correo -->
+        <!-- Correo -->
         <?php
             if ($_SESSION["area_id"] == 14) {
                 ?>
@@ -88,7 +88,7 @@
 
         <!-- Menu de Soporte -->
         <?php
-            if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { /* Menu Soporte solo5 IT */
+            if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { /* Menu Soporte solo IT */
                 ?>
                     <li class="orange-red with-sub">
                         <span>
@@ -183,6 +183,14 @@
                 <i class="font-icon font-icon-contacts"></i>
                 <span class="lbl">Contactos</span>
                 <span class="label label-custom label-pill label-danger">8</span>
+            </a>
+        </li>
+
+        <!-- Calendario -->
+        <li class="magenta">
+            <a href="/Calendario">
+                <i class="font-icon font-icon-calend"></i>
+                <span class="lbl">Calendario</span>
             </a>
         </li>
     </ul>
