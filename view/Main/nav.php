@@ -88,7 +88,7 @@
 
         <!-- Menu de Soporte -->
         <?php
-            if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { /* Menu Soporte solo IT */
+            if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { // Menu Soporte solo IT
                 ?>
                     <li class="orange-red with-sub">
                         <span>
@@ -159,7 +159,7 @@
                         </ul>
                     </li>
                 <?php
-            } else { /* Menu Soporte para Clientes */
+            } else { // Menu Soporte para Usuarios
                 ?>
                    <li class="orange-red with-sub">
                         <span>
@@ -175,7 +175,19 @@
                 <?php
             }
         ?>
-        
+
+        <!-- Suministros -->
+        <li class="blue with-sub">
+            <span>
+                <i class="font-icon glyphicon glyphicon-paperclip"></i>
+                <span class="lbl">Suministros</span>
+            </span>
+            <ul>
+                <li><a href="/Suministros/SolicitarSuministros"><span class="lbl">Solicitar Suministros</span></a></li>
+                <li><a href="/Suministros/ConsultarSuministros"><span class="lbl">Consultar Solicitudes</span></a></li>
+                <li><a href="/Suministros/GestionarSuministros"><span class="lbl">Gestionar Suministros</span></a></li>
+            </ul>
+        </li>
 
         <!-- Contactos -->
         <li class="red">
