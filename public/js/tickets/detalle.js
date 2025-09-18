@@ -9,12 +9,12 @@ $(document).ready(function(){
     listar_detalle (tick_id);
 
     $('#td_det').summernote({
-        height: 300, // Establece el tamaño del editor
+        height: 200, // Establece el tamaño del editor
         lang: 'es-ES' // Establece el idioma del editor
     });
 
-    $('#td_det2').summernote({
-        height: 200, // Establece el tamaño del editor
+    $('#td_message').summernote({
+        height: 100, // Establece el tamaño del editor
         lang: 'es-ES', // Establece el idioma del editor
         callbacks: {
             onImageUpload: function(files) {
@@ -36,7 +36,18 @@ $(document).ready(function(){
             }
         }
     });
-    $('#td_det2').summernote('code', ''); // Limpia el contenido del editor
+    $('#td_message').summernote('code', ''); // Limpia el contenido del editor
+
+    $('#td_res_notes').summernote({
+        height: 100, // Establece el tamaño del editor
+        lang: 'es-ES' // Establece el idioma del editor
+    });
+
+    $('#td_notes').summernote({
+        height: 100, // Establece el tamaño del editor
+        lang: 'es-ES' // Establece el idioma del editor
+    });
+    $('#td_notes').summernote('code', ''); // Limpia el contenido del editor
 
     // Cargar combos y esperar a que terminen antes de cargar datos del ticket
     var comboArea = $.post('../../controller/area.php?op=combo', function(data, status) {
@@ -153,9 +164,9 @@ var getUrlParameter = function getUrlParameter(sParam) {
 $(document).on('click', '#btnEnviar', function() {
     var tick_id = getUrlParameter('id');
     var emp_id = $('#e_idx').val();
-    var td_desc = $('#td_det2').val();
+    var td_desc = $('#td_message').val();
 
-    if ($('#td_det2').summernote('isEmpty')) {
+    if ($('#td_message').summernote('isEmpty')) {
         // Mensaje de error
         swal({
             title: "¡Advertencia!",
@@ -167,7 +178,7 @@ $(document).on('click', '#btnEnviar', function() {
     }else{
         $.post('../../controller/ticket.php?op=insertar_detalle', {tick_id : tick_id, emp_id : emp_id, td_desc : td_desc}, function(data) {
             listar_detalle (tick_id);
-            $('#td_det2').summernote('reset'); // Limpia el contenido del editor
+            $('#td_message').summernote('reset'); // Limpia el contenido del editor
             // Mensaje de éxito
             swal({
                 title: "Mensaje Enviado",

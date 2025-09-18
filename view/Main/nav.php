@@ -86,9 +86,39 @@
             }
         ?>
 
+        <!-- Suministros -->
+        <li class="blue with-sub">
+            <span>
+                <i class="font-icon glyphicon glyphicon-paperclip"></i>
+                <span class="lbl">Suministros</span>
+            </span>
+            <ul>
+                <li><a href="/Suministros/SolicitarSuministros"><span class="lbl">Solicitar Suministros</span></a></li>
+                <li><a href="/Suministros/ConsultarSuministros"><span class="lbl">Consultar Solicitudes</span></a></li>
+                <li><a href="/Suministros/GestionarSuministros"><span class="lbl">Gestionar Suministros</span></a></li>
+            </ul>
+        </li>
+
+        <!-- Contactos -->
+        <li class="red">
+            <a href="/Contactos" class="label-right">
+                <i class="font-icon font-icon-contacts"></i>
+                <span class="lbl">Contactos</span>
+                <span class="label label-custom label-pill label-danger">8</span>
+            </a>
+        </li>
+
+        <!-- Calendario -->
+        <li class="magenta">
+            <a href="/Calendario">
+                <i class="font-icon font-icon-calend"></i>
+                <span class="lbl">Calendario</span>
+            </a>
+        </li>
+
         <!-- Menu de Soporte -->
         <?php
-            if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { // Menu Soporte solo IT
+            if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { // Menu Soporte solo Sistemas, Soporte y Desarrolladores
                 ?>
                     <li class="orange-red with-sub">
                         <span>
@@ -125,12 +155,12 @@
                             <li class="with-sub"> <!-- Sección Gestión de Tickets -->
                                 <span><span class="lbl">Gestión de Tickets</span></span>
                                 <ul>
-                                    <li><a href="/Soporte/NuevoTicket"><span class="lbl">Crear Nuevo Ticket</span></a></li>
+                                    <li><a href="/Soporte/NuevoTicket"><span class="lbl">Nuevo Ticket</span></a></li>
                                     <li><a href="/Soporte/ConsultarTicket"><span class="lbl">Consultar Tickets</span></a></li>
                                 </ul>
                             </li>
 
-                            <li><a href="/Soporte/Documentacion"><span class="lbl">Documentación</span></a></li> <!-- Sección Documentación -->
+                            <li><a href="/Soporte/Documentacion" target="_blank"><span class="lbl">Documentación</span></a></li> <!-- Sección Documentación -->
 
                             <li class="with-sub"> <!-- Sección Base de Conocimientos -->
                                 <span><span class="lbl">Base de Conocimientos</span></span>
@@ -168,42 +198,12 @@
                         </span>
                         <ul>
                             <li><a href="/Soporte"><span class="lbl">FAQ</span></a></li>
-                            <li><a href="/Soporte/NuevoTicket"><span class="lbl">Crear Nuevo Ticket</span></a></li>
+                            <li><a href="/Soporte/NuevoTicket"><span class="lbl">Nuevo Ticket</span></a></li>
                             <li><a href="/Soporte/ConsultarTicket"><span class="lbl">Consultar Tickets</span></a></li>
                         </ul>
                     </li>
                 <?php
             }
         ?>
-
-        <!-- Suministros -->
-        <li class="blue with-sub">
-            <span>
-                <i class="font-icon glyphicon glyphicon-paperclip"></i>
-                <span class="lbl">Suministros</span>
-            </span>
-            <ul>
-                <li><a href="/Suministros/SolicitarSuministros"><span class="lbl">Solicitar Suministros</span></a></li>
-                <li><a href="/Suministros/ConsultarSuministros"><span class="lbl">Consultar Solicitudes</span></a></li>
-                <li><a href="/Suministros/GestionarSuministros"><span class="lbl">Gestionar Suministros</span></a></li>
-            </ul>
-        </li>
-
-        <!-- Contactos -->
-        <li class="red">
-            <a href="/Contactos" class="label-right">
-                <i class="font-icon font-icon-contacts"></i>
-                <span class="lbl">Contactos</span>
-                <span class="label label-custom label-pill label-danger">8</span>
-            </a>
-        </li>
-
-        <!-- Calendario -->
-        <li class="magenta">
-            <a href="/Calendario">
-                <i class="font-icon font-icon-calend"></i>
-                <span class="lbl">Calendario</span>
-            </a>
-        </li>
     </ul>
 </nav><!--.side-menu-->

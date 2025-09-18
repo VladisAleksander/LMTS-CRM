@@ -93,60 +93,6 @@
                                                     </select>
                                                 </fieldset>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="cat_id">Categoría</label>
-                                                    <select id="cat_id" name="cat_id" class="form-control" required>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="scat_id">Subcategoría</label>
-                                                    <select id="scat_id" name="scat_id" class="form-control" required>
-                                                        <option value="" disabled selected>- Seleccione una subcategoría -</option>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="st_id">Estatus</label>
-                                                    <select id="st_id" name="st_id" class="form-control" required>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="se_id">Subestatus</label>
-                                                    <select id="se_id" name="se_id" class="form-control" required>
-                                                        <option value="" disabled selected>- Seleccione un subestatus -</option>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="n_id">Prioridad</label>
-                                                    <select id="n_id" name="n_id" class="form-control" required>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="t_tit">Título</label>
-                                                    <input type="text" class="form-control" id="t_tit" name="t_tit">
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label semibold" for="td_det">Descripción detallada</label>
-                                                    <div class="summernote-theme-1">
-                                                        <textarea id="td_det" class="summernote" name="td_det" <?php if ($ticket["est_id"] == 6) echo 'disabled'; ?>></textarea>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <button type="button" id="btnGuardar" name="action" value="update" class="btn btn-rounded btn-inline btn-primary">Guardar</button>
-                                            </div>
                                         </div><!--.row-->
                                     </form>
                                 </div>
@@ -176,27 +122,245 @@
                     }
                 ?>
 
-                <section class="activity-line" id="lbldetalle"> <!-- Muestra la actividad del ticket, incluyendo comentarios -->
+                <?php
+                    if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { // Si el usuario pertenece a Sistemas, Soporte o Desarrollador, muestra las pestañas con información adicional del ticket
+                        ?>
+                            <section class="tabs-section">
+                                <div class="tabs-section-nav tabs-section-nav-left"> <!-- Navegación de pestañas -->
+                                    <ul class="nav" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#tabs-2-tab-1" role="tab" data-toggle="tab">
+                                                <span class="nav-link-in">Detalles</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#tabs-2-tab-2" role="tab" data-toggle="tab">
+                                                <span class="nav-link-in">Resolución</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#tabs-2-tab-3" role="tab" data-toggle="tab">
+                                                <span class="nav-link-in">Notas</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#tabs-2-tab-4" role="tab" data-toggle="tab">
+                                                <span class="nav-link-in">Mensajes</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#tabs-2-tab-5" role="tab" data-toggle="tab">
+                                                <span class="nav-link-in">Partes</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#tabs-2-tab-6" role="tab" data-toggle="tab">
+                                                <span class="nav-link-in">Equipo</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#tabs-2-tab-7" role="tab" data-toggle="tab">
+                                                <span class="nav-link-in">Historial</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div><!--.tabs-section-nav-->
 
-                </section><!--.activity-line-->
+                                <div class="tab-content no-styled profile-tabs"> <!-- Contenido de las pestañas -->
+                                    <div role="tabpanel" class="tab-pane active" id="tabs-2-tab-1"> <!-- Contenido de la pestaña Detalles -->
+                                        <section class="" id="lblticket"> <!-- Muestra los detalles de creación del ticket -->
+                                            <div class="box-typical box-typical-padding">
+                                                <form id="form_ticket">
+                                                    <input type="hidden" id="is_editable" value="<?php echo ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) ? 'true' : 'false'; ?>">
+                                                    <input type="hidden" id="e_idx" value="<?php echo $_SESSION['e_id']; ?>">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="t_tit">Título</label>
+                                                                <input type="text" class="form-control" id="t_tit" name="t_tit">
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="td_det">Descripción detallada</label>
+                                                                <div class="summernote-theme-1">
+                                                                    <textarea id="td_det" class="summernote" name="td_det" <?php if ($ticket["est_id"] == 6) echo 'disabled'; ?>></textarea>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="cat_id">Categoría</label>
+                                                                <select id="cat_id" name="cat_id" class="form-control" required>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="scat_id">Subcategoría</label>
+                                                                <select id="scat_id" name="scat_id" class="form-control" required>
+                                                                    <option value="" disabled selected>- Seleccione una subcategoría -</option>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="st_id">Estatus</label>
+                                                                <select id="st_id" name="st_id" class="form-control" required>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="se_id">Subestatus</label>
+                                                                <select id="se_id" name="se_id" class="form-control" required>
+                                                                    <option value="" disabled selected>- Seleccione un subestatus -</option>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="n_id">Prioridad</label>
+                                                                <select id="n_id" name="n_id" class="form-control" required>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <button type="button" id="btnGuardar" name="action" value="update" class="btn btn-rounded btn-inline btn-primary">Guardar</button>
+                                                        </div>
+                                                    </div><!--.row-->
+                                                </form>
+                                            </div>
+                                        </section><!-- Ticket form -->
+                                    </div><!--.tab-pane-->
 
-                <?php if ($ticket["est_id"] != 6) { ?> <!-- Si el estado del ticket no es 6 (Cerrado), muestra la sección para agregar notas adicionales -->
-                    <div id="notes_section" class="box-typical box-typical-padding"> <!-- Sección para agregar notas adicionales al ticket -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <fieldset class="form-group">
-                                    <label class="form-label semibold" for="td_det2">Notas adicionales</label>
-                                    <div class="summernote-theme-1">
-                                        <textarea id="td_det2" class="summernote" name="td_det2"></textarea>
-                                    </div>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-12">
-                                <button type="button" id="btnEnviar" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
-                            </div>
-                        </div><!--.row-->
-                    </div><!-- Notas adicionales -->
-                <?php } ?>
+                                    <div role="tabpanel" class="tab-pane" id="tabs-2-tab-2"> <!-- Contenido de la pestaña Resolución -->
+                                        <section class="" id="lblticket"> <!-- Muestra los detalles de creación del ticket -->
+                                            <div class="box-typical box-typical-padding">
+                                                <form id="form_ticket">
+                                                    <input type="hidden" id="is_editable" value="<?php echo ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) ? 'true' : 'false'; ?>">
+                                                    <input type="hidden" id="e_idx" value="<?php echo $_SESSION['e_id']; ?>">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="date">Fecha de cierre</label>
+                                                                <input type="date" disabled class="form-control" id="t_close"><!-- Muestra la fecha en que se cerró el ticket -->
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="text">Cerrado por</label>
+                                                                <input type="text" disabled class="form-control" id="t_close_user"><!-- Muestra el nombre compledo del empleado que cerró el ticket -->
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="td_res_notes">Descripción detallada</label>
+                                                                <div class="summernote-theme-1">
+                                                                    <textarea id="td_res_notes" class="summernote" name="td_res_notes" <?php if ($ticket["est_id"] == 6) echo 'disabled'; ?>></textarea>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div><!--.row-->
+                                                </form>
+                                            </div>
+                                        </section><!-- Ticket form -->
+                                    </div><!--.tab-pane-->
+
+                                    <div role="tabpanel" class="tab-pane" id="tabs-2-tab-3"> <!-- Contenido de la pestaña Notas -->
+                                        <?php if ($ticket["est_id"] != 6) { ?> <!-- Si el estado del ticket no es 6 (Cerrado), muestra la sección para agregar notas adicionales -->
+                                            <div id="notes_section" class="box-typical box-typical-padding"> <!-- Sección para agregar notas adicionales al ticket -->
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <fieldset class="form-group">
+                                                            <label class="form-label semibold" for="td_notes">Notas adicionales</label>
+                                                            <div class="summernote-theme-1">
+                                                                <textarea id="td_notes" class="summernote" name="td_notes"></textarea>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <button type="button" id="btnSaveNotes" class="btn btn-rounded btn-inline btn-primary">Guardar</button>
+                                                    </div>
+                                                </div><!--.row-->
+                                            </div><!-- Notas adicionales -->
+                                        <?php } ?>
+
+                                        <section class="box-typical-padding activity-line" id="support_notes">
+                                            <!-- Contenido dinámico cargado por JavaScript -->
+                                        </section>
+                                    </div><!--.tab-pane-->
+
+                                    <div role="tabpanel" class="tab-pane" id="tabs-2-tab-4"> <!-- Contenido de la pestaña Mensajes -->
+                                        <?php if ($ticket["est_id"] != 6) { ?> <!-- Si el estado del ticket no es 6 (Cerrado), muestra la sección para agregar notas adicionales -->
+                                            <div id="notes_section" class="box-typical box-typical-padding"> <!-- Sección para agregar notas adicionales al ticket -->
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <fieldset class="form-group">
+                                                            <label class="form-label semibold" for="td_message">Notas y mensajes para el usuario</label>
+                                                            <div class="summernote-theme-1">
+                                                                <textarea id="td_message" class="summernote" name="td_message"></textarea>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <button type="button" id="btnEnviar" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
+                                                    </div>
+                                                </div><!--.row-->
+                                            </div><!-- Notas adicionales -->
+                                        <?php } ?>
+
+                                        <section class="box-typical-padding activity-line" id="lbldetalle">
+                                            <!-- Contenido dinámico cargado por JavaScript -->
+                                        </section>
+                                    </div><!--.tab-pane-->
+
+                                    <div role="tabpanel" class="tab-pane" id="tabs-2-tab-5"> <!-- Contenido de la pestaña Partes -->
+                                        <section class="box-typical box-typical-padding">
+                                            Partes requeridas para la resolución del ticket
+                                        </section>
+                                    </div><!--.tab-pane-->
+
+                                    <div role="tabpanel" class="tab-pane" id="tabs-2-tab-6"> <!-- Contenido de la pestaña Equipo -->
+                                        <section class="box-typical box-typical-padding">
+                                            Detalles del equipo asociado al ticket
+                                        </section>
+                                    </div><!--.tab-pane-->
+
+                                    <div role="tabpanel" class="tab-pane" id="tabs-2-tab-7"> <!-- Contenido de la pestaña Historial -->
+                                        <section class="box-typical box-typical-padding">
+                                            Historial de cambios del ticket
+                                        </section>
+                                    </div><!--.tab-pane-->
+                                </div><!--.tab-content-->
+                            </section><!--.tabs-section-->
+                        <?php
+                    } else { // Si el usuario no pertenece a esas áreas, muestra solamente los mensajes de actividad del ticket
+                        ?>
+                            <?php if ($ticket["est_id"] != 6) { ?> <!-- Si el estado del ticket no es 6 (Cerrado), muestra la sección para agregar notas adicionales -->
+                                <div id="notes_section" class="box-typical box-typical-padding"> <!-- Sección para agregar notas adicionales al ticket -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <fieldset class="form-group">
+                                                <label class="form-label semibold" for="td_det2">Mensajes adicionales</label>
+                                                <div class="summernote-theme-1">
+                                                    <textarea id="td_det2" class="summernote" name="td_det2"></textarea>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button type="button" id="btnEnviar" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
+                                        </div>
+                                    </div><!--.row-->
+                                </div><!-- Notas adicionales -->
+                            <?php } ?>
+
+                            <section class="box-typical-padding activity-line" id="lbldetalle">
+                                <!-- Contenido dinámico cargado por JavaScript -->
+                            </section>
+                        <?php
+                    }
+                ?>
 
             </div><!--.container-fluid-->
         </div><!--Contenido de la página-->

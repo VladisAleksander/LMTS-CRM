@@ -225,7 +225,8 @@
                 INNER JOIN empleados ON ticket_detalles.emp_id  = empleados.e_id
                 INNER JOIN areas ON empleados.area_id = areas.a_id
                 INNER JOIN puestos ON empleados.pue_id = puestos.p_id
-                WHERE tick_id = ?";
+                WHERE tick_id = ?
+                ORDER BY ticket_detalles.td_crea DESC";
             
             $sql = $conectar->prepare($sql);
             $sql -> bindValue(1, $tick_id);
