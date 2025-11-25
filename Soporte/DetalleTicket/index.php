@@ -41,7 +41,7 @@
         <!-- Contenido de la página -->
         <div class="page-content">
             <div class="container-fluid">
-                <header class="section-header"> <!-- Encabezado de la sección con la información más relevante del ticket -->
+                <header class="section-header"><!-- Encabezado de la sección con la información más relevante del ticket -->
                     <div class="tbl">
                         <div class="tbl-row">
                             <div class="tbl-cell">

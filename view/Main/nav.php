@@ -1,16 +1,14 @@
 <nav class="side-menu">
     <ul class="side-menu-list">
 
-        <!-- Principal -->
-        <li class="grey with-sub">
+        <li class="grey with-sub"> <!-- Principal -->
             <a href="/Home">
                 <i class="font-icon glyphicon glyphicon-send"></i>
                 <span class="lbl">Inicio</span>
             </a>
         </li>
         
-        <!-- Menu de Mensajes -->
-        <?php
+        <?php // Menu de Mensajes
             if ($_SESSION["area_id"] == 14) {
                 ?>
                     <li class="purple with-sub">
@@ -33,8 +31,7 @@
             }
         ?>
 
-        <!-- Correo -->
-        <?php
+        <?php // Menu de Correo
             if ($_SESSION["area_id"] == 14) {
                 ?>
                     <li class="red">
@@ -51,8 +48,7 @@
             }
         ?>
 
-        <!-- Menu de Empleados -->
-        <?php
+        <?php // Menu de Empleados
             if ($_SESSION["area_id"] == 10 || $_SESSION["area_id"] == 14) {
                 ?>
                     <li class="blue with-sub">
@@ -86,8 +82,7 @@
             }
         ?>
 
-        <!-- Recursos Financieros -->
-        <?php
+        <?php  // Menu de Recursos Financieros
             if ($_SESSION["area_id"] == 4 || $_SESSION["area_id"] == 14) {
                 ?>
                     <li class="green with-sub">
@@ -111,8 +106,7 @@
             }
         ?>
 
-        <!-- Suministros -->
-        <li class="blue with-sub">
+        <li class="blue with-sub"> <!-- Suministros -->
             <span>
                 <i class="font-icon glyphicon glyphicon-paperclip"></i>
                 <span class="lbl">Suministros</span>
@@ -127,8 +121,7 @@
             </ul>
         </li>
 
-        <!-- Inventario -->
-        <?php
+        <?php // Menu de Inventario
             if ($_SESSION["area_id"] == 14) {
                 ?>
                     <li class="gold">
@@ -145,8 +138,7 @@
             }
         ?>
 
-        <!-- Contactos -->
-        <li class="red">
+        <li class="red"> <!-- Contactos -->
             <a href="/Contactos" class="label-right">
                 <i class="font-icon font-icon-contacts"></i>
                 <span class="lbl">Contactos</span>
@@ -154,16 +146,14 @@
             </a>
         </li>
 
-        <!-- Calendario -->
-        <li class="magenta">
+        <li class="magenta"> <!-- Calendario -->
             <a href="/Calendario">
                 <i class="font-icon font-icon-calend"></i>
                 <span class="lbl">Calendario</span>
             </a>
         </li>
 
-        <!-- Menu de Soporte -->
-        <?php
+        <?php // Menu Soporte
             if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { // Menu Soporte solo Sistemas, Soporte y Desarrolladores
                 ?>
                     <li class="orange-red with-sub">
@@ -252,4 +242,4 @@
             }
         ?>
     </ul>
-</nav><!--.side-menu-->
+</nav>

@@ -17,8 +17,7 @@
             <div class="site-header-content-in">
                 <div class="site-header-shown">
 
-                    <!-- User menu -->
-                    <div class="dropdown user-menu">
+                    <div class="dropdown user-menu"> <!-- User menu -->
                         <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="/public/img/avatar-2-64.png" alt="">
                         </button>
@@ -171,6 +170,6 @@
                 </div><!--.site-header-collapsed-->
             </div><!--site-header-content-in-->
         </div><!--.site-header-content-->
-    </div><!--.container-fluid-->
-</header><!--.site-header-->
+    </div>
+</header>
 

@@ -15,8 +15,7 @@
         
         <?php   require_once '../../view/Main/nav.php'; ?>
 
-        <!-- Contenido de la página -->
-        <div class="page-content">
+        <div class="page-content"> <!-- Contenido de la página -->
             <div class="container-fluid">
                 <header class="section-header">
                     <div class="tbl">
