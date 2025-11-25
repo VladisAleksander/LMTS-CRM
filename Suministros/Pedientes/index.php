@@ -4,7 +4,7 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>Consultar Solicitud :: TechCareMX</title>
+        <title>Pendientes por aprobar :: TechCareMX</title>
     </head>
     <body class="with-side-menu">
 
@@ -21,11 +21,11 @@
                     <div class="tbl">
                         <div class="tbl-row">
                             <div class="tbl-cell">
-                                <h3>Consultar Solicitud</h3>
+                                <h3>Pendientes por aprobar</h3>
                                 <ol class="breadcrumb breadcrumb-simple">
                                     <li><a href="../Home">Inicio</a></li>
                                     <li><a href="/Suministros">Suministros</a></li>
-                                    <li class="active">Consultar Solicitud</li>
+                                    <li class="active">Pendientes por aprobar</li>
                                 </ol>
                             </div>
                         </div>

@@ -36,7 +36,7 @@
                 <div class="box-typical box-typical-padding">
                     <table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <?php
-                        if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) {
+                        if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { //Soporte Técnico, Soporte de Software o Soporte de Redes
                             ?>
                                 <thead>
                                     <tr>
@@ -53,7 +53,7 @@
                                     </tr>
                                 </thead>
                             <?php
-                        } else {
+                        } else { // Resto de áreas
                             ?>
                                 <thead>
                                     <tr>

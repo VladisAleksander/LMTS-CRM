@@ -118,9 +118,12 @@
                 <span class="lbl">Suministros</span>
             </span>
             <ul>
-                <li><a href="/Suministros/SolicitarSuministros"><span class="lbl">Solicitar Suministros</span></a></li>
-                <li><a href="/Suministros/ConsultarSuministros"><span class="lbl">Consultar Solicitudes</span></a></li>
-                <li><a href="/Suministros/GestionarSuministros"><span class="lbl">Gestionar Suministros</span></a></li>
+                <li><a href="/Suministros/Solicitar"><span class="lbl">Solicitar Material</span></a></li>
+                <li><a href="/Suministros/MisSolicitudes"><span class="lbl">Mis Solicitudes</span></a></li>
+                <?php if (in_array($_SESSION["area_id"], [4, 14])): ?>
+                    <li><a href="/Suministros/Pendientes"><span class="lbl">Pendientes por Aprobar</span></a></li>
+                    <li><a href="/Suministros/Ordenes"><span class="lbl">Órdenes de Compra</span></a></li>
+                <?php endif; ?>
             </ul>
         </li>
 
@@ -242,7 +245,7 @@
                         <ul>
                             <li><a href="/Soporte"><span class="lbl">FAQ</span></a></li>
                             <li><a href="/Soporte/NuevoTicket"><span class="lbl">Nuevo Ticket</span></a></li>
-                            <li><a href="/Soporte/ConsultarTicket"><span class="lbl">Consultar Tickets</span></a></li>
+                            <li><a href="/Soporte/ConsultarTicket"><span class="lbl">Mis Tickets</span></a></li>
                         </ul>
                     </li>
                 <?php
