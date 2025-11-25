@@ -232,7 +232,7 @@
                                                 </form>
                                             </div>
                                         </section><!-- Ticket form -->
-                                    </div><!--.tab-pane-->
+                                    </div><!--.tab-panel-->
 
                                     <div role="tabpanel" class="tab-pane" id="tabs-2-tab-2"> <!-- Contenido de la pestaña Resolución -->
                                         <section class="" id="lblticket"> <!-- Muestra los detalles de creación del ticket -->
@@ -243,14 +243,14 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <fieldset class="form-group">
-                                                                <label class="form-label semibold" for="date">Fecha de cierre</label>
-                                                                <input type="date" disabled class="form-control" id="t_close"><!-- Muestra la fecha en que se cerró el ticket -->
+                                                                <label class="form-label semibold" for="t_close">Fecha de cierre</label>
+                                                                <input type="text" disabled class="form-control" name="t_close" id="t_close"><!-- Muestra la fecha en que se cerró el ticket -->
                                                             </fieldset>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <fieldset class="form-group">
                                                                 <label class="form-label semibold" for="text">Cerrado por</label>
-                                                                <input type="text" disabled class="form-control" id="t_close_user"><!-- Muestra el nombre compledo del empleado que cerró el ticket -->
+                                                                <input type="text" disabled class="form-control" name="t_close_user" id="t_close_user"><!-- Muestra el nombre compledo del empleado que cerró el ticket -->
                                                             </fieldset>
                                                         </div>
                                                         <div class="col-lg-12">
@@ -265,7 +265,7 @@
                                                 </form>
                                             </div>
                                         </section><!-- Ticket form -->
-                                    </div><!--.tab-pane-->
+                                    </div><!--.tab-panel-->
 
                                     <div role="tabpanel" class="tab-pane" id="tabs-2-tab-3"> <!-- Contenido de la pestaña Notas -->
                                         <?php if ($ticket["est_id"] != 6) { ?> <!-- Si el estado del ticket no es 6 (Cerrado), muestra la sección para agregar notas adicionales -->
@@ -289,7 +289,7 @@
                                         <section class="box-typical-padding activity-line" id="support_notes">
                                             <!-- Contenido dinámico cargado por JavaScript -->
                                         </section>
-                                    </div><!--.tab-pane-->
+                                    </div><!--.tab-panel-->
 
                                     <div role="tabpanel" class="tab-pane" id="tabs-2-tab-4"> <!-- Contenido de la pestaña Mensajes -->
                                         <?php if ($ticket["est_id"] != 6) { ?> <!-- Si el estado del ticket no es 6 (Cerrado), muestra la sección para agregar notas adicionales -->
@@ -313,25 +313,37 @@
                                         <section class="box-typical-padding activity-line" id="lbldetalle">
                                             <!-- Contenido dinámico cargado por JavaScript -->
                                         </section>
-                                    </div><!--.tab-pane-->
+                                    </div><!--.tab-panel-->
 
                                     <div role="tabpanel" class="tab-pane" id="tabs-2-tab-5"> <!-- Contenido de la pestaña Partes -->
                                         <section class="box-typical box-typical-padding">
                                             Partes requeridas para la resolución del ticket
                                         </section>
-                                    </div><!--.tab-pane-->
+                                    </div><!--.tab-panel-->
 
                                     <div role="tabpanel" class="tab-pane" id="tabs-2-tab-6"> <!-- Contenido de la pestaña Equipo -->
-                                        <section class="box-typical box-typical-padding">
-                                            Detalles del equipo asociado al ticket
+                                        <section class="" id="lblticket"> <!-- Muestra el nombre del equipo afectado -->
+                                            <div class="box-typical box-typical-padding">
+                                                <form id="form_ticket">
+                                                    <input type="hidden" id="is_editable" value="<?php echo ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) ? 'true' : 'false'; ?>">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <fieldset class="form-group">
+                                                                <label class="form-label semibold" for="date">Nombre del Equipo</label>
+                                                                <input type="text" class="form-control" id="t_equip"><!-- Nombre del equipo afectado -->
+                                                            </fieldset>
+                                                        </div>
+                                                    </div><!--.row-->
+                                                </form>
+                                            </div>
                                         </section>
-                                    </div><!--.tab-pane-->
+                                    </div><!--.tab-panel-->
 
                                     <div role="tabpanel" class="tab-pane" id="tabs-2-tab-7"> <!-- Contenido de la pestaña Historial -->
                                         <section class="box-typical box-typical-padding">
                                             Historial de cambios del ticket
                                         </section>
-                                    </div><!--.tab-pane-->
+                                    </div><!--.tab-panel-->
                                 </div><!--.tab-content-->
                             </section><!--.tabs-section-->
                         <?php

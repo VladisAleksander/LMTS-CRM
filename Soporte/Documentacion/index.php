@@ -51,21 +51,21 @@
                     </footer>
 
                     <ol class="breadcrumb breadcrumb-clean">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Creating a new project</a></li>
-                        <li class="active">Getting started with SuperDoc &amp; creating a project</li>
+                        <li><a href="#">Documentacion</a></li>
+                        <li><a href="#">Creando un nuevo proyecto</a></li>
+                        <li class="active">Comenzando a usar SuperDoc &amp; creando un proyecto</li>
                     </ol>
 
                     <header class="documentation-header">
-                        <h2>Getting started with SuperDoc &amp; creating a project</h2>
-                        <p class="lead color-blue-grey">An overview of the editor and it's usage for new users</p>
+                        <h2>Comenzando a usar SuperDoc &amp; creando un proyecto</h2>
+                        <p class="lead color-blue-grey">Un vistazo al editor y su uso por parte de nuevos usuarios</p>
                         <div class="documentation-header-by">
-                            By:
+                            Por:
                             <div class="avatar-preview avatar-preview-24">
-                                <a href="#"><img src="/-Empresa-El-Punto/Soporte/public/img/avatar-1-48.png" alt=""></a>
+                                <a href="#"><img src="../../public/img/avatar-1-48.png" alt=""></a>
                             </div>
                             <a href="#">Kaylee Harper</a>,
-                            published August 20th, at 12:35pm
+                            Publicado el 20 de Agosto, a las 12:35pm
                         </div>
                     </header>
                     <div class="text-block text-block-typical">

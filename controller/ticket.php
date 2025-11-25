@@ -28,6 +28,7 @@
                     $_POST["cat_id"],
                     $_POST["scat_id"],
                     $_POST["t_desc"]);
+                    isset($_POST["t_equip"]) ? $_POST["t_equip"] : null;
             break;
 
             case "update": // Actualizar la información de un ticket
@@ -275,6 +276,9 @@
                         $output ["niv_id"] = $row["niv_id"];
                         $output ["est_id"] = $row["est_id"];
                         $output ["sest_id"] = $row["sest_id"];
+                        $output ["t_close"] = $row["t_close"];
+                        $output ["t_close_user"] = $row["t_close_user"];
+
                     }
                     echo json_encode($output);
                 }

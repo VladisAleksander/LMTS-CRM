@@ -86,6 +86,31 @@
             }
         ?>
 
+        <!-- Recursos Financieros -->
+        <?php
+            if ($_SESSION["area_id"] == 4 || $_SESSION["area_id"] == 14) {
+                ?>
+                    <li class="green with-sub">
+                        <span>
+                            <i class="font-icon glyphicon glyphicon-usd"></i>
+                            <span class="lbl">Recursos Financieros</span>
+                        </span>
+                        <ul>
+                            <li><a href="/RecursosFinancieros/NuevoRecurso"><span class="lbl">Nuevo Recurso</span></a></li>
+                            <li><a href="/RecursosFinancieros/ConsultarRecursos"><span class="lbl">Consultar Recursos</span></a></li>
+                            <li><a href="/RecursosFinancieros/GestionarRecursos"><span class="lbl">Gestionar Recursos</span></a></li>
+                            <li><a href="/RecursosFinancieros/NuevoRecurso"><span class="lbl">Servicios Públicos</span></a></li>
+                            <li><a href="/RecursosFinancieros/NuevoRecurso"><span class="lbl">Presupuestos</span></a></li>
+                        </ul>
+                    </li>
+                <?php
+            } else {
+                ?>
+                   
+                <?php
+            }
+        ?>
+
         <!-- Suministros -->
         <li class="blue with-sub">
             <span>
@@ -98,6 +123,24 @@
                 <li><a href="/Suministros/GestionarSuministros"><span class="lbl">Gestionar Suministros</span></a></li>
             </ul>
         </li>
+
+        <!-- Inventario -->
+        <?php
+            if ($_SESSION["area_id"] == 14) {
+                ?>
+                    <li class="gold">
+                        <a href="#">
+                            <i class="font-icon glyphicon glyphicon-list-alt"></i>
+                            <span class="lbl">Inventario</span>
+                        </a>
+                    </li>
+                <?php
+            } else {
+                ?>
+                   
+                <?php
+            }
+        ?>
 
         <!-- Contactos -->
         <li class="red">

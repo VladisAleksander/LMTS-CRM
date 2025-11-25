@@ -66,7 +66,7 @@ $(document).ready(function(){
         $('#st_id').html(data);
     });
 
-    $.when(comboArea, comboPrioridad, comboCategoria, comboEstatus).done(function() {
+    $.when(comboArea, comboPrioridad, comboCategoria, comboEstatus).done(function() { // Cuando los combos estén cargados activa la carga de datos
         $.post("../../controller/ticket.php?op=mostrar", {tick_id: tick_id}, function(data) {
             try {
                 data = JSON.parse(data);
@@ -79,7 +79,7 @@ $(document).ready(function(){
                     }).then(() => { window.location.href = '../ConsultarTicket'; });
                     return;
                 }
-                // data = JSON.parse(data);
+                //data = JSON.parse(data);
                 $('#lblestado').html(data.st_name);
                 $('#iblfechacrea').html(data.t_crea);
                 $('#lblnumtick').html("Detalle del Ticket - " + data.t_num);
@@ -87,6 +87,8 @@ $(document).ready(function(){
                 $('#lblemail').val(data.e_mail);
                 $('#t_phone').val(data.t_phone);
                 $('#t_tit').val(data.t_tit);
+                $('#t_close').val(data.t_close);
+                $('#t_close_user').val(data.t_close_user);
 
                 $('#area_id').val(data.area_id);
                 $('#n_id').val(data.niv_id);

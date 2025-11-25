@@ -29,14 +29,14 @@
             throw new Exception("No fue posible generar un número de ticket único después de varios intentos.");
         }
 
-        public function insert_ticket($t_tit, $area_id, $emp_id, $t_phone, $cat_id, $scat_id, $t_desc) {
+        public function insert_ticket($t_tit, $area_id, $emp_id, $t_phone, $cat_id, $scat_id, $t_desc, $t_equip = null) {
             $conectar = parent::conexion();
             parent::set_names();
 
             // Obtener número de ticket único
             $t_num = $this -> generarTicketID($conectar);
             
-            $sql = "INSERT INTO tickets (t_num, t_tit, area_id, emp_id, t_phone, cat_id, scat_id, niv_id, est_id, sest_id, t_desc, t_crea, t_upd) VALUES (?, ?, ?, ?, ?, ?, ?, 4, 1, 1, ?, NOW(), NOW());";
+            $sql = "INSERT INTO tickets (t_num, t_tit, area_id, emp_id, t_phone, cat_id, scat_id, niv_id, est_id, sest_id, t_desc, t_equip, t_crea, t_upd) VALUES (?, ?, ?, ?, ?, ?, ?, 4, 1, 1, ?, ?, NOW(), NOW());";
             
             $sql = $conectar->prepare($sql);
             
@@ -48,6 +48,7 @@
             $sql -> bindValue(6, $cat_id);
             $sql -> bindValue(7, $scat_id);
             $sql -> bindValue(8, $t_desc);
+            $sql -> bindValue(9, $t_equip);
             $sql -> execute();
             return $t_num;
         }
@@ -182,6 +183,8 @@
                 tickets.sest_id,
                 tickets.t_desc,
                 tickets.t_crea,
+                tickets.t_close,
+                tickets.t_close_user,
                 empleados.e_name,
                 empleados.e_last1,
                 areas.a_name,
@@ -253,6 +256,8 @@
                 tickets.sest_id,
                 tickets.t_desc,
                 tickets.t_crea,
+                tickets.t_close,
+                tickets.t_close_user,
                 empleados.e_name,
                 empleados.e_last1,
                 empleados.e_last2,

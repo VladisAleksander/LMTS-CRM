@@ -54,6 +54,20 @@ $(document).ready(function() { // Llama a la función cuando el DOM está listo
         });
     });
 
+    // Manejar cambio en categoría para cargar subcategorías y mostrar campo condicional
+    $('#cat_id').change(function() {
+        var cat_id = $(this).val();
+        //loadSubcats(cat_id);
+        // Mostrar u ocultar campo "Nombre del Equipo" si cat_id == 1, 2 o 5
+        if (cat_id === '1' || cat_id === '2' || cat_id === '5') {
+            $('#device_name_container').show();
+            $('#device_name').prop('required', true);
+        } else {
+            $('#device_name_container').hide();
+            $('#device_name').prop('required', false).val('');
+        }
+    });
+
 });
 
 function guardaryeditar(e) {

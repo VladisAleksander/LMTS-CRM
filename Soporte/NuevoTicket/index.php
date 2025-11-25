@@ -83,7 +83,14 @@
                                     </select>
                                 </fieldset>
                             </div>
-                            
+                            <!-- Campo condicional para Nombre del Equipo -->
+                            <div class="col-lg-6" id="device_name_container" style="display: none;">
+                                <fieldset class="form-group">
+                                    <label class="form-label semibold" for="e_name">Nombre del Equipo</label>
+                                    <input type="text" class="form-control" id="device_name" name="device_name" required>
+                                </fieldset>
+                            </div>
+
                             <div class="col-lg-12">
                                 <fieldset class="form-group">
                                     <label class="form-label semibold" for="t_tit">Título</label>
