@@ -181,7 +181,7 @@
                             <div class="tab-content no-styled profile-tabs">
                                 <div role="tabpanel" class="tab-pane active" id="tabs-2-tab-1"> <!-- Contenido de la pestaña Actividad -->
                                     <section class="box-typical box-typical-padding">
-                                        Actividad
+                                        Notificaciones y actividad reciente.
                                     </section>
                                 </div><!--.tab-pane-->
                                 <div role="tabpanel" class="tab-pane" id="tabs-2-tab-2"> <!-- Contenido de la pestaña Ajustes -->
