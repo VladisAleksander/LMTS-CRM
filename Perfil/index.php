@@ -1,6 +1,8 @@
 <?php
     require_once '../config/conexion.php';
+    require_once '../modelos/Empleado.php';
     require_once '../modelos/Area.php';
+    require_once '../modelos/Puesto.php';
     if (isset($_SESSION['e_id'])) {
 ?>
 
@@ -215,7 +217,7 @@
                                                     <label class="form-label">Puesto</label>
                                                 </div>
                                                 <div class="col-xl-8">
-                                                    <input class="form-control" type="text" disabled value="Puesto en la empresa"/>
+                                                    <input class="form-control" type="text" disabled value="Puesto de trabajo"/> <!-- Obtener el puesto desde la sesión o base de datos -->
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -223,12 +225,12 @@
                                                     <label class="form-label">Notas personales</label>
                                                 </div>
                                                 <div class="col-xl-8">
-                                                    <textarea class="form-control">Alguna nota personal o recordatorio.</textarea>
+                                                    <textarea class="form-control">Alguna nota personal o recordatorio.</textarea> <!-- Obtener las notas desde la sesión o base de datos -->
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-xl-2">
-                                                    <label class="form-label">Acerca de</label>
+                                                    <label class="form-label">Acerca de</label> <!-- Obtener el acerca de desde la sesión o base de datos -->
                                                 </div>
                                                 <div class="col-xl-8">
                                                     <textarea rows="2" class="form-control">Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper.</textarea>
