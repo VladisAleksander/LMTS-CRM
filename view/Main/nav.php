@@ -57,14 +57,13 @@
                             <span class="lbl">Recursos Humanos</span>
                         </span>
                         <ul>
-                        <li class="with-sub"> <!-- Sección FAQ -->
+                            <li class="with-sub"> <!-- Sección Gestión de Empleados -->
                                 <span><span class="lbl">Gestión de Empleados</span></span>
                                 <ul>
-                                    <li><a href="/Empleados/NuevoEmpleado"><span class="lbl">Nuevo Empleado</span></a></li>
-                                    <li><a href="/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
+                                    <li><a href="/RH/NuevoEmpleado"><span class="lbl">Nuevo Empleado</span></a></li>
+                                    <li><a href="/RH/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
                                 </ul>
                             </li>
-                            
                         </ul>
                     </li>
                 <?php
@@ -76,7 +75,7 @@
                             <span class="lbl">Empleados</span>
                         </span>
                         <ul>
-                            <li><a href="/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
+                            <li><a href="/RH/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
                         </ul>
                     </li>
                 <?php
