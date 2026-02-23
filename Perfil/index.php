@@ -217,7 +217,7 @@
                                                     <label class="form-label">Puesto</label>
                                                 </div>
                                                 <div class="col-xl-8">
-                                                    <input class="form-control" type="text" disabled value="Puesto de trabajo"/> <!-- Obtener el puesto desde la sesión o base de datos -->
+                                                    <input class="form-control" type="text" disabled value="Puesto"/> <!-- Obtener el puesto desde la sesión o base de datos -->
                                                 </div>
                                             </div>
                                             <div class="form-group row">

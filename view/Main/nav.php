@@ -48,18 +48,23 @@
             }
         ?>
 
-        <?php // Menu de Empleados
+        <?php // Menu de Recursos Humanos
             if ($_SESSION["area_id"] == 10 || $_SESSION["area_id"] == 14) {
                 ?>
                     <li class="blue with-sub">
                         <span>
                             <i class="font-icon font-icon-user"></i>
-                            <span class="lbl">Empleados</span>
+                            <span class="lbl">Recursos Humanos</span>
                         </span>
                         <ul>
-                            <li><a href="/Empleados/NuevoEmpleado"><span class="lbl">Nuevo Empleado</span></a></li>
-                            <li><a href="/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
-                            <li><a href="/Empleados/GestionarEmpleado"><span class="lbl">Gestionar Empleados</span></a></li>
+                        <li class="with-sub"> <!-- Sección FAQ -->
+                                <span><span class="lbl">Gestión de Empleados</span></span>
+                                <ul>
+                                    <li><a href="/Empleados/NuevoEmpleado"><span class="lbl">Nuevo Empleado</span></a></li>
+                                    <li><a href="/Empleados/ConsultarEmpleado"><span class="lbl">Consultar Empleados</span></a></li>
+                                </ul>
+                            </li>
+                            
                         </ul>
                     </li>
                 <?php
