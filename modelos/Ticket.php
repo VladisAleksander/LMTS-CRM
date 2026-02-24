@@ -310,54 +310,54 @@
 
 
     // Funciones para la obtención del número total de tickets creados, nuevos, abiertos y cerrados, contados por usuario. Para el área de Soporte se mostrarán los totales de todos los tickets sin importar el usuario, para el resto de las áreas solo se mostrarán los totales de los tickets creados por el usuario.
-        public function ticketsTotal ($e_id) { // Cantidad total de tickets creados, sin importar el usuario
+        public function ticketsTotal ($t_id) { // Cantidad total de tickets creados, sin importar el usuario
             $conectar = parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT (*) AS TOTAL FROM tickets";
+            $sql="SELECT COUNT(*) AS TOTAL FROM tickets";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $e_id);
+            $sql->bindValue(1, $t_id);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function ticketsNuevos ($e_id) { // Cantidad total de tickets creados que están en estado "Nuevo"
+        public function ticketsNuevos ($t_id) { // Cantidad total de tickets creados que están en estado "Nuevo"
             $conectar = parent::conexion();
             parent::set_names();
             $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id = 1;";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $e_id);
+            $sql->bindValue(1, $t_id);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function ticketsAbiertos ($e_id) { // Cantidad total de tickets creados que están en estado "Nuevo", "En Proceso", "En Espera" o "Escalado" sin importar el usuario
+        public function ticketsAbiertos ($t_id) { // Cantidad total de tickets creados que están en estado "Nuevo", "En Proceso", "En Espera" o "Escalado" sin importar el usuario
             $conectar = parent::conexion();
             parent::set_names();
             $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id NOT IN (5, 6)";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $e_id);
+            $sql->bindValue(1, $t_id);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function ticketsCerrados ($e_id) { // Cantidad total de tickets creados que están en estado "Resuelto" o "Cerrado"
+        public function ticketsCerrados ($t_id) { // Cantidad total de tickets creados que están en estado "Resuelto" o "Cerrado"
             $conectar = parent::conexion();
             parent::set_names();
             $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id IN (5, 6)";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $e_id);
+            $sql->bindValue(1, $t_id);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function ticketsUsuarioTotal ($e_id) { // Cantidad total de tickets creados por el usuario
+        public function ticketsUsuarioTotal ($emp_id) { // Cantidad total de tickets creados por el usuario
             $conectar = parent::conexion();
             parent::set_names();
-            $sql="SELECT COUNT (*) AS TOTAL FROM tickets WHERE emp_id = ?";
+            $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE emp_id = ?";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $e_id);
+            $sql->bindValue(1, $emp_id);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
         public function ticketsUsuarioAbiertos ($e_id) { // Cantidad total de tickets creados que están en estado "Nuevo", "Abierto", "En Proceso" o "En Espera"
@@ -367,7 +367,7 @@
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $e_id);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
     }
 

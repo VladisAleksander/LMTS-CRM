@@ -299,6 +299,21 @@
                     $_POST["emp_id"],
                     $_POST["td_desc"]);
             break;
+
+            case "total_tickets": // Total de tickets creados
+                $datos = $ticket->ticketsTotal($_POST["t_id"]);
+                echo json_encode($datos);
+            break;
+
+            case "total_tickets_usuario": // Total de tickets creados por usuario
+                $datos = $ticket->ticketsUsuarioTotal($_POST["emp_id"]);
+                echo json_encode($datos);
+            break;
+
+            case "total_tickets_abiertos_usuario": // Total de tickets abiertos por usuario
+                $datos = $ticket->ticketsUsuarioAbiertos($_POST["emp_id"]);
+                echo json_encode($datos);
+            break;
         }
     }
 ?>

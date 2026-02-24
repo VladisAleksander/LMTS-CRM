@@ -88,7 +88,7 @@
                                         <div class="col-sm-6"> <!-- Total de tickets -->
                                             <article class="statistic-box purple">
                                                 <div>
-                                                    <div class="number" id="lbltotal">12</div>
+                                                    <div class="number" id="total_tickets_usuario"></div>
                                                     <div class="caption"><div>Tickets Creados</div></div>
                                                 </div>
                                             </article>
@@ -97,7 +97,7 @@
                                         <div class="col-sm-6"> <!-- Total de tickets abiertos -->
                                             <article class="statistic-box yellow">
                                                 <div>
-                                                    <div class="number" id="lbltotalabiertos">9</div>
+                                                    <div class="number" id="total_tickets_abiertos_usuario"></div>
                                                     <div class="caption"><div>Tickets Abiertos</div></div>
                                                 </div>
                                             </article>
