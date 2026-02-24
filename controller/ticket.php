@@ -181,7 +181,7 @@
                 }
 
                 // Si tiene acceso, proceder a listar los detalles
-                $datos = $ticket->listarTicketDetalle($_POST["tick_id"]); // Recibir el ID del ticket por POST
+                $datos = $ticket->listarTicketMensajes($_POST["tick_id"]); // Recibir el ID del ticket por POST
                 ?>
                     <?php
                         foreach($datos as $row){

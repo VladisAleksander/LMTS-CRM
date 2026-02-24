@@ -1,7 +1,7 @@
 <?php
     class Ticket extends Conectar {
         
-        // Función para generar número de ticket único
+    // Función para generar número de ticket único
         private function generarTicketID($conectar) {
             $fecha = date("Ymd");
             $maxIntentos = 10;
@@ -29,6 +29,7 @@
             throw new Exception("No fue posible generar un número de ticket único después de varios intentos.");
         }
 
+    // Función para insertar un nuevo ticket en la base de datos, recibiendo como parámetros el título del ticket, el área a la que pertenece, el empleado que lo creó, el teléfono de contacto, la categoría, subcategoría, descripción y equipo relacionado (si aplica)
         public function insert_ticket($t_tit, $area_id, $emp_id, $t_phone, $cat_id, $scat_id, $t_desc, $t_equip = null) {
             $conectar = parent::conexion();
             parent::set_names();
@@ -53,6 +54,7 @@
             return $t_num;
         }
 
+    // Función para actualizar la información de un ticket
         public function update_ticket($t_id, $t_tit, $area_id, $t_phone, $cat_id, $scat_id, $niv_id, $est_id, $sest_id, $t_desc, $t_close_user = null) {
             $conectar = parent::conexion();
             parent::set_names();
@@ -120,8 +122,9 @@
 
             $sql -> execute();
             return $sql->rowCount(); // Devuelve cuántas filas se actualizaron
-        }        
+        }
 
+    // Función para listar la información completa de todos los tickets creados por el usuario
         public function listarTicketUsuario($emp_id) {
             $conectar = parent::conexion();
             parent::set_names();
@@ -165,6 +168,7 @@
             return $resultado = $sql->fetchAll();
         }
 
+    // Función para listar la información completa de todos los tickets, mostrando el nombre completo del empleado que lo creó, el área, la categoría, subcategoría, estatus, subestatus y prioridad, además de la fecha de creación, fecha de cierre (si está cerrado) y el usuario que lo cerró (si está cerrado)
         public function listarTicket() {
             $conectar = parent::conexion();
             parent::set_names();
@@ -208,7 +212,8 @@
             return $resultado = $sql->fetchAll();
         }
 
-        public function listarTicketDetalle($tick_id) {
+    // Función para listar los mensajes de un ticket específico, mostrando el nombre completo del empleado que hizo cada detalle, el área y el puesto al que pertenece, ordenados por fecha de creación de detalle de forma descendente
+        public function listarTicketMensajes($tick_id) {
             $conectar = parent::conexion();
             parent::set_names();
             
@@ -238,6 +243,7 @@
             return $resultado = $sql->fetchAll();
         }
 
+    // Función para listar la información completa de un ticket específico, mostrando el nombre completo del empleado que lo creó, el área, la categoría, subcategoría, estatus, subestatus y prioridad, además de la fecha de creación, fecha de cierre (si está cerrado) y el usuario que lo cerró (si está cerrado)
         public function listarTicketID($tick_id) {
             $conectar = parent::conexion();
             parent::set_names();
@@ -286,6 +292,7 @@
             return $resultado = $sql->fetchAll();
         }
 
+    // Función para insertar un nuevo detalle en un ticket específico
         public function insert_ticket_detalle($tick_id, $emp_id, $td_desc) {
             $conectar = parent::conexion();
             parent::set_names();
@@ -299,6 +306,68 @@
             $sql -> bindValue(3, $td_desc);
             $sql -> execute();
             return $resultado = $sql->fetchAll();
+        }
+
+
+    // Funciones para la obtención del número total de tickets creados, nuevos, abiertos y cerrados, contados por usuario. Para el área de Soporte se mostrarán los totales de todos los tickets sin importar el usuario, para el resto de las áreas solo se mostrarán los totales de los tickets creados por el usuario.
+        public function ticketsTotal ($e_id) { // Cantidad total de tickets creados, sin importar el usuario
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT (*) AS TOTAL FROM tickets";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $e_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function ticketsNuevos ($e_id) { // Cantidad total de tickets creados que están en estado "Nuevo"
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id = 1;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $e_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function ticketsAbiertos ($e_id) { // Cantidad total de tickets creados que están en estado "Nuevo", "En Proceso", "En Espera" o "Escalado" sin importar el usuario
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id NOT IN (5, 6)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $e_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function ticketsCerrados ($e_id) { // Cantidad total de tickets creados que están en estado "Resuelto" o "Cerrado"
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id IN (5, 6)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $e_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function ticketsUsuarioTotal ($e_id) { // Cantidad total de tickets creados por el usuario
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT (*) AS TOTAL FROM tickets WHERE emp_id = ?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $e_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        public function ticketsUsuarioAbiertos ($e_id) { // Cantidad total de tickets creados que están en estado "Nuevo", "Abierto", "En Proceso" o "En Espera"
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE emp_id = ? AND est_id NOT IN (5, 6)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $e_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
         }
     }
 

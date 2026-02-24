@@ -86,6 +86,5 @@
             $sql -> execute();
             return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         }
-
     }
 ?>
