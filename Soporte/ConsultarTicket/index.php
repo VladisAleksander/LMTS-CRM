@@ -4,7 +4,18 @@
 ?>
 
 <?php   require_once '../../view/Main/head.php'; ?>
-        <title>Consultar Ticket :: TechCareMX</title>
+<?php
+    if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { //Soporte Técnico, Soporte de Software o Soporte de Redes
+        ?>
+            <title>Consultar Ticket :: TechCareMX</title>
+        <?php
+    } else { // Resto de áreas
+        ?>
+            <title>Mis Tickets :: TechCareMX</title>
+        <?php
+    }
+?>
+
         <link rel="icon" href="../../public/img/favicon.png" type="image/png">
     </head>
     <body class="with-side-menu">
@@ -21,7 +32,17 @@
                     <div class="tbl">
                         <div class="tbl-row">
                             <div class="tbl-cell">
-                                <h3>Consultar Ticket</h3>
+                                <?php
+                                    if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) { //Soporte Técnico, Soporte de Software o Soporte de Redes
+                                        ?>
+                                            <h3>Consultar Ticket</h3>
+                                        <?php
+                                    } else { // Resto de áreas
+                                        ?>
+                                            <h3>Mis Tickets</h3>
+                                        <?php
+                                    }
+                                ?>
                                 <ol class="breadcrumb breadcrumb-simple">
                                     <li><a href="../../Home">Inicio</a></li>
                                     <li><a href="../">Soporte</a></li>
