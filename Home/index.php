@@ -29,85 +29,76 @@
                 </header>
             </div><!--.container-fluid-->
 
-            <?php // Mostrar información de tickets dependiendo del área del usuario, para Soporte mostrar Total, Nuevos, Abiertos y Cerrados, para el resto de las áreas solo Total y Abiertos
+            <?php // Mostrar información de tickets dependiendo del área del usuario
                 if ($_SESSION["area_id"] == 11 || $_SESSION["area_id"] == 12 || $_SESSION["area_id"] == 14) {
                     ?>
-                        <div class="container-fluid"></div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="row">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="row">
 
-                                        <div class="col-sm-3"> <!-- Total de tickets creados -->
-                                            <article class="statistic-box purple">
-                                                <div>
-                                                    <div class="number" id="total_tickets_globales"></div>
-                                                    <div class="caption"><div>Tickets Creados</div></div>
-                                                </div>
-                                            </article>
-                                        </div>
-
-                                        <div class="col-sm-3"> <!-- Total de tickets nuevos -->
-                                            <article class="statistic-box red">
-                                                <div>
-                                                    <div class="number" id="total_tickets_nuevos"></div>
-                                                    <div class="caption"><div>Tickets Nuevos</div></div>
-                                                </div>
-                                            </article>
-                                        </div>
-
-                                        <div class="col-sm-3"> <!-- Total de tickets abiertos -->
-                                            <article class="statistic-box yellow">
-                                                <div>
-                                                    <div class="number" id="total_tickets_abiertos"></div>
-                                                    <div class="caption"><div>Tickets Abiertos</div></div>
-                                                </div>
-                                            </article>
-                                        </div>
-
-                                        <div class="col-sm-3"> <!-- Total de tickets cerrados -->
-                                            <article class="statistic-box green">
-                                                <div>
-                                                    <div class="number" id="total_tickets_cerrados"></div>
-                                                    <div class="caption"><div>Tickets Cerrados</div></div>
-                                                </div>
-                                            </article>
-                                        </div>
-
+                                    <div class="col-sm-3"> <article class="statistic-box purple" onclick="window.location.href='../Soporte/ConsultarTicket/?filtro='" style="cursor: pointer;" title="Ver todos los tickets">
+                                            <div>
+                                                <div class="number" id="total_tickets_globales"></div>
+                                                <div class="caption"><div>Tickets Creados</div></div>
+                                            </div>
+                                        </article>
                                     </div>
+
+                                    <div class="col-sm-3"> <article class="statistic-box red" onclick="window.location.href='../Soporte/ConsultarTicket/?filtro=nuevos'" style="cursor: pointer;" title="Filtrar tickets nuevos">
+                                            <div>
+                                                <div class="number" id="total_tickets_nuevos"></div>
+                                                <div class="caption"><div>Tickets Nuevos</div></div>
+                                            </div>
+                                        </article>
+                                    </div>
+
+                                    <div class="col-sm-3"> <article class="statistic-box yellow" onclick="window.location.href='../Soporte/ConsultarTicket/?filtro=abiertos'" style="cursor: pointer;" title="Filtrar tickets abiertos">
+                                            <div>
+                                                <div class="number" id="total_tickets_abiertos"></div>
+                                                <div class="caption"><div>Tickets Abiertos</div></div>
+                                            </div>
+                                        </article>
+                                    </div>
+
+                                    <div class="col-sm-3"> <article class="statistic-box green" onclick="window.location.href='../Soporte/ConsultarTicket/?filtro=cerrados'" style="cursor: pointer;" title="Filtrar tickets cerrados">
+                                            <div>
+                                                <div class="number" id="total_tickets_cerrados"></div>
+                                                <div class="caption"><div>Tickets Resueltos o Cerrados</div></div>
+                                            </div>
+                                        </article>
+                                    </div>
+
                                 </div>
-                            </div><!--.row-->
-                        </div>
+                            </div>
+                        </div></div>
                     <?php
                 } else { // Información General para el resto de las áreas
                     ?>
-                        <div class="container-fluid"></div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="row">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="row">
 
-                                        <div class="col-sm-6"> <!-- Total de tickets -->
-                                            <article class="statistic-box purple">
-                                                <div>
-                                                    <div class="number" id="total_tickets_usuario"></div>
-                                                    <div class="caption"><div>Tickets Creados</div></div>
-                                                </div>
-                                            </article>
-                                        </div>
-
-                                        <div class="col-sm-6"> <!-- Total de tickets abiertos -->
-                                            <article class="statistic-box yellow">
-                                                <div>
-                                                    <div class="number" id="total_tickets_abiertos_usuario"></div>
-                                                    <div class="caption"><div>Tickets Abiertos</div></div>
-                                                </div>
-                                            </article>
-                                        </div>
-
+                                    <div class="col-sm-6"> <article class="statistic-box purple" onclick="window.location.href='../Soporte/ConsultarTicket/?filtro='" style="cursor: pointer;" title="Ver todos mis tickets">
+                                            <div>
+                                                <div class="number" id="total_tickets_usuario"></div>
+                                                <div class="caption"><div>Tickets Creados</div></div>
+                                            </div>
+                                        </article>
                                     </div>
+
+                                    <div class="col-sm-6"> <article class="statistic-box yellow" onclick="window.location.href='../Soporte/ConsultarTicket/?filtro=abiertos'" style="cursor: pointer;" title="Ver mis tickets abiertos">
+                                            <div>
+                                                <div class="number" id="total_tickets_abiertos_usuario"></div>
+                                                <div class="caption"><div>Tickets Abiertos</div></div>
+                                            </div>
+                                        </article>
+                                    </div>
+
                                 </div>
-                            </div><!--.row-->
-                        </div><!--.container-fluid-->
-                    <?php
+                            </div>
+                        </div></div><?php
                 }
             ?>
 

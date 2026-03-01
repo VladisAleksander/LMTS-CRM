@@ -129,33 +129,16 @@
         }
 
     // Función para listar la información completa de todos los tickets creados por el usuario
-        public function listarTicketUsuario($emp_id) {
+        public function listarTicketUsuario($emp_id, $filtro_estado = '') {
             $conectar = parent::conexion();
             parent::set_names();
             
             $sql = "SELECT
-                tickets.t_id,
-                tickets.t_num,
-                tickets.t_tit,
-                tickets.area_id,
-                tickets.emp_id,
-                tickets.t_phone,
-                tickets.cat_id,
-                tickets.scat_id,
-                tickets.niv_id,
-                tickets.est_id,
-                tickets.sest_id,
-                tickets.t_desc,
-                ticekts.t_equip,
-                tickets.t_crea,
-                empleados.e_name,
-                empleados.e_last1,
-                areas.a_name,
-                categorias.c_name,
-                subcategorias.sc_name,
-                estatus.st_name,
-                subestatus.se_name,
-                prioridad.n_name
+                tickets.t_id, tickets.t_num, tickets.t_tit, tickets.area_id, tickets.emp_id, tickets.t_phone,
+                tickets.cat_id, tickets.scat_id, tickets.niv_id, tickets.est_id, tickets.sest_id,
+                tickets.t_desc, tickets.t_equip, tickets.t_crea,
+                empleados.e_name, empleados.e_last1, areas.a_name, categorias.c_name, subcategorias.sc_name,
+                estatus.st_name, subestatus.se_name, prioridad.n_name
                 FROM tickets
                 INNER JOIN empleados ON tickets.emp_id  = empleados.e_id
                 INNER JOIN areas ON tickets.area_id = areas.a_id
@@ -165,44 +148,34 @@
                 INNER JOIN subestatus ON tickets.sest_id = subestatus.se_id
                 INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id
                 WHERE tickets.emp_id = ?";
+                
+            // Agregamos el filtro dinámico si existe
+            if ($filtro_estado == 'nuevos') {
+                $sql .= " AND tickets.est_id = 1";
+            } else if ($filtro_estado == 'abiertos') {
+                $sql .= " AND tickets.est_id NOT IN (5, 6)";
+            } else if ($filtro_estado == 'cerrados') {
+                $sql .= " AND tickets.est_id IN (5, 6)";
+            }
             
             $sql = $conectar->prepare($sql);
-            $sql -> bindValue(1, $emp_id);
-
-            $sql -> execute();
+            $sql->bindValue(1, $emp_id);
+            $sql->execute();
             return $resultado = $sql->fetchAll();
         }
 
-    // Función para listar la información completa de todos los tickets, mostrando el nombre completo del empleado que lo creó, el área, la categoría, subcategoría, estatus, subestatus y prioridad, además de la fecha de creación, fecha de cierre (si está cerrado) y el usuario que lo cerró (si está cerrado)
-        public function listarTicket() {
+    
+    // Función para listar la información completa de todos los tickets (Sistemas)
+        public function listarTicket($filtro_estado = '') {
             $conectar = parent::conexion();
             parent::set_names();
             
             $sql = "SELECT
-                tickets.t_id,
-                tickets.t_num,
-                tickets.t_tit,
-                tickets.area_id,
-                tickets.emp_id,
-                tickets.t_phone,
-                tickets.cat_id,
-                tickets.scat_id,
-                tickets.niv_id,
-                tickets.est_id,
-                tickets.sest_id,
-                tickets.t_desc,
-                tickets.t_equip,
-                tickets.t_crea,
-                tickets.t_close,
-                tickets.t_close_user,
-                empleados.e_name,
-                empleados.e_last1,
-                areas.a_name,
-                categorias.c_name,
-                subcategorias.sc_name,
-                estatus.st_name,
-                subestatus.se_name,
-                prioridad.n_name
+                tickets.t_id, tickets.t_num, tickets.t_tit, tickets.area_id, tickets.emp_id, tickets.t_phone,
+                tickets.cat_id, tickets.scat_id, tickets.niv_id, tickets.est_id, tickets.sest_id,
+                tickets.t_desc, tickets.t_equip, tickets.t_crea, tickets.t_close, tickets.t_close_user,
+                empleados.e_name, empleados.e_last1, areas.a_name, categorias.c_name, subcategorias.sc_name,
+                estatus.st_name, subestatus.se_name, prioridad.n_name
                 FROM tickets
                 INNER JOIN empleados ON tickets.emp_id  = empleados.e_id
                 INNER JOIN areas ON tickets.area_id = areas.a_id
@@ -211,10 +184,18 @@
                 INNER JOIN estatus ON tickets.est_id = estatus.st_id
                 INNER JOIN subestatus ON tickets.sest_id = subestatus.se_id
                 INNER JOIN prioridad ON tickets.niv_id = prioridad.n_id";
+                
+            // Agregamos el filtro dinámico si existe usando WHERE
+            if ($filtro_estado == 'nuevos') {
+                $sql .= " WHERE tickets.est_id = 1";
+            } else if ($filtro_estado == 'abiertos') {
+                $sql .= " WHERE tickets.est_id NOT IN (5, 6)";
+            } else if ($filtro_estado == 'cerrados') {
+                $sql .= " WHERE tickets.est_id IN (5, 6)";
+            }
             
             $sql = $conectar->prepare($sql);
-
-            $sql -> execute();
+            $sql->execute();
             return $resultado = $sql->fetchAll();
         }
 

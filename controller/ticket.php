@@ -86,7 +86,10 @@
             break;
 
             case "listar_por_usuario": // Listar tickets por usuario
-                $datos = $ticket->listarTicketUsuario($_POST["emp_id"]);
+                // Capturamos el filtro si es que viene por POST
+                $filtro = isset($_POST["filtro_estado"]) ? $_POST["filtro_estado"] : '';
+                
+                $datos = $ticket->listarTicketUsuario($_POST["emp_id"], $filtro);
                 $data = Array();
                 foreach($datos as $row){
                     $sub_array = array();
@@ -121,7 +124,10 @@
             break;
 
             case "listar": // Listar todos los tickets
-                $datos = $ticket->listarTicket();
+                // Capturamos el filtro si es que viene por POST
+                $filtro = isset($_POST["filtro_estado"]) ? $_POST["filtro_estado"] : '';
+                
+                $datos = $ticket->listarTicket($filtro);
                 $data = Array();
                 foreach($datos as $row){
                     $sub_array = array();
