@@ -40,7 +40,7 @@
                                         <div class="col-sm-3"> <!-- Total de tickets creados -->
                                             <article class="statistic-box purple">
                                                 <div>
-                                                    <div class="number" id="total_tickets">12</div>
+                                                    <div class="number" id="total_tickets_globales"></div>
                                                     <div class="caption"><div>Tickets Creados</div></div>
                                                 </div>
                                             </article>
@@ -49,7 +49,7 @@
                                         <div class="col-sm-3"> <!-- Total de tickets nuevos -->
                                             <article class="statistic-box red">
                                                 <div>
-                                                    <div class="number" id="total_tickets_nuevos">2</div>
+                                                    <div class="number" id="total_tickets_nuevos"></div>
                                                     <div class="caption"><div>Tickets Nuevos</div></div>
                                                 </div>
                                             </article>
@@ -58,7 +58,7 @@
                                         <div class="col-sm-3"> <!-- Total de tickets abiertos -->
                                             <article class="statistic-box yellow">
                                                 <div>
-                                                    <div class="number" id="total_tickets_abiertos">9</div>
+                                                    <div class="number" id="total_tickets_abiertos"></div>
                                                     <div class="caption"><div>Tickets Abiertos</div></div>
                                                 </div>
                                             </article>
@@ -67,7 +67,7 @@
                                         <div class="col-sm-3"> <!-- Total de tickets cerrados -->
                                             <article class="statistic-box green">
                                                 <div>
-                                                    <div class="number" id="total_tickets_cerrados">3</div>
+                                                    <div class="number" id="total_tickets_cerrados"></div>
                                                     <div class="caption"><div>Tickets Cerrados</div></div>
                                                 </div>
                                             </article>

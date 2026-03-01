@@ -300,8 +300,25 @@
                     $_POST["td_desc"]);
             break;
 
-            case "total_tickets": // Total de tickets creados
-                $datos = $ticket->ticketsTotal($_POST["t_id"]);
+            // Contador de número de tickets
+
+            case "total_tickets_globales": // Total de tickets creados
+                $datos = $ticket->ticketsTotal();
+                echo json_encode($datos);
+            break;
+            
+            case "total_tickets_nuevos": // Total de tickets nuevos
+                $datos = $ticket->ticketsNuevos();
+                echo json_encode($datos);
+            break;
+            
+            case "total_tickets_abiertos": // Total de tickets abiertos
+                $datos = $ticket->ticketsAbiertos();
+                echo json_encode($datos);
+            break;
+            
+            case "total_tickets_cerrados": // Total de tickets cerrados
+                $datos = $ticket->ticketsCerrados();
                 echo json_encode($datos);
             break;
 

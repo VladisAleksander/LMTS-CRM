@@ -55,7 +55,7 @@
         }
 
     // Función para actualizar la información de un ticket
-        public function update_ticket($t_id, $t_tit, $area_id, $t_phone, $cat_id, $scat_id, $niv_id, $est_id, $sest_id, $t_desc, $t_close_user = null) {
+        public function update_ticket($t_id, $t_tit, $area_id, $t_phone, $cat_id, $scat_id, $niv_id, $est_id, $sest_id, $t_desc, $t_equip, $t_close_user = null) {
             $conectar = parent::conexion();
             parent::set_names();
             
@@ -69,8 +69,9 @@
                             scat_id      = ?, 
                             niv_id       = ?, 
                             est_id       = ?, 
-                            sest_id      = ?, 
+                            sest_id      = ?,
                             t_desc       = ?, 
+                            t_equip      = ?, 
                             t_close_user = ?,
                             t_close      = NOW(), 
                             t_upd        = NOW()
@@ -87,8 +88,9 @@
                 $sql->bindValue(7,  $est_id);
                 $sql->bindValue(8,  $sest_id);
                 $sql->bindValue(9,  $t_desc);
-                $sql->bindValue(10, $t_close_user); 
-                $sql->bindValue(11, $t_id);
+                $sql->bindValue(10, $t_equip);
+                $sql->bindValue(11, $t_close_user); 
+                $sql->bindValue(12, $t_id);
             } else {
                 // Si no está cerrado, no se actualiza el campo t_close_user ni t_close y forzamos t_close_user a NULL
                 $sql = "UPDATE tickets 
@@ -101,6 +103,7 @@
                             est_id       = ?, 
                             sest_id      = ?, 
                             t_desc       = ?, 
+                            t_equip      = ?, 
                             t_close_user = NULL,
                             t_close      = NULL,
                             t_upd        = NOW()
@@ -117,7 +120,8 @@
                 $sql->bindValue(7,  $est_id);
                 $sql->bindValue(8,  $sest_id);
                 $sql->bindValue(9,  $t_desc);
-                $sql->bindValue(10, $t_id);
+                $sql->bindValue(10, $t_equip);
+                $sql->bindValue(11, $t_id);
             }
 
             $sql -> execute();
@@ -142,6 +146,7 @@
                 tickets.est_id,
                 tickets.sest_id,
                 tickets.t_desc,
+                ticekts.t_equip,
                 tickets.t_crea,
                 empleados.e_name,
                 empleados.e_last1,
@@ -186,6 +191,7 @@
                 tickets.est_id,
                 tickets.sest_id,
                 tickets.t_desc,
+                tickets.t_equip,
                 tickets.t_crea,
                 tickets.t_close,
                 tickets.t_close_user,
@@ -310,42 +316,38 @@
 
 
     // Funciones para la obtención del número total de tickets creados, nuevos, abiertos y cerrados, contados por usuario. Para el área de Soporte se mostrarán los totales de todos los tickets sin importar el usuario, para el resto de las áreas solo se mostrarán los totales de los tickets creados por el usuario.
-        public function ticketsTotal ($t_id) { // Cantidad total de tickets creados, sin importar el usuario
+        public function ticketsTotal () { // Cantidad total de tickets creados, sin importar el usuario
             $conectar = parent::conexion();
             parent::set_names();
             $sql="SELECT COUNT(*) AS TOTAL FROM tickets";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $t_id);
             $sql->execute();
             return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function ticketsNuevos ($t_id) { // Cantidad total de tickets creados que están en estado "Nuevo"
+        public function ticketsNuevos () { // Cantidad total de tickets creados que están en estado "Nuevo"
             $conectar = parent::conexion();
             parent::set_names();
             $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id = 1;";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $t_id);
             $sql->execute();
             return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function ticketsAbiertos ($t_id) { // Cantidad total de tickets creados que están en estado "Nuevo", "En Proceso", "En Espera" o "Escalado" sin importar el usuario
+        public function ticketsAbiertos () { // Cantidad total de tickets creados que están en estado "Nuevo", "En Proceso", "En Espera" o "Escalado" sin importar el usuario
             $conectar = parent::conexion();
             parent::set_names();
             $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id NOT IN (5, 6)";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $t_id);
             $sql->execute();
             return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function ticketsCerrados ($t_id) { // Cantidad total de tickets creados que están en estado "Resuelto" o "Cerrado"
+        public function ticketsCerrados () { // Cantidad total de tickets creados que están en estado "Resuelto" o "Cerrado"
             $conectar = parent::conexion();
             parent::set_names();
             $sql="SELECT COUNT(*) AS TOTAL FROM tickets WHERE est_id IN (5, 6)";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $t_id);
             $sql->execute();
             return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
