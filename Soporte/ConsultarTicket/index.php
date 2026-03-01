@@ -60,7 +60,7 @@
                             ?>
                                 <thead>
                                     <tr>
-                                        <th class="text-center" id="lblTicketID" style="width: 15%;">Ticket ID</th>
+                                        <th class="text-center" id="lblTicketID" style="width: 10%;">Ticket ID</th>
                                         <th class="text-center" id="lblCreacion">Creación</th>
                                         <th class="text-center d-none d-sm-table-cell" id="lblTitulo" style="width: 70%;">Título</th>
                                         <th class="text-center" id="lblArea">Área</th>
@@ -69,7 +69,6 @@
                                         <th class="text-center" id="lblSubCategoria" style="width: 25%;">Subcategoría</th>
                                         <th class="text-center" id="lblPrioridad" style="width: 5%;">Prioridad</th>
                                         <th class="text-center" id="lblEstatus">Estatus</th>
-                                        <th class="text-center" id="lblAcciones" style="width: 5%;"></th>
                                     </tr>
                                 </thead>
                             <?php
@@ -77,11 +76,10 @@
                             ?>
                                 <thead>
                                     <tr>
-                                        <th class="text-center" id="lblTicketID" style="width: 15%;">Ticket ID</th>
+                                        <th class="text-center" id="lblTicketID" style="width: 10%;">Ticket ID</th>
                                         <th class="text-center d-none d-sm-table-cell" id="lblTitulo" style="width: 55%;">Título</th>
                                         <th class="text-center" id="lblCreacion">Creación</th>
                                         <th class="text-center" id="lblEstatus">Estatus</th>
-                                        <th class="text-center" id="lblAcciones" style="width: 5%;"></th>
                                     </tr>
                                 </thead>
                             <?php

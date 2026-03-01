@@ -93,7 +93,8 @@
                 $data = Array();
                 foreach($datos as $row){
                     $sub_array = array();
-                    $sub_array[] = $row["t_num"];
+                    // Convertimos el número de ticket en un enlace que llama a la función JS
+                    $sub_array[] = '<a href="javascript:void(0);" onClick="verTicket('.$row["t_id"].');" class="text-primary" style="text-decoration: none !important; border-bottom: none !important;">'.$row["t_num"].'</a>';
                     $sub_array[] = $row["t_tit"];
                     $sub_array[] = date('Y-m-d H:i', strtotime($row["t_crea"]));
 
@@ -111,7 +112,6 @@
                         $sub_array[] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
                     }
                     
-                    $sub_array[] = '<button type="button" onClick="verTicket('.$row["t_id"].');" id="'.$row["t_id"].'" class="btn btn-inline btn-secondary-outline btn-sm ladda-button"><div><i class="fa fa-eye"></i></div></button>';
                     $data[] = $sub_array;
                 }
 
@@ -131,7 +131,8 @@
                 $data = Array();
                 foreach($datos as $row){
                     $sub_array = array();
-                    $sub_array[] = $row["t_num"];
+                    // Convertimos el número de ticket en un enlace
+                    $sub_array[] = '<a href="javascript:void(0);" onClick="verTicket('.$row["t_id"].');" class="text-primary" style="text-decoration: none !important; border-bottom: none !important;">'.$row["t_num"].'</a>';
                     $sub_array[] = date('Y-m-d H:i', strtotime($row["t_crea"]));
                     $sub_array[] = $row["t_tit"];
                     $sub_array[] = $row["a_name"];
@@ -165,7 +166,6 @@
                         $sub_array[] = '<span class="label label-danger">'.$row["st_name"].'</span>';
                     }
 
-                    $sub_array[] = '<button type="button" onClick="verTicket('.$row["t_id"].');" id="'.$row["t_id"].'" class="btn btn-inline btn-secondary-outline btn-sm ladda-button"><div><i class="fa fa-eye"></i></div></button>';
                     $data[] = $sub_array;
                 }
 
