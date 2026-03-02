@@ -205,23 +205,23 @@
             parent::set_names();
             
             $sql = "SELECT
-                ticket_detalles.td_id,
-                ticket_detalles.tick_id,
-                ticket_detalles.td_desc,
-                ticket_detalles.td_crea,
+                ticket_mensajes.td_id,
+                ticket_mensajes.tick_id,
+                ticket_mensajes.td_desc,
+                ticket_mensajes.td_crea,
                 tickets.t_num,
                 empleados.e_name,
                 empleados.e_last1,
                 empleados.e_last2,
                 areas.a_name,
                 puestos.p_tit
-                FROM ticket_detalles
-                INNER JOIN tickets ON ticket_detalles.tick_id  = tickets.t_id
-                INNER JOIN empleados ON ticket_detalles.emp_id  = empleados.e_id
+                FROM ticket_mensajes
+                INNER JOIN tickets ON ticket_mensajes.tick_id  = tickets.t_id
+                INNER JOIN empleados ON ticket_mensajes.emp_id  = empleados.e_id
                 INNER JOIN areas ON empleados.area_id = areas.a_id
                 INNER JOIN puestos ON empleados.pue_id = puestos.p_id
                 WHERE tick_id = ?
-                ORDER BY ticket_detalles.td_crea DESC";
+                ORDER BY ticket_mensajes.td_crea DESC";
             
             $sql = $conectar->prepare($sql);
             $sql -> bindValue(1, $tick_id);
@@ -284,7 +284,7 @@
             $conectar = parent::conexion();
             parent::set_names();
             
-            $sql = "INSERT INTO ticket_detalles (tick_id, emp_id, td_desc, td_crea, td_stat) VALUES (?, ?, ?, NOW(), 1);";
+            $sql = "INSERT INTO ticket_mensajes (tick_id, emp_id, td_desc, td_crea, td_stat) VALUES (?, ?, ?, NOW(), 1);";
             
             $sql = $conectar->prepare($sql);
             
