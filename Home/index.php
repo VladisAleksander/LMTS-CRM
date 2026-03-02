@@ -71,7 +71,19 @@
 
                                 </div>
                             </div>
-                        </div></div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+                        <section class="card">
+                            <header class="card-header">
+                                Estadísticas de Incidencias
+                            </header>
+                            <div class="card-block">
+                                <div id="grafica_estadisticas" style="height: 250px;"></div>
+                            </div>
+                        </section>
+                    </div><!--.container-fluid-->
                     <?php
                 } else { // Información General para el resto de las áreas
                     ?>
@@ -102,11 +114,14 @@
                 }
             ?>
 
+            
+
         </div><!--.page-content-->
 
         <?php   require_once '../view/Main/js.php'; ?>
         <script src="../public/js/lib/morrisjs/morris.min.js"></script>
         <script src="../public/js/lib/morrisjs/raphael-min.js"></script>
+        
         <script type="text/javascript" src="../public/js/home.js"></script>
     </body>
 </html>

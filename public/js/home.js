@@ -34,6 +34,21 @@ $(document).ready(function() {
     $.post('../../controller/ticket.php?op=total_tickets_cerrados', function(data) {
         $('#total_tickets_cerrados').html(data.TOTAL); // Mostrar en Dashboard
     }, 'json');
+
+    $.post('../../controller/ticket.php?op=grafico_estadisticas', function(data) {
+        data = JSON.parse (data);
+        console.log(data);
+        
+        new Morris.Bar({
+            element: 'grafica_estadisticas',
+            data: data,
+            xkey: 'Categoría',
+            ykeys: ['Total'],
+            labels: ['Total'],
+            barColors: ["#691649"]
+        });
+    });
+
 });
 
 init();

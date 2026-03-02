@@ -352,6 +352,19 @@
             $sql->execute();
             return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
+
+        public function get_ticket_grafico(){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql="SELECT categorias.c_name AS Categoría, COUNT(*) AS Total 
+                FROM tickets JOIN categorias ON tickets.cat_id = categorias.c_id 
+
+                GROUP BY categorias.c_name 
+                ORDER BY total DESC";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado = $sql->fetchAll();
+        }
     }
 
 ?>

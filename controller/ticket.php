@@ -337,6 +337,11 @@
                 $datos = $ticket->ticketsUsuarioAbiertos($_POST["emp_id"]);
                 echo json_encode($datos);
             break;
+
+            case "grafico_estadisticas";
+                $datos = $ticket->get_ticket_grafico();
+                echo json_encode($datos);
+            break;
         }
     }
 ?>
