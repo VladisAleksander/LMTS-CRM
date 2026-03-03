@@ -226,7 +226,7 @@
                                                             </fieldset>
                                                         </div>
                                                         <div class="col-lg-12">
-                                                            <button type="button" id="btnGuardar" name="action" value="update" class="btn btn-rounded btn-inline btn-primary">Guardar</button>
+                                                            <button type="button" id="btnGuardar" name="action" value="actualizar_detalles_ticket" class="btn btn-rounded btn-inline btn-primary">Guardar</button>
                                                         </div>
                                                     </div><!--.row-->
                                                 </form>
@@ -243,22 +243,20 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <fieldset class="form-group">
-                                                                <label class="form-label semibold" for="t_close">Fecha de cierre</label>
-                                                                <input type="text" disabled class="form-control" name="t_close" id="t_close"><!-- Muestra la fecha en que se cerró el ticket -->
+                                                                <label class="form-label semibold">Fecha de Resolución/Cierre</label>
+                                                                <input type="text" disabled class="form-control" id="t_close_display">
                                                             </fieldset>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <fieldset class="form-group">
-                                                                <label class="form-label semibold" for="text">Cerrado por</label>
-                                                                <input type="text" disabled class="form-control" name="t_close_user" id="t_close_user"><!-- Muestra el nombre compledo del empleado que cerró el ticket -->
+                                                                <label class="form-label semibold">Resuelto por</label>
+                                                                <input type="text" disabled class="form-control" id="t_close_user_name">
                                                             </fieldset>
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <fieldset class="form-group">
-                                                                <label class="form-label semibold" for="td_res_notes">Descripción detallada</label>
-                                                                <div class="summernote-theme-1">
-                                                                    <textarea id="td_res_notes" class="summernote" name="td_res_notes" <?php if ($ticket["est_id"] == 6) echo 'disabled'; ?>></textarea>
-                                                                </div>
+                                                                <label class="form-label semibold">Motivo de Resolución/Cierre (Obligatorio)</label>
+                                                                <textarea id="t_resolucion_desc" class="form-control" rows="5" placeholder="Describa la solución aplicada..."></textarea>
                                                             </fieldset>
                                                         </div>
                                                     </div><!--.row-->
@@ -273,7 +271,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <fieldset class="form-group">
-                                                            <label class="form-label semibold" for="td_notes">Notas adicionales</label>
+                                                            <label class="form-label semibold" for="td_notes">Notas adicionales (Solo Soporte)</label>
                                                             <div class="summernote-theme-1">
                                                                 <textarea id="td_notes" class="summernote" name="td_notes"></textarea>
                                                             </div>
@@ -310,7 +308,7 @@
                                             </div><!-- Notas adicionales -->
                                         <?php } ?>
 
-                                        <section class="box-typical-padding activity-line" id="lbldetalle">
+                                        <section class="box-typical-padding activity-line" id="ticket_mensajes">
                                             <!-- Contenido dinámico cargado por JavaScript -->
                                         </section>
                                     </div><!--.tab-panel-->
@@ -340,8 +338,9 @@
                                     </div><!--.tab-panel-->
 
                                     <div role="tabpanel" class="tab-pane" id="tabs-2-tab-7"> <!-- Contenido de la pestaña Historial -->
-                                        <section class="box-typical box-typical-padding">
-                                            Historial de cambios del ticket
+                                        <section class="box-typical box-typical-padding"></section>
+                                        <section class="box-typical-padding activity-line" id="ticket_historial">
+                                            <!-- Contenido dinámico cargado por JavaScript -->
                                         </section>
                                     </div><!--.tab-panel-->
                                 </div><!--.tab-content-->

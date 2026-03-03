@@ -3,7 +3,10 @@
     require_once "../modelos/Ticket.php";
     $ticket = new Ticket();
 
-    // Función helper para verificar acceso a un ticket
+    // =======================================================================
+    // FUNCIONES PARA VERIFICAR ACCESO
+    // =======================================================================
+
     function verificarAccesoTicket($ticket_id, $user_id, $user_area_id) {
         $ticket_obj = new Ticket();
         $ticket_data = $ticket_obj->listarTicketID($ticket_id);
@@ -19,6 +22,11 @@
     
     if (isset($_GET["op"])) {
         switch ($_GET["op"]) {
+
+            // =======================================================================
+            // FUNCIONES PARA NUEVO TICKET
+            // =======================================================================
+
             case "insert": // Guardar tickets en la Base de Datos
                 $ticket->insert_ticket(
                     $_POST["t_tit"],
@@ -31,59 +39,10 @@
                     isset($_POST["t_equip"]) ? $_POST["t_equip"] : null;
             break;
 
-            case "update": // Actualizar la información de un ticket
-                // Validar que venga el ID del ticket
-                if (isset($_POST["t_id"]) && !empty($_POST["t_id"])) {
 
-                    // Verificar acceso al ticket
-                    $t_id = $_POST["t_id"];
-                    if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
-                        echo json_encode(["error" => "Acceso Denegado: No tienes permiso para modificar este ticket."]);
-                        break;
-                    }
-            
-                    // Si el estado es 6 (cerrado), permitir actualizar el campo t_close_user
-                    if ($_POST["est_id"] == 6) {
-                        $result = $ticket->update_ticket(
-                            $_POST["t_id"],
-                            $_POST["t_tit"],
-                            $_POST["area_id"],
-                            $_POST["t_phone"],
-                            $_POST["cat_id"],
-                            $_POST["scat_id"],
-                            $_POST["niv_id"],
-                            $_POST["est_id"],
-                            $_POST["sest_id"],
-                            $_POST["t_desc"],
-                            $_POST["t_close_user"]
-                        );
-                    } else {
-                        // Si no está cerrado, se pasa NULL para t_close_user
-                        $result = $ticket->update_ticket(
-                            $_POST["t_id"],
-                            $_POST["t_tit"],
-                            $_POST["area_id"],
-                            $_POST["t_phone"],
-                            $_POST["cat_id"],
-                            $_POST["scat_id"],
-                            $_POST["niv_id"],
-                            $_POST["est_id"],
-                            $_POST["sest_id"],
-                            $_POST["t_desc"],
-                            null
-                        );
-                    }
-
-                    if ($result > 0) {
-                        echo json_encode(["success" => "Ticket actualizado correctamente."]);
-                    } else {
-                        echo json_encode(["error" => "No se pudo actualizar el ticket."]);
-                    }
-            
-                } else {
-                    echo json_encode(["error" => "Falta el ID del ticket para actualizar."]);
-                }
-            break;
+            // =======================================================================
+            // FUNCIONES PARA CONSULTAR LISTADO
+            // =======================================================================
 
             case "listar_por_usuario": // Listar tickets por usuario
                 // Capturamos el filtro si es que viene por POST
@@ -123,7 +82,7 @@
                 echo json_encode($result);
             break;
 
-            case "listar": // Listar todos los tickets
+            case "listar_tickets": // Listar todos los tickets
                 // Capturamos el filtro si es que viene por POST
                 $filtro = isset($_POST["filtro_estado"]) ? $_POST["filtro_estado"] : '';
                 
@@ -177,7 +136,12 @@
                 echo json_encode($result);
             break;
 
-            case "listar_detalle": // Listar detalles de un ticket
+
+            // =======================================================================
+            // FUNCIONES PARA DETALLES
+            // =======================================================================
+
+            case "mostrar_detalles_ticket"; // Lista los tickets por ID
 
                 // Verificar acceso al ticket
                 $t_id = $_POST["tick_id"];
@@ -186,7 +150,210 @@
                     break;
                 }
 
-                // Si tiene acceso, proceder a listar los detalles
+                // Si tiene acceso, proceder a mostrar los datos
+                $datos = $ticket->listarTicketID($_POST["tick_id"]);
+                if (is_array($datos) == true and count($datos) > 0) {
+                    foreach($datos as $row){
+                        $output ["t_id"] = $row["t_id"];
+                        $output ["t_num"] = $row["t_num"];
+                        $output ["t_crea"] = date ("d/m/Y H:i:s", strtotime ($row["t_crea"]));
+                        
+                        if ($row["st_name"]=="Nuevo"){
+                            $output ["st_name"] = '<span class="label label-pill label-default">'.$row["st_name"].'</span>';
+                        } elseif ($row["st_name"]=="En Proceso"){
+                            $output ["st_name"] = '<span class="label label-pill label-primary">'.$row["st_name"].'</span>';
+                        } elseif ($row["st_name"]=="En Espera"){
+                            $output ["st_name"] = '<span class="label label-pill label-warning">'.$row["st_name"].'</span>';
+                        } elseif ($row["st_name"]=="Escalado"){
+                            $output ["st_name"] = '<span class="label label-pill label-info">'.$row["st_name"].'</span>';
+                        } elseif ($row["st_name"]=="Resuelto"){
+                            $output ["st_name"] = '<span class="label label-pill label-success">'.$row["st_name"].'</span>';
+                        } elseif ($row["st_name"]=="Cerrado"){
+                            $output ["st_name"] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
+                        }
+
+                        $output ["e_name"] = $row["e_name"];
+                        $output ["e_last1"] = $row["e_last1"];
+                        $output ["e_last2"] = $row["e_last2"];
+                        $output ["e_mail"] = $row["e_mail"];
+                        $output ["t_phone"] = $row["t_phone"];
+                        $output ["a_name"] = $row["a_name"];
+                        $output ["t_tit"] = $row["t_tit"];
+                        $output ["t_desc"] = $row["t_desc"];
+                        $output ["t_resolucion"] = $row["t_resolucion"];
+                        $output ["area_id"] = $row["area_id"];
+                        $output ["cat_id"] = $row["cat_id"];
+                        $output ["scat_id"] = $row["scat_id"];
+                        $output ["niv_id"] = $row["niv_id"];
+                        $output ["est_id"] = $row["est_id"];
+                        $output ["sest_id"] = $row["sest_id"];
+                        $output ["t_close"] = $row["t_close"];
+                        $output ["t_close_user"] = $row["t_close_user"];
+
+                    }
+                    echo json_encode($output);
+                }
+            break;
+
+            case "actualizar_detalles_ticket": // Actualizar los detalles de un ticket
+                // Validar que venga el ID del ticket
+                if (isset($_POST["t_id"]) && !empty($_POST["t_id"])) {
+
+                    // Verificar acceso al ticket
+                    $t_id = $_POST["t_id"];
+                    if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
+                        echo json_encode(["error" => "Acceso Denegado: No tienes permiso para modificar este ticket."]);
+                        break;
+                    }
+
+                    // 1. Obtenemos los datos actuales del ticket ANTES de modificarlo para comparar
+                    $ticket_antiguo = $ticket->listarTicketID($_POST["t_id"]);
+                    $est_id_anterior = $ticket_antiguo[0]['est_id'];
+            
+                    // 2. Ejecutar la actualización
+                    // Si el estado es 6 (cerrado), permitir actualizar el campo t_close_user
+                    if ($_POST["est_id"] == 6) {
+                        $result = $ticket->update_ticket(
+                            $_POST["t_id"],
+                            $_POST["t_tit"],
+                            $_POST["area_id"],
+                            $_POST["t_phone"],
+                            $_POST["cat_id"],
+                            $_POST["scat_id"],
+                            $_POST["niv_id"],
+                            $_POST["est_id"],
+                            $_POST["sest_id"],
+                            $_POST["t_desc"],
+                            null,
+                            $_POST["t_resolucion"],
+                            $_POST["t_close_user"]
+                        );
+                    } else {
+                        // Si no está cerrado, se pasa NULL implícito u omitido en la función para t_close_user
+                        $result = $ticket->update_ticket(
+                            $_POST["t_id"],
+                            $_POST["t_tit"],
+                            $_POST["area_id"],
+                            $_POST["t_phone"],
+                            $_POST["cat_id"],
+                            $_POST["scat_id"],
+                            $_POST["niv_id"],
+                            $_POST["est_id"],
+                            $_POST["sest_id"],
+                            $_POST["t_desc"],
+                            null,
+                            $_POST["t_resolucion"]
+                        );
+                    }
+
+                    if ($result > 0) {
+                        // LÓGICA DE HISTORIAL AUTOMÁTICO
+                        $accion = "Actualización de Ticket";
+                        $detalles = "Se modificaron los parámetros del ticket.";
+                        
+                        // Si el estatus cambió, lo especificamos en el historial
+                        if ($_POST["est_id"] == 5) {
+                            $accion = "Ticket marcado como Resuelto";
+                            $detalles = "El técnico ha aplicado una solución al ticket.";
+                        } else if ($_POST["est_id"] == 6) {
+                            $accion = "Cierre de Ticket";
+                            $detalles = "El ticket ha sido cerrado definitivamente.";
+                        } else if ($_POST["est_id"] == 4) {
+                            $accion = "Ticket Escalado";
+                            $detalles = "El ticket fue escalado a proveedor o técnico especializado.";
+                        }
+                        
+                        // Insertamos silenciosamente en el historial
+                        $ticket->insert_ticket_historial($_POST["t_id"], $_SESSION["e_id"], $accion, $detalles);
+
+                        // LÓGICA DE MENSAJE AUTOMÁTICO DE RESOLUCIÓN
+                        // Generar mensaje automático SÓLO si el ticket cambia a Resuelto(5) o Cerrado(6) por primera vez
+                        if (($_POST["est_id"] == 5 || $_POST["est_id"] == 6) && ($est_id_anterior != 5 && $est_id_anterior != 6)) {
+                            
+                            // Formato HTML con los saltos de línea y comillas
+                            $mensaje_usuario = "<p>El ticket ha sido marcado como resuelto bajo el siguiente motivo:</p><br><p><em>\"" . $_POST["t_resolucion"] . "\"</em></p>";
+                            
+                            // Se inserta en la línea de tiempo de mensajes del usuario
+                            $ticket->insert_ticket_mensaje($_POST["t_id"], $_SESSION["e_id"], $mensaje_usuario);
+                        }
+
+                        echo json_encode(["success" => "Ticket actualizado correctamente."]);
+                    } else {
+                        echo json_encode(["error" => "No se pudo actualizar el ticket."]);
+                    }
+            
+                } else {
+                    echo json_encode(["error" => "Falta el ID del ticket para actualizar."]);
+                }
+            break;
+
+
+            // =======================================================================
+            // FUNCIONES PARA NOTAS INTERNAS (SOLO SOPORTE)
+            // =======================================================================
+
+            case "insertar_nota": // Guarda las notas de Soporte
+                // Verificamos que sea estrictamente personal de Soporte/Sistemas
+                if ($_SESSION['area_id'] == 11 || $_SESSION['area_id'] == 12 || $_SESSION['area_id'] == 14) {
+                    $ticket->insert_ticket_nota($_POST["tick_id"], $_POST["emp_id"], $_POST["tn_desc"]);
+                    
+                    // registramos en el historial que un técnico dejó una nota oculta
+                    $ticket->insert_ticket_historial($_POST["tick_id"], $_POST["emp_id"], "Nota Interna Agregada", "Se agregó una nota privada de soporte.");
+                    echo json_encode(["success" => "Nota guardada."]);
+                } else {
+                    echo json_encode(["error" => "Acceso Denegado."]);
+                }
+            break;
+
+            case "listar_notas": // Lista las notas del ticket
+                if ($_SESSION['area_id'] == 11 || $_SESSION['area_id'] == 12 || $_SESSION['area_id'] == 14) {
+                    $datos = $ticket->listarTicketNotas($_POST["tick_id"]);
+                    foreach($datos as $row) {
+                        ?>
+                            <article class="activity-line-item box-typical">
+                                <div class="activity-line-date">
+                                    <?php echo (new DateTime($row["tn_crea"]))->format('d M Y'); ?>
+                                </div>
+                                <header class="activity-line-item-header">
+                                    <div class="activity-line-item-user-name">
+                                        <i class="fa fa-lock text-muted" title="Nota Privada"></i> 
+                                        <?php echo $row["e_name"]." ".$row["e_last1"]." ".$row["e_last2"]; ?>
+                                    </div>
+                                    <div class="activity-line-item-user-status">
+                                        <?php echo $row["p_tit"]; ?>
+                                    </div>
+                                </header>
+                                <div class="activity-line-action-list">
+                                    <section class="activity-line-action">
+                                        <div class="time"><?php echo (new DateTime($row["tn_crea"]))->format('h:i A'); ?></div>
+                                        <div class="cont">
+                                            <div class="cont-in" style="background-color: #fcf8e3; padding: 10px; border-left: 3px solid #f0ad4e;">
+                                                <p><?php echo $row["tn_desc"]; ?></p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </article>
+                        <?php
+                    }
+                }
+            break;
+
+
+            // =======================================================================
+            // FUNCIONES PARA MENSAJES
+            // =======================================================================
+
+            case "listar_mensajes": // Lista los mensajes del ticket
+
+                // Verificar acceso al ticket
+                $t_id = $_POST["tick_id"];
+                if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
+                    echo json_encode(["error" => "Acceso Denegado: No tienes permiso para ver este ticket."]);
+                    break;
+                }
+
+                // Si tiene acceso, proceder a listar los mensajes
                 $datos = $ticket->listarTicketMensajes($_POST["tick_id"]); // Recibir el ID del ticket por POST
                 ?>
                     <?php
@@ -237,60 +404,7 @@
                 <?php
             break;
 
-            case "mostrar";
-
-                // Verificar acceso al ticket
-                $t_id = $_POST["tick_id"];
-                if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
-                    echo json_encode(["error" => "Acceso Denegado: No tienes permiso para ver este ticket."]);
-                    break;
-                }
-
-                // Si tiene acceso, proceder a mostrar los datos
-                $datos = $ticket->listarTicketID($_POST["tick_id"]);
-                if (is_array($datos) == true and count($datos) > 0) {
-                    foreach($datos as $row){
-                        $output ["t_id"] = $row["t_id"];
-                        $output ["t_num"] = $row["t_num"];
-                        $output ["t_crea"] = date ("d/m/Y H:i:s", strtotime ($row["t_crea"]));
-                        
-                        if ($row["st_name"]=="Nuevo"){
-                            $output ["st_name"] = '<span class="label label-pill label-default">'.$row["st_name"].'</span>';
-                        } elseif ($row["st_name"]=="En Proceso"){
-                            $output ["st_name"] = '<span class="label label-pill label-primary">'.$row["st_name"].'</span>';
-                        } elseif ($row["st_name"]=="En Espera"){
-                            $output ["st_name"] = '<span class="label label-pill label-warning">'.$row["st_name"].'</span>';
-                        } elseif ($row["st_name"]=="Escalado"){
-                            $output ["st_name"] = '<span class="label label-pill label-info">'.$row["st_name"].'</span>';
-                        } elseif ($row["st_name"]=="Resuelto"){
-                            $output ["st_name"] = '<span class="label label-pill label-success">'.$row["st_name"].'</span>';
-                        } elseif ($row["st_name"]=="Cerrado"){
-                            $output ["st_name"] = '<span class="label label-pill label-danger">'.$row["st_name"].'</span>';
-                        }
-
-                        $output ["e_name"] = $row["e_name"];
-                        $output ["e_last1"] = $row["e_last1"];
-                        $output ["e_last2"] = $row["e_last2"];
-                        $output ["e_mail"] = $row["e_mail"];
-                        $output ["t_phone"] = $row["t_phone"];
-                        $output ["a_name"] = $row["a_name"];
-                        $output ["t_tit"] = $row["t_tit"];
-                        $output ["t_desc"] = $row["t_desc"];
-                        $output ["area_id"] = $row["area_id"];
-                        $output ["cat_id"] = $row["cat_id"];
-                        $output ["scat_id"] = $row["scat_id"];
-                        $output ["niv_id"] = $row["niv_id"];
-                        $output ["est_id"] = $row["est_id"];
-                        $output ["sest_id"] = $row["sest_id"];
-                        $output ["t_close"] = $row["t_close"];
-                        $output ["t_close_user"] = $row["t_close_user"];
-
-                    }
-                    echo json_encode($output);
-                }
-            break;
-
-            case "insertar_detalle": // Guardar tickets en la Base de Datos
+            case "insertar_mensaje": // Guardar mensajes del ticket en la Base de Datos
 
                 // Verificar acceso al ticket
                 $t_id = $_POST["tick_id"];
@@ -300,13 +414,50 @@
                 }
 
                 // Si tiene acceso, proceder a insertar el detalle
-                $ticket->insert_ticket_detalle(
+                $ticket->insert_ticket_mensaje(
                     $_POST["tick_id"],
                     $_POST["emp_id"],
                     $_POST["td_desc"]);
             break;
 
-            // Contador de número de tickets
+
+            // =======================================================================
+            // FUNCIONES PARA EL HISTORIAL DE CAMBIOS
+            // =======================================================================
+
+            case "listar_historial":
+                $datos = $ticket->listarTicketHistorial($_POST["tick_id"]);
+                foreach($datos as $row) {
+                    ?>
+                        <article class="activity-line-item box-typical">
+                            <div class="activity-line-date">
+                                <?php echo (new DateTime($row["th_crea"]))->format('d M Y'); ?>
+                            </div>
+                            <header class="activity-line-item-header">
+                                <div class="activity-line-item-user-name">
+                                    <?php echo $row["e_name"]." ".$row["e_last1"]; ?> - 
+                                    <span class="label label-default"><?php echo $row["th_accion"]; ?></span>
+                                </div>
+                            </header>
+                            <div class="activity-line-action-list">
+                                <section class="activity-line-action">
+                                    <div class="time"><?php echo (new DateTime($row["th_crea"]))->format('h:i A'); ?></div>
+                                    <div class="cont">
+                                        <div class="cont-in text-muted">
+                                            <p><?php echo $row["th_detalles"]; ?></p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </article>
+                    <?php
+                }
+            break;
+
+
+            // =======================================================================
+            // FUNCIONES PARA ESTADISTICAS EN DASHBOARD
+            // =======================================================================
 
             case "total_tickets_globales": // Total de tickets creados
                 $datos = $ticket->ticketsTotal();

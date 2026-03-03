@@ -22,7 +22,7 @@ function cargarTabla(filtro) {
 
     // Evaluamos si es soporte o un usuario normal
     if (area_id == 11 || area_id == 12 || area_id == 14) {
-        urlAjax = "../../controller/ticket.php?op=listar";
+        urlAjax = "../../controller/ticket.php?op=listar_tickets";
         dataAjax = { filtro_estado : filtro }; // Solo mandamos el filtro
     } else {
         urlAjax = "../../controller/ticket.php?op=listar_por_usuario";

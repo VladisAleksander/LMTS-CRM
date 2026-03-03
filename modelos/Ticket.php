@@ -1,8 +1,11 @@
 <?php
     class Ticket extends Conectar {
+
+    // =======================================================================
+    // FUNCIONES PARA NUEVO TICKET
+    // =======================================================================
         
-    // Función para generar número de ticket único
-        private function generarTicketID($conectar) {
+        private function generarTicketID($conectar) { // Generar número de ticket único
             $fecha = date("Ymd");
             $maxIntentos = 10;
     
@@ -29,8 +32,7 @@
             throw new Exception("No fue posible generar un número de ticket único después de varios intentos.");
         }
 
-    // Función para insertar un nuevo ticket en la base de datos, recibiendo como parámetros el título del ticket, el área a la que pertenece, el empleado que lo creó, el teléfono de contacto, la categoría, subcategoría, descripción y equipo relacionado (si aplica)
-        public function insert_ticket($t_tit, $area_id, $emp_id, $t_phone, $cat_id, $scat_id, $t_desc, $t_equip = null) {
+        public function insert_ticket($t_tit, $area_id, $emp_id, $t_phone, $cat_id, $scat_id, $t_desc, $t_equip = null) { // Insertar un nuevo ticket en la base de datos, recibiendo como parámetros el título del ticket, el área a la que pertenece, el empleado que lo creó, el teléfono de contacto, la categoría, subcategoría, descripción y equipo relacionado (si aplica)
             $conectar = parent::conexion();
             parent::set_names();
 
@@ -54,8 +56,12 @@
             return $t_num;
         }
 
-    // Función para actualizar la información de un ticket
-        public function update_ticket($t_id, $t_tit, $area_id, $t_phone, $cat_id, $scat_id, $niv_id, $est_id, $sest_id, $t_desc, $t_equip, $t_close_user = null) {
+
+    // =======================================================================
+    // FUNCIONES PARA DETALLES
+    // =======================================================================
+
+        public function update_ticket($t_id, $t_tit, $area_id, $t_phone, $cat_id, $scat_id, $niv_id, $est_id, $sest_id, $t_desc, $t_equip, $t_resolucion, $t_close_user = null) { // Actualizar la información de un ticket
             $conectar = parent::conexion();
             parent::set_names();
             
@@ -71,7 +77,8 @@
                             est_id       = ?, 
                             sest_id      = ?,
                             t_desc       = ?, 
-                            t_equip      = ?, 
+                            t_equip      = ?,
+                            t_resolucion = ?,
                             t_close_user = ?,
                             t_close      = NOW(), 
                             t_upd        = NOW()
@@ -89,8 +96,9 @@
                 $sql->bindValue(8,  $sest_id);
                 $sql->bindValue(9,  $t_desc);
                 $sql->bindValue(10, $t_equip);
-                $sql->bindValue(11, $t_close_user); 
-                $sql->bindValue(12, $t_id);
+                $sql->bindValue(11, $t_resolucion);
+                $sql->bindValue(12, $t_close_user); 
+                $sql->bindValue(13, $t_id);
             } else {
                 // Si no está cerrado, no se actualiza el campo t_close_user ni t_close y forzamos t_close_user a NULL
                 $sql = "UPDATE tickets 
@@ -103,7 +111,8 @@
                             est_id       = ?, 
                             sest_id      = ?, 
                             t_desc       = ?, 
-                            t_equip      = ?, 
+                            t_equip      = ?,
+                            t_resolucion = ?,
                             t_close_user = NULL,
                             t_close      = NULL,
                             t_upd        = NOW()
@@ -121,15 +130,19 @@
                 $sql->bindValue(8,  $sest_id);
                 $sql->bindValue(9,  $t_desc);
                 $sql->bindValue(10, $t_equip);
-                $sql->bindValue(11, $t_id);
+                $sql->bindValue(11, $t_resolucion);
+                $sql->bindValue(12, $t_id);
             }
 
             $sql -> execute();
             return $sql->rowCount(); // Devuelve cuántas filas se actualizaron
         }
 
-    // Función para listar la información completa de todos los tickets creados por el usuario
-        public function listarTicketUsuario($emp_id, $filtro_estado = '') {
+    // =======================================================================
+    // FUNCIONES PARA CONSULTAR LISTADO
+    // =======================================================================
+
+        public function listarTicketUsuario($emp_id, $filtro_estado = '') { // Listar la información completa de todos los tickets creados por el usuario
             $conectar = parent::conexion();
             parent::set_names();
             
@@ -164,9 +177,7 @@
             return $resultado = $sql->fetchAll();
         }
 
-    
-    // Función para listar la información completa de todos los tickets (Sistemas)
-        public function listarTicket($filtro_estado = '') {
+        public function listarTicket($filtro_estado = '') { // Listar la información completa de todos los tickets (Soporte)
             $conectar = parent::conexion();
             parent::set_names();
             
@@ -199,39 +210,7 @@
             return $resultado = $sql->fetchAll();
         }
 
-    // Función para listar los mensajes de un ticket específico, mostrando el nombre completo del empleado que hizo cada detalle, el área y el puesto al que pertenece, ordenados por fecha de creación de detalle de forma descendente
-        public function listarTicketMensajes($tick_id) {
-            $conectar = parent::conexion();
-            parent::set_names();
-            
-            $sql = "SELECT
-                ticket_mensajes.td_id,
-                ticket_mensajes.tick_id,
-                ticket_mensajes.td_desc,
-                ticket_mensajes.td_crea,
-                tickets.t_num,
-                empleados.e_name,
-                empleados.e_last1,
-                empleados.e_last2,
-                areas.a_name,
-                puestos.p_tit
-                FROM ticket_mensajes
-                INNER JOIN tickets ON ticket_mensajes.tick_id  = tickets.t_id
-                INNER JOIN empleados ON ticket_mensajes.emp_id  = empleados.e_id
-                INNER JOIN areas ON empleados.area_id = areas.a_id
-                INNER JOIN puestos ON empleados.pue_id = puestos.p_id
-                WHERE tick_id = ?
-                ORDER BY ticket_mensajes.td_crea DESC";
-            
-            $sql = $conectar->prepare($sql);
-            $sql -> bindValue(1, $tick_id);
-
-            $sql -> execute();
-            return $resultado = $sql->fetchAll();
-        }
-
-    // Función para listar la información completa de un ticket específico, mostrando el nombre completo del empleado que lo creó, el área, la categoría, subcategoría, estatus, subestatus y prioridad, además de la fecha de creación, fecha de cierre (si está cerrado) y el usuario que lo cerró (si está cerrado)
-        public function listarTicketID($tick_id) {
+        public function listarTicketID($tick_id) { // Listar la información completa de un ticket específico, mostrando el nombre completo del empleado que lo creó, el área, la categoría, subcategoría, estatus, subestatus y prioridad, además de la fecha de creación, fecha de cierre (si está cerrado) y el usuario que lo cerró (si está cerrado)
             $conectar = parent::conexion();
             parent::set_names();
             
@@ -248,6 +227,7 @@
                 tickets.est_id,
                 tickets.sest_id,
                 tickets.t_desc,
+                tickets.t_resolucion,
                 tickets.t_crea,
                 tickets.t_close,
                 tickets.t_close_user,
@@ -279,8 +259,12 @@
             return $resultado = $sql->fetchAll();
         }
 
-    // Función para insertar un nuevo detalle en un ticket específico
-        public function insert_ticket_detalle($tick_id, $emp_id, $td_desc) {
+
+    // =======================================================================
+    // FUNCIONES PARA MENSAJES
+    // =======================================================================
+
+        public function insert_ticket_mensaje($tick_id, $emp_id, $td_desc) { // Insertar un nuevo mensaje en un ticket específico
             $conectar = parent::conexion();
             parent::set_names();
             
@@ -295,8 +279,129 @@
             return $resultado = $sql->fetchAll();
         }
 
+        public function listarTicketMensajes($tick_id) { // Listar los mensajes de un ticket específico, mostrando el nombre completo del empleado que hizo cada detalle, el área y el puesto al que pertenece, ordenados por fecha de creación de detalle de forma descendente
+            $conectar = parent::conexion();
+            parent::set_names();
+            
+            $sql = "SELECT
+                ticket_mensajes.td_id,
+                ticket_mensajes.tick_id,
+                ticket_mensajes.td_desc,
+                ticket_mensajes.td_crea,
+                tickets.t_num,
+                empleados.e_name,
+                empleados.e_last1,
+                empleados.e_last2,
+                areas.a_name,
+                puestos.p_tit
+                FROM ticket_mensajes
+                INNER JOIN tickets ON ticket_mensajes.tick_id  = tickets.t_id
+                INNER JOIN empleados ON ticket_mensajes.emp_id  = empleados.e_id
+                INNER JOIN areas ON empleados.area_id = areas.a_id
+                INNER JOIN puestos ON empleados.pue_id = puestos.p_id
+                WHERE tick_id = ?
+                ORDER BY ticket_mensajes.td_crea DESC";
+            
+            $sql = $conectar->prepare($sql);
+            $sql -> bindValue(1, $tick_id);
 
-    // Funciones para la obtención del número total de tickets creados, nuevos, abiertos y cerrados, contados por usuario. Para el área de Soporte se mostrarán los totales de todos los tickets sin importar el usuario, para el resto de las áreas solo se mostrarán los totales de los tickets creados por el usuario.
+            $sql -> execute();
+            return $resultado = $sql->fetchAll();
+        }
+
+
+    // =======================================================================
+    // FUNCIONES PARA NOTAS INTERNAS (SOLO SOPORTE)
+    // =======================================================================
+    
+        public function insert_ticket_nota($tick_id, $emp_id, $tn_desc) { // Insertar una nueva nota interna
+            $conectar = parent::conexion();
+            parent::set_names();
+            
+            $sql = "INSERT INTO ticket_notas (tick_id, emp_id, tn_desc, tn_crea, tn_stat) VALUES (?, ?, ?, NOW(), 1);";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->bindValue(2, $emp_id);
+            $sql->bindValue(3, $tn_desc);
+            $sql->execute();
+            
+            return $sql->rowCount();
+        }
+
+        public function listarTicketNotas($tick_id) { // Listar las notas internas de un ticket
+            $conectar = parent::conexion();
+            parent::set_names();
+            
+            $sql = "SELECT
+                ticket_notas.tn_id,
+                ticket_notas.tn_desc,
+                ticket_notas.tn_crea,
+                empleados.e_name,
+                empleados.e_last1,
+                empleados.e_last2,
+                puestos.p_tit
+                FROM ticket_notas
+                INNER JOIN empleados ON ticket_notas.emp_id = empleados.e_id
+                INNER JOIN puestos ON empleados.pue_id = puestos.p_id
+                WHERE ticket_notas.tick_id = ?
+                ORDER BY ticket_notas.tn_crea DESC";
+            
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->execute();
+            
+            return $resultado = $sql->fetchAll();
+        }
+
+
+    // =======================================================================
+    // FUNCIONES PARA EL HISTORIAL DE CAMBIOS
+    // =======================================================================
+
+    public function insert_ticket_historial($tick_id, $emp_id, $th_accion, $th_detalles) { // Registrar un movimiento en el historial
+        $conectar = parent::conexion();
+        parent::set_names();
+        
+        $sql = "INSERT INTO ticket_historial (tick_id, emp_id, th_accion, th_detalles, th_crea) VALUES (?, ?, ?, ?, NOW());";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $tick_id);
+        $sql->bindValue(2, $emp_id);
+        $sql->bindValue(3, $th_accion);
+        $sql->bindValue(4, $th_detalles);
+        $sql->execute();
+        
+        return $sql->rowCount();
+    }
+    
+    public function listarTicketHistorial($tick_id) { // Listar el historial de un ticket
+        $conectar = parent::conexion();
+        parent::set_names();
+        
+        $sql = "SELECT
+            ticket_historial.th_id,
+            ticket_historial.th_accion,
+            ticket_historial.th_detalles,
+            ticket_historial.th_crea,
+            empleados.e_name,
+            empleados.e_last1,
+            empleados.e_last2
+            FROM ticket_historial
+            INNER JOIN empleados ON ticket_historial.emp_id = empleados.e_id
+            WHERE ticket_historial.tick_id = ?
+            ORDER BY ticket_historial.th_crea DESC";
+        
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $tick_id);
+        $sql->execute();
+        
+        return $resultado = $sql->fetchAll();
+    }
+
+
+    // =======================================================================
+    // FUNCIONES PARA ESTADISTICAS EN DASHBOARD
+    // =======================================================================
+
         public function ticketsTotal () { // Cantidad total de tickets creados, sin importar el usuario
             $conectar = parent::conexion();
             parent::set_names();
@@ -353,7 +458,7 @@
             return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function get_ticket_grafico(){
+        public function get_ticket_grafico(){ // Grafico para Soporte que muestra la cantidad total de tickets por categoría
             $conectar = parent::conexion();
             parent::set_names();
             $sql="SELECT categorias.c_name AS Categoría, COUNT(*) AS Total 

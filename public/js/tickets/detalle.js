@@ -6,43 +6,30 @@ $(document).ready(function(){
 
     var tick_id = getUrlParameter('id');
 
-    listar_detalle (tick_id);
+    listar_mensaje (tick_id);
+    listar_notas(tick_id);
+    listar_historial(tick_id);
 
+    // Editor de texto SummerNote para la pestaña Detalles
     $('#td_det').summernote({
         height: 200, // Establece el tamaño del editor
         lang: 'es-ES' // Establece el idioma del editor
     });
 
+    // Editor de texto SummerNote para la pestaña Mensajes
     $('#td_message').summernote({
         height: 100, // Establece el tamaño del editor
-        lang: 'es-ES', // Establece el idioma del editor
-        callbacks: {
-            onImageUpload: function(files) {
-                // Maneja la carga de imágenes
-                for (var i = 0; i < files.length; i++) {
-                    uploadImage(files[i]);
-                }
-            },
-            onMediaDelete: function(target) {
-                // Maneja la eliminación de medios
-                deleteMedia(target[0].src);
-            },
-            onPaste: function(e) {
-                // Maneja el pegado de contenido
-                var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                if (bufferText) {
-                    document.execCommand('insertText', false, bufferText);
-                }
-            }
-        }
+        lang: 'es-ES' // Establece el idioma del editor
     });
     $('#td_message').summernote('code', ''); // Limpia el contenido del editor
 
+    // Editor de texto SummerNote para la pestaña Resolución
     $('#td_res_notes').summernote({
         height: 100, // Establece el tamaño del editor
         lang: 'es-ES' // Establece el idioma del editor
     });
 
+    // Editor de texto SummerNote para la pestaña Notas
     $('#td_notes').summernote({
         height: 100, // Establece el tamaño del editor
         lang: 'es-ES' // Establece el idioma del editor
@@ -67,7 +54,7 @@ $(document).ready(function(){
     });
 
     $.when(comboArea, comboPrioridad, comboCategoria, comboEstatus).done(function() { // Cuando los combos estén cargados activa la carga de datos
-        $.post("../../controller/ticket.php?op=mostrar", {tick_id: tick_id}, function(data) {
+        $.post("../../controller/ticket.php?op=mostrar_detalles_ticket", {tick_id: tick_id}, function(data) {
             try {
                 data = JSON.parse(data);
                 if (data.error) {
@@ -105,9 +92,13 @@ $(document).ready(function(){
 
                 $('#td_det').summernote('code' , data.t_desc);
 
+                // Cargar la resolución guardada
+                $('#t_resolucion_desc').val(data.t_resolucion);
+
                 var isEditable = $('#is_editable').val() === 'true';
                 if (!isEditable || data.est_id == '6') {
                     $('#td_det').summernote('disable');
+                    $('#t_resolucion_desc').prop('disabled', true); // Bloquea la resolución si está cerrado o no es editable
                 }
             } catch (e) {
                 console.error(e);
@@ -163,28 +154,29 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+// Control para el envío de mensajes dentro del ticket
 $(document).on('click', '#btnEnviar', function() {
     var tick_id = getUrlParameter('id');
     var emp_id = $('#e_idx').val();
-    var td_desc = $('#td_message').val();
+    var td_desc = $('#td_message').summernote('code');
 
     if ($('#td_message').summernote('isEmpty')) {
-        // Mensaje de error
+        // Mensaje de error en caso de campo vacío
         swal({
             title: "¡Advertencia!",
-            text: "El campo de notas está vacío.",
+            text: "El campo de mensaje está vacío.",
             type: "warning",
             confirmButtonClass: "btn-success",
             confirmButtonText: "Aceptar",
         });
     }else{
-        $.post('../../controller/ticket.php?op=insertar_detalle', {tick_id : tick_id, emp_id : emp_id, td_desc : td_desc}, function(data) {
-            listar_detalle (tick_id);
+        $.post('../../controller/ticket.php?op=insertar_mensaje', {tick_id : tick_id, emp_id : emp_id, td_desc : td_desc}, function(data) {
+            listar_mensaje (tick_id);
             $('#td_message').summernote('reset'); // Limpia el contenido del editor
             // Mensaje de éxito
             swal({
                 title: "Mensaje Enviado",
-                text: "El el mensaje ha sido enviado correctamente.",
+                text: "El mensaje ha sido enviado correctamente.",
                 type: "success",
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
@@ -193,6 +185,7 @@ $(document).on('click', '#btnEnviar', function() {
     }
 });
 
+// Control de la pestaña Detalles para guardar los cambios realizados
 $(document).on('click', '#btnGuardar', function() {
     var tick_id = getUrlParameter('id');
     var t_tit = $('#t_tit').val().trim();
@@ -206,6 +199,9 @@ $(document).on('click', '#btnGuardar', function() {
     var t_desc = $('#td_det').summernote('code').trim();
     var t_close_user = (est_id == '6') ? $('#e_idx').val() : '';
 
+    // Capturamos el valor del nuevo textarea de resolución
+    var t_resolucion = $('#t_resolucion_desc').val().trim();
+
     // Validar campos requeridos
     var errores = [];
     if (t_phone === '') errores.push('Teléfono de contacto');
@@ -218,6 +214,11 @@ $(document).on('click', '#btnGuardar', function() {
     if (t_tit === '') errores.push('Título');
     if ($('#td_det').summernote('isEmpty')) errores.push('Descripción detallada');
 
+    // VALIDACIÓN: Si es Resuelto(5) o Cerrado(6), la resolución es obligatoria
+    if ((est_id == '5' || est_id == '6') && t_resolucion === '') {
+        errores.push('Motivo de Resolución/Cierre (Pestaña Resolución)');
+    }
+
     if (errores.length > 0) {
         swal({
             title: "¡Advertencia!",
@@ -229,7 +230,8 @@ $(document).on('click', '#btnGuardar', function() {
         return;
     }
 
-    $.post('../../controller/ticket.php?op=update', {
+    // Función para actualizar los detalles del ticket
+    $.post('../../controller/ticket.php?op=actualizar_detalles_ticket', {
         t_id: tick_id,
         t_tit: t_tit,
         area_id: area_id,
@@ -240,6 +242,7 @@ $(document).on('click', '#btnGuardar', function() {
         est_id: est_id,
         sest_id: sest_id,
         t_desc: t_desc,
+        t_resolucion: t_resolucion,
         t_close_user: t_close_user
     }, function(response) {
         response = JSON.parse(response);
@@ -251,6 +254,8 @@ $(document).on('click', '#btnGuardar', function() {
                 confirmButtonClass: "btn-success",
                 confirmButtonText: "Aceptar",
             });
+            listar_historial(tick_id); // Actualiza la pestaña historial sin recargar la página
+
             // Actualizar el estado en tiempo real sin recargar la página
             var st_name = $('#st_id option:selected').text();
             var class_name;
@@ -279,7 +284,7 @@ $(document).on('click', '#btnGuardar', function() {
             if (est_id === '6') {
                 $('#notes_section').hide();
             }
-        } else {
+        } else { // Mensaje de error en caso de no poderse actualizar la información
             swal({
                 title: "Error",
                 text: response.error,
@@ -292,10 +297,54 @@ $(document).on('click', '#btnGuardar', function() {
 });
 
 // Función para listar los detalles del ticket
-function listar_detalle (tick_id) {
-    $.post("../../controller/ticket.php?op=listar_detalle", {tick_id: tick_id}, function(data) {
-        $('#lbldetalle').html(data);
+function listar_mensaje (tick_id) {
+    $.post("../../controller/ticket.php?op=listar_mensajes", {tick_id: tick_id}, function(data) {
+        $('#ticket_mensajes').html(data);
     });
 }
+
+// Función para listar las Notas Internas (Solo Soporte)
+function listar_notas(tick_id) {
+    $.post("../../controller/ticket.php?op=listar_notas", {tick_id: tick_id}, function(data) {
+        $('#support_notes').html(data);
+    });
+}
+
+// Función para listar el Historial de Cambios
+function listar_historial(tick_id) {
+    $.post("../../controller/ticket.php?op=listar_historial", {tick_id: tick_id}, function(data) {
+        $('#ticket_historial').html(data);
+    });
+}
+
+// Evento para el botón de "Guardar" Notas Internas
+$(document).on('click', '#btnSaveNotes', function() {
+    var tick_id = getUrlParameter('id');
+    var emp_id = $('#e_idx').val();
+    var tn_desc = $('#td_notes').summernote('code');
+
+    if ($('#td_notes').summernote('isEmpty')) {
+        swal({
+            title: "¡Advertencia!",
+            text: "El campo de notas está vacío.",
+            type: "warning",
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Aceptar",
+        });
+    } else {
+        $.post('../../controller/ticket.php?op=insertar_nota', {tick_id : tick_id, emp_id : emp_id, tn_desc : tn_desc}, function(data) {
+            listar_notas(tick_id); // Recarga la lista de notas
+            listar_historial(tick_id); // Recarga el historial silenciosamente
+            $('#td_notes').summernote('code', ''); // Limpia el editor
+            swal({
+                title: "Nota Guardada",
+                text: "La nota interna se ha guardado correctamente.",
+                type: "success",
+                confirmButtonClass: "btn-success",
+                confirmButtonText: "Aceptar",
+            });
+        });
+    }
+});
 
 init();
