@@ -3,62 +3,33 @@ function init() {
     $('#ticket-form').on('submit', function(e) {
         guardaryeditar(e); // Llama a la función para guardar o editar el ticket
     });
-
 }
 
-$(document).ready(function() { // Llama a la función cuando el DOM está listo
+$(document).ready(function() { 
+    // Limpieza de callbacks fantasma en la inicialización
     $('#t_desc').summernote({
-        height: 200, // Establece el tamaño del editor
-        lang: 'es-ES', // Establece el idioma del editor
-        callbacks: {
-            onImageUpload: function(files) {
-                // Maneja la carga de imágenes
-                for (var i = 0; i < files.length; i++) {
-                    uploadImage(files[i]);
-                }
-            },
-            onMediaDelete: function(target) {
-                // Maneja la eliminación de medios
-                deleteMedia(target[0].src);
-            },
-            onPaste: function(e) {
-                // Maneja el pegado de contenido
-                var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                if (bufferText) {
-                    document.execCommand('insertText', false, bufferText);
-                }
-            }
-        }
+        height: 200, 
+        lang: 'es-ES' 
     });
 
-    $('#t_desc').summernote('code', ''); // Limpia el contenido del editor
+    $('#t_desc').summernote('code', ''); 
 
     $.post('../../controller/area.php?op=combo', function(data, status) {
-        // Cargar las areas en el selector
         $('#area_id').html(data);
     });
 
     $.post('../../controller/categoria.php?op=combo', function(data, status) {
-        // Cargar las categorías en el selector
         $('#cat_id').html(data);
     });
 
-    $('#cat_id').change(function() {
-        // Obtener el valor seleccionado
-        cat_id = $(this).val();
-
-        // Llamar a la función para cargar las subcategorías con base en la categoría seleccionada
-        $.post('../../controller/subcategoria.php?op=combo', {cat_id : cat_id}, function(data, status) {            
-            // Cargar las subcategorías en el selector
-            $('#scat_id').html(data);
-        });
-    });
-
-    // Manejar cambio en categoría para cargar subcategorías y mostrar campo condicional
+    // Unificamos el evento change para que cargue subcategorías y muestre el equipo
     $('#cat_id').change(function() {
         var cat_id = $(this).val();
-        //loadSubcats(cat_id);
-        // Mostrar u ocultar campo "Nombre del Equipo" si cat_id == 1, 2 o 5
+
+        $.post('../../controller/subcategoria.php?op=combo', {cat_id : cat_id}, function(data, status) {            
+            $('#scat_id').html(data);
+        });
+
         if (cat_id === '1' || cat_id === '2' || cat_id === '5') {
             $('#device_name_container').show();
             $('#device_name').prop('required', true);
@@ -67,16 +38,14 @@ $(document).ready(function() { // Llama a la función cuando el DOM está listo
             $('#device_name').prop('required', false).val('');
         }
     });
-
 });
 
 function guardaryeditar(e) {
-    e.preventDefault(); // Evita el envío del formulario por defecto
+    e.preventDefault(); 
 
     var formData = new FormData($("#ticket-form")[0]);
 
     if ($('#t_desc').summernote('isEmpty') || $('#t_tit').val() == '') {
-        // Mensaje de error
         swal({
             title: "¡Advertencia!",
             text: "Uno o más campos están vacíos",
@@ -84,7 +53,7 @@ function guardaryeditar(e) {
             confirmButtonClass: "btn-success",
             confirmButtonText: "Aceptar",
         });
-    }else{
+    } else {
         $.ajax({
             url: "../../controller/ticket.php?op=insert",
             type: "POST",
@@ -92,16 +61,28 @@ function guardaryeditar(e) {
             contentType: false,
             processData: false,
             success: function(response) {
-                // console.log(response); // Verifica la respuesta del servidor
-                $("#ticket-form")[0].reset(); // Reinicia el formulario
-                $('#t_desc').summernote('reset'); // Limpia el contenido del editor
-                $('#t_desc').summernote('code', ''); // Limpia el contenido del editor
-                // Mensaje de éxito
+                $("#ticket-form")[0].reset(); 
+                
+                // ELIMINAMOS EL .summernote('reset') QUE CAUSABA EL ERROR
+                $('#t_desc').summernote('code', ''); 
+                
                 swal({
                     title: "Ticket Enviado",
                     text: "El ticket ha sido enviado correctamente.",
                     type: "success",
                     confirmButtonClass: "btn-success",
+                    confirmButtonText: "Aceptar",
+                }).then(function() {
+                    // Puedes descomentar la siguiente línea para que lo mande a la lista de tickets tras crearlo
+                    // window.location.href = "../ConsultarTicket/";
+                });
+            },
+            error: function(e) {
+                swal({
+                    title: "Error",
+                    text: "Hubo un problema al crear el ticket en el servidor.",
+                    type: "error",
+                    confirmButtonClass: "btn-danger",
                     confirmButtonText: "Aceptar",
                 });
             }

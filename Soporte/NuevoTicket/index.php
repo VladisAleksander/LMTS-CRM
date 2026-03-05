@@ -87,7 +87,7 @@
                             <div class="col-lg-6" id="device_name_container" style="display: none;">
                                 <fieldset class="form-group">
                                     <label class="form-label semibold" for="e_name">Nombre del Equipo</label>
-                                    <input type="text" class="form-control" id="device_name" name="device_name" required>
+                                    <input type="text" class="form-control" id="t_equip" name="t_equip" required>
                                 </fieldset>
                             </div>
 

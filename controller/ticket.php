@@ -28,15 +28,40 @@
             // =======================================================================
 
             case "insert": // Guardar tickets en la Base de Datos
-                $ticket->insert_ticket(
+                $t_equip = isset($_POST["t_equip"]) ? $_POST["t_equip"] : null;
+                
+                // 1. Insertamos el ticket y capturamos su nuevo ID
+                $t_id = $ticket->insert_ticket(
                     $_POST["t_tit"],
                     $_POST["area_id"],
                     $_POST["emp_id"],
                     $_POST["t_phone"],
                     $_POST["cat_id"],
                     $_POST["scat_id"],
-                    $_POST["t_desc"]);
-                    isset($_POST["t_equip"]) ? $_POST["t_equip"] : null;
+                    $_POST["t_desc"],
+                    $t_equip
+                );
+
+                // 2. Obtenemos toda la información textual (nombres de categorías, áreas, etc.)
+                $ticket_nuevo = $ticket->listarTicketID($t_id);
+                $t = $ticket_nuevo[0];
+
+                // 3. Construimos el mensaje inicial del historial
+                $detalles = "<b>Ticket creado con la siguiente información:</b><br>";
+                $detalles .= "Título: " . $t['t_tit'] . "<br>";
+                $detalles .= "Área: " . $t['a_name'] . "<br>";
+                $detalles .= "Categoría: " . $t['c_name'] . "<br>";
+                $detalles .= "Subcategoría: " . $t['sc_name'] . "<br>";
+                $detalles .= "Prioridad: " . $t['n_name'] . "<br>";
+                $detalles .= "Estatus: " . $t['st_name'];
+                if (!empty($t['t_equip'])) {
+                    $detalles .= "<br>Equipo: " . $t['t_equip'];
+                }
+
+                // 4. Lo registramos en la tabla
+                $ticket->insert_ticket_historial($t_id, $_POST["emp_id"], "Creación de Ticket", $detalles);
+
+                echo json_encode(["success" => "Ticket creado correctamente."]);
             break;
 
 
@@ -196,84 +221,85 @@
             break;
 
             case "actualizar_detalles_ticket": // Actualizar los detalles de un ticket
-                // Validar que venga el ID del ticket
                 if (isset($_POST["t_id"]) && !empty($_POST["t_id"])) {
 
-                    // Verificar acceso al ticket
                     $t_id = $_POST["t_id"];
                     if (!verificarAccesoTicket($t_id, $_SESSION['e_id'], $_SESSION['area_id'])) {
-                        echo json_encode(["error" => "Acceso Denegado: No tienes permiso para modificar este ticket."]);
+                        echo json_encode(["error" => "Acceso Denegado."]);
                         break;
                     }
 
-                    // 1. Obtenemos los datos actuales del ticket ANTES de modificarlo para comparar
+                    // 1. Obtenemos los datos ANTES de modificar
                     $ticket_antiguo = $ticket->listarTicketID($_POST["t_id"]);
-                    $est_id_anterior = $ticket_antiguo[0]['est_id'];
+                    $t_ant = $ticket_antiguo[0];
             
-                    // 2. Ejecutar la actualización
-                    // Si el estado es 6 (cerrado), permitir actualizar el campo t_close_user
+                    // 2. Ejecutar la actualización en SQL
                     if ($_POST["est_id"] == 6) {
-                        $result = $ticket->update_ticket(
-                            $_POST["t_id"],
-                            $_POST["t_tit"],
-                            $_POST["area_id"],
-                            $_POST["t_phone"],
-                            $_POST["cat_id"],
-                            $_POST["scat_id"],
-                            $_POST["niv_id"],
-                            $_POST["est_id"],
-                            $_POST["sest_id"],
-                            $_POST["t_desc"],
-                            null,
-                            $_POST["t_resolucion"],
-                            $_POST["t_close_user"]
-                        );
+                        $result = $ticket->update_ticket($_POST["t_id"], $_POST["t_tit"], $_POST["area_id"], $_POST["t_phone"], $_POST["cat_id"], $_POST["scat_id"], $_POST["niv_id"], $_POST["est_id"], $_POST["sest_id"], $_POST["t_desc"], null, $_POST["t_resolucion"], $_POST["t_close_user"]);
                     } else {
-                        // Si no está cerrado, se pasa NULL implícito u omitido en la función para t_close_user
-                        $result = $ticket->update_ticket(
-                            $_POST["t_id"],
-                            $_POST["t_tit"],
-                            $_POST["area_id"],
-                            $_POST["t_phone"],
-                            $_POST["cat_id"],
-                            $_POST["scat_id"],
-                            $_POST["niv_id"],
-                            $_POST["est_id"],
-                            $_POST["sest_id"],
-                            $_POST["t_desc"],
-                            null,
-                            $_POST["t_resolucion"]
-                        );
+                        $result = $ticket->update_ticket($_POST["t_id"], $_POST["t_tit"], $_POST["area_id"], $_POST["t_phone"], $_POST["cat_id"], $_POST["scat_id"], $_POST["niv_id"], $_POST["est_id"], $_POST["sest_id"], $_POST["t_desc"], null, $_POST["t_resolucion"]);
                     }
 
                     if ($result > 0) {
-                        // LÓGICA DE HISTORIAL AUTOMÁTICO
-                        $accion = "Actualización de Ticket";
-                        $detalles = "Se modificaron los parámetros del ticket.";
                         
-                        // Si el estatus cambió, lo especificamos en el historial
-                        if ($_POST["est_id"] == 5) {
-                            $accion = "Ticket marcado como Resuelto";
-                            $detalles = "El técnico ha aplicado una solución al ticket.";
-                        } else if ($_POST["est_id"] == 6) {
-                            $accion = "Cierre de Ticket";
-                            $detalles = "El ticket ha sido cerrado definitivamente.";
-                        } else if ($_POST["est_id"] == 4) {
-                            $accion = "Ticket Escalado";
-                            $detalles = "El ticket fue escalado a proveedor o técnico especializado.";
+                        // 3. Obtenemos los datos NUEVOS para comparar
+                        $ticket_nuevo = $ticket->listarTicketID($_POST["t_id"]);
+                        $t_nue = $ticket_nuevo[0];
+
+                        // 4. LÓGICA DE AUDITORÍA (Comparación de campos)
+                        $cambios_ant = "";
+                        $cambios_nue = "";
+
+                        if ($t_ant['t_tit'] != $t_nue['t_tit']) {
+                            $cambios_ant .= "Título: " . $t_ant['t_tit'] . "<br>";
+                            $cambios_nue .= "Título: " . $t_nue['t_tit'] . "<br>";
                         }
-                        
-                        // Insertamos silenciosamente en el historial
-                        $ticket->insert_ticket_historial($_POST["t_id"], $_SESSION["e_id"], $accion, $detalles);
+                        if ($t_ant['a_name'] != $t_nue['a_name']) {
+                            $cambios_ant .= "Área: " . $t_ant['a_name'] . "<br>";
+                            $cambios_nue .= "Área: " . $t_nue['a_name'] . "<br>";
+                        }
+                        if ($t_ant['c_name'] != $t_nue['c_name']) {
+                            $cambios_ant .= "Categoría: " . $t_ant['c_name'] . "<br>";
+                            $cambios_nue .= "Categoría: " . $t_nue['c_name'] . "<br>";
+                        }
+                        if ($t_ant['sc_name'] != $t_nue['sc_name']) {
+                            $cambios_ant .= "Subcategoría: " . $t_ant['sc_name'] . "<br>";
+                            $cambios_nue .= "Subcategoría: " . $t_nue['sc_name'] . "<br>";
+                        }
+                        if ($t_ant['n_name'] != $t_nue['n_name']) {
+                            $cambios_ant .= "Prioridad: " . $t_ant['n_name'] . "<br>";
+                            $cambios_nue .= "Prioridad: " . $t_nue['n_name'] . "<br>";
+                        }
+                        if ($t_ant['st_name'] != $t_nue['st_name']) {
+                            $cambios_ant .= "Estatus: " . $t_ant['st_name'] . "<br>";
+                            $cambios_nue .= "Estatus: " . $t_nue['st_name'] . "<br>";
+                        }
+                        if ($t_ant['se_name'] != $t_nue['se_name']) {
+                            $cambios_ant .= "Subestatus: " . $t_ant['se_name'] . "<br>";
+                            $cambios_nue .= "Subestatus: " . $t_nue['se_name'] . "<br>";
+                        }
+
+                        // Si hubo al menos un cambio, construimos el texto y guardamos en historial
+                        if ($cambios_nue != "") {
+                            $detalles = "Se ha modificado la información del ticket.<br><br>";
+                            $detalles .= "<b>Información actual:</b><br>" . $cambios_nue . "<br>";
+                            $detalles .= "<b>Información anterior:</b><br>" . $cambios_ant;
+
+                            $accion = "Actualización de Ticket";
+                            if ($t_ant['est_id'] != 5 && $t_nue['est_id'] == 5) {
+                                $accion = "Ticket marcado como Resuelto";
+                            } else if ($t_ant['est_id'] != 6 && $t_nue['est_id'] == 6) {
+                                $accion = "Cierre de Ticket";
+                            } else if ($t_ant['est_id'] != 4 && $t_nue['est_id'] == 4) {
+                                $accion = "Ticket Escalado";
+                            }
+
+                            $ticket->insert_ticket_historial($_POST["t_id"], $_SESSION["e_id"], $accion, $detalles);
+                        }
 
                         // LÓGICA DE MENSAJE AUTOMÁTICO DE RESOLUCIÓN
-                        // Generar mensaje automático SÓLO si el ticket cambia a Resuelto(5) o Cerrado(6) por primera vez
-                        if (($_POST["est_id"] == 5 || $_POST["est_id"] == 6) && ($est_id_anterior != 5 && $est_id_anterior != 6)) {
-                            
-                            // Formato HTML con los saltos de línea y comillas
+                        if (($_POST["est_id"] == 5 || $_POST["est_id"] == 6) && ($t_ant['est_id'] != 5 && $t_ant['est_id'] != 6)) {
                             $mensaje_usuario = "<p>El ticket ha sido marcado como resuelto bajo el siguiente motivo:</p><br><p><em>\"" . $_POST["t_resolucion"] . "\"</em></p>";
-                            
-                            // Se inserta en la línea de tiempo de mensajes del usuario
                             $ticket->insert_ticket_mensaje($_POST["t_id"], $_SESSION["e_id"], $mensaje_usuario);
                         }
 
@@ -281,7 +307,6 @@
                     } else {
                         echo json_encode(["error" => "No se pudo actualizar el ticket."]);
                     }
-            
                 } else {
                     echo json_encode(["error" => "Falta el ID del ticket para actualizar."]);
                 }
