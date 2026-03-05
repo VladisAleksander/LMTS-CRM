@@ -53,7 +53,9 @@
             $sql -> bindValue(8, $t_desc);
             $sql -> bindValue(9, $t_equip);
             $sql -> execute();
-            return $t_num;
+            
+            // Devolvemos el ID real de la base de datos para poder enlazar el historial
+            return $conectar->lastInsertId();
         }
 
 
